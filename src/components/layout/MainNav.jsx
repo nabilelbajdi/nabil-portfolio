@@ -33,9 +33,7 @@ export function MainNav() {
       )}
     >
       <div className="container mx-auto flex items-center justify-between">
-        <a href="#" className="text-2xl font-bold text-gradient">
-          Nabil
-        </a>
+        <div className="w-8" />
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-1">
