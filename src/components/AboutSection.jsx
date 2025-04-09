@@ -14,7 +14,7 @@ export function AboutSection() {
                   <img 
                     src={profileImage}
                     alt="Nabil El Bajdi" 
-                    className="rounded-xl object-cover w-full aspect-[3/4]"
+                    className="rounded-xl object-cover w-full aspect-auto"
                   />
                 </div>
               </div>
@@ -24,11 +24,11 @@ export function AboutSection() {
           {/* Content Column */}
           <div className="lg:w-3/5 animate-fade-in opacity-0" style={{ animationDelay: "0.3s" }}>
             <h2 className="text-2xl sm:text-3xl font-bold mb-6 flex items-center gap-3">
-              <span className="inline-block w-10 h-1 bg-gradient-to-r from-purple-600 to-blue-500 rounded-full"></span>
-              About Me
+              <span className="inline-block w-10 h-1 bg-gradient-to-r from-violet-500 to-indigo-500 rounded-full"></span>
+              <span className="text-stone-700 dark:text-zinc-300">About Me</span>
             </h2>
-            <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 text-gradient">
-              Developer with a passion for creative solutions
+            <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 text-gradient leading-tight">
+              Where Logic Meets Creativity
             </h3>
             
             <div className="text-stone-600 dark:text-zinc-400 space-y-4 mb-10">

@@ -1,8 +1,6 @@
-import { useState, useEffect, useRef } from "react";
-import { ArrowRight } from "lucide-react";
-import { Button } from "./ui/Button";
-import { ProjectCard } from "./ProjectCard";
-import { ProjectModal } from "./ProjectModal";
+import { useEffect, useRef, useState } from 'react';
+import { ProjectCard } from './ProjectCard';
+import { ProjectModal } from './ProjectModal';
 
 export function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -123,11 +121,11 @@ export function ProjectsSection() {
           }`}
         >
           <div className="flex items-center gap-3 mb-6 justify-center">
-            <span className="inline-block w-10 h-1 bg-gradient-to-r from-purple-600 to-blue-500 rounded-full"></span>
-            <h2 className="text-2xl sm:text-3xl font-bold">
+            <span className="inline-block w-10 h-1 bg-gradient-to-r from-violet-500 to-indigo-500 rounded-full"></span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-stone-700 dark:text-zinc-300">
               My Projects
             </h2>
-            <span className="inline-block w-10 h-1 bg-gradient-to-r from-purple-600 to-blue-500 rounded-full"></span>
+            <span className="inline-block w-10 h-1 bg-gradient-to-r from-violet-500 to-indigo-500 rounded-full"></span>
           </div>
           <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 text-gradient text-center">
             Featured Work
@@ -147,18 +145,6 @@ export function ProjectsSection() {
               onOpenModal={openModal}
             />
           ))}
-        </div>
-        
-        {/* View all projects button */}
-        <div 
-          className={`flex justify-center mt-12 transition-all duration-700 delay-300 ${
-            hasAnimated ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-10'
-          }`}
-        >
-          <Button size="lg" variant="outline" className="cursor-pointer font-medium">
-            View All Projects
-            <ArrowRight className="w-4 h-4 ml-2" />
-          </Button>
         </div>
       </div>
       
