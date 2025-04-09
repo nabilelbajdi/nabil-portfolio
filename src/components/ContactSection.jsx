@@ -5,9 +5,6 @@ import { Textarea } from "./ui/Textarea";
 export function ContactSection() {
   return (
     <section id="contact" className="section-padding relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-gradient-to-tl from-purple-500/10 to-blue-500/10 blur-3xl dark:opacity-20"></div>
-      
       <div className="container mx-auto relative z-10">
         <div className="text-center mb-16">
           <div className="flex items-center gap-3 mb-6 justify-center">
@@ -27,7 +24,7 @@ export function ContactSection() {
         </div>
         
         <div className="max-w-3xl mx-auto">
-          <div className="glass-card rounded-xl p-8 animate-fade-in opacity-0" style={{ animationDelay: "0.2s" }}>
+          <div className="glass-card rounded-xl p-8 animate-fade-in opacity-0 relative z-40" style={{ animationDelay: "0.2s" }}>
             <form onSubmit={(e) => e.preventDefault()}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div className="space-y-2">
@@ -94,7 +91,7 @@ export function ContactSection() {
             </form>
           </div>
           
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in opacity-0" style={{ animationDelay: "0.3s" }}>
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in opacity-0 relative z-40" style={{ animationDelay: "0.3s" }}>
             <div className="text-center">
               <div className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg 

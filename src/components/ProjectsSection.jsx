@@ -114,10 +114,6 @@ export function ProjectsSection() {
       className="py-24 section-padding relative overflow-hidden"
       ref={sectionRef}
     >
-      {/* Background decorations */}
-      <div className="absolute top-[-30%] left-[-20%] w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-purple-500/10 to-blue-500/10 blur-3xl dark:opacity-20 -z-10"></div>
-      <div className="absolute inset-0 bg-gradient-to-b from-background to-secondary/30 dark:to-secondary/10 -z-10"></div>
-      
       {/* Main content */}
       <div className="container mx-auto relative z-10">
         {/* Section header */}

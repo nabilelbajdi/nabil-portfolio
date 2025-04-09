@@ -8,7 +8,7 @@ export function ProjectCard({ project, onOpenModal, index }) {
   
   return (
     <div 
-      className="group relative bg-white dark:bg-zinc-900/90 rounded-2xl overflow-hidden border border-border shadow-sm hover:shadow-xl transition-all duration-300 animate-fade-in opacity-0 transform hover:-translate-y-1 h-full"
+      className="group relative bg-white dark:bg-zinc-900/90 rounded-2xl overflow-hidden border border-border shadow-sm hover:shadow-xl transition-all duration-300 animate-fade-in opacity-0 transform hover:-translate-y-1 h-full z-40"
       style={{ animationDelay: `${0.2 + index * 0.1}s` }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

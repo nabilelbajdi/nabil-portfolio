@@ -4,15 +4,11 @@ import profileImage from '../assets/images/nabil-profile-3.jpg';
 export function AboutSection() {
   return (
     <section id="about" className="py-24 section-padding relative">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background to-secondary/30 dark:to-secondary/10 -z-10"></div>
-      <div className="absolute top-[20%] right-[-10%] w-[400px] h-[400px] rounded-full bg-gradient-to-bl from-purple-500/10 to-blue-500/10 blur-3xl dark:opacity-20 -z-10"></div>
-      
       <div className="container mx-auto">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
           {/* Image Column */}
           <div className="lg:w-2/5 animate-fade-in opacity-0" style={{ animationDelay: "0.2s" }}>
-            <div className="relative">
+            <div className="relative z-40">
               <div className="rounded-2xl overflow-hidden gradient-border">
                 <div className="p-2">
                   <img 
@@ -40,10 +36,7 @@ export function AboutSection() {
                 I'm a developer who enjoys the sweet spot between <span className="font-semibold">logic</span> and <span className="font-semibold">creativity</span>—where thoughtful code meets meaningful design. Whether it's architecting <span className="font-semibold">backend systems</span>, shaping <span className="font-semibold">clean user flows</span>, or experimenting with <span className="font-semibold">AI</span>, I find joy in building things that are both <span className="font-semibold">intelligent</span> and <span className="font-semibold">intuitive</span>.
               </p>
               <p>
-                I have a background in <span className="font-semibold">DevOps</span>, including a six-month internship as a DevOps engineer, where I developed a strong foundation in <span className="font-semibold">automation</span>, <span className="font-semibold">infrastructure</span>, and <span className="font-semibold">deployment workflows</span>. These skills continue to influence how I approach projects—from backend design to deployment.
-              </p>
-              <p>
-                Right now, I'm diving deeper into <span className="font-semibold">AI</span> and <span className="font-semibold">machine learning</span> through ongoing studies, adding more intelligence to my skill set and exploring how these tools can enhance the products I build.
+                I have a background in <span className="font-semibold">DevOps</span>, including a six-month internship as a DevOps engineer, where I developed a strong foundation in <span className="font-semibold">automation</span>, <span className="font-semibold">infrastructure</span>, and <span className="font-semibold">deployment workflows</span>. Right now, I'm diving deeper into <span className="font-semibold">AI</span> and <span className="font-semibold">machine learning</span> through ongoing studies, adding more intelligence to my skill set and exploring how these tools can enhance the products I build.
               </p>
               <p>
                 One project I'm especially proud of is <span className="font-semibold">GameGloom</span>—a full-stack web app I created from the ground up to explore the intersection of <span className="font-semibold">gaming</span>, <span className="font-semibold">data</span>, and <span className="font-semibold">AI</span>. It started as a simple idea, and through it, I learned how to turn that idea into something <span className="font-semibold">real</span>, <span className="font-semibold">usable</span>, and <span className="font-semibold">polished</span>. That experience sparked a deeper passion for creating tools that people actually enjoy using.
