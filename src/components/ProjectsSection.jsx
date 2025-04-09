@@ -43,8 +43,8 @@ export function ProjectsSection() {
     {
       id: 1,
       title: "GameGloom",
-      description: "An interactive platform for discovering and rating video games, with personalized recommendations based on user preferences.",
-      longDescription: "GameGloom is an interactive web application that helps gamers discover new titles based on their preferences and play history. The platform provides detailed game information, user reviews, and a sophisticated recommendation engine powered by collaborative filtering algorithms.",
+      description: "Interactive platform for discovering video games with personalized recommendations based on user preferences.",
+      longDescription: "GameGloom is an interactive web application that helps gamers discover new titles based on their preferences and play history. Built with Python backend and React frontend, the platform runs on AWS cloud infrastructure with an RDS PostgreSQL database. The application uses GitHub Actions for CI/CD, ensuring smooth deployments and testing. The platform provides detailed game information, user reviews, and a sophisticated recommendation system.",
       features: [
         "Personalized game recommendations based on user activity",
         "Detailed game information with screenshots and trailers",
@@ -52,40 +52,40 @@ export function ProjectsSection() {
         "Social features to connect with other gamers",
         "Cross-platform game tracking and wishlist functionality"
       ],
-      tags: ["React", "Tailwind CSS", "Node.js", "MongoDB", "Game API"],
-      image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80",
+      tags: ["Python", "JavaScript", "React", "Tailwind CSS", "PostgreSQL", "AWS", "Nginx", "GitHub Actions"],
+      image: "src/assets/images/screenshots/gamegloom/gamegloom-gamepage.jpg",
       additionalImages: [
-        "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80"
+        "src/assets/images/screenshots/gamegloom/gamegloom-homepage.jpg",
+        "src/assets/images/screenshots/gamegloom/gamegloom-category.jpg"
       ],
-      demoLink: "#",
+      demoLink: "https://gamegloom.com",
       codeLink: "#"
     },
     {
       id: 2,
-      title: "Weather Dashboard",
-      description: "Real-time weather application with forecast data, location-based services, and interactive visualizations.",
-      longDescription: "A comprehensive weather tracking application that provides real-time forecasts, historical weather data, and location-based services. The app features interactive visualizations including radar maps, temperature charts, and precipitation forecasts.",
+      title: "Mental Health Dashboard",
+      description: "Interactive data visualization tool analyzing mental health trends across demographics using Streamlit and Plotly.",
+      longDescription: "This dashboard analyzes a comprehensive mental health dataset to identify trends and patterns in mental health experiences across different demographics, regions, and occupations. The interactive dashboard allows users to filter data by various parameters and explore visualizations that reveal insights about global distribution of mental health concerns, correlations between lifestyle factors and outcomes, impact of work environments, and treatment access patterns.",
       features: [
-        "Real-time weather data from multiple reliable sources",
-        "7-day and hourly forecasts with detailed conditions",
-        "Interactive radar and satellite maps",
-        "Location-based services with GPS integration",
-        "Custom alerts for severe weather conditions"
+        "Interactive filtering by gender, country, occupation, and time period",
+        "Multi-tab organization for exploring different aspects of mental health data",
+        "Diverse visualizations including maps, charts, and interactive graphs",
+        "Real-time calculations based on filtering choices",
+        "Statistical analysis and data insights"
       ],
-      tags: ["JavaScript", "OpenWeather API", "Chart.js", "Geolocation"],
-      image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+      tags: ["Python", "Pandas", "Streamlit", "Plotly", "Data Analysis", "Data Visualization", "Statistics"],
+      image: "src/assets/images/screenshots/mental-health-dashboard/mental-health-dashboard-sc1.jpg",
       additionalImages: [
-        "https://images.unsplash.com/photo-1527482797697-8795b05a13fe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1592210454359-9043f067919b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+        "src/assets/images/screenshots/mental-health-dashboard/mental-health-dashboard-sc2.jpg",
+        "src/assets/images/screenshots/mental-health-dashboard/mental-health-dashboard-sc3.jpg"
       ],
-      demoLink: "#",
-      codeLink: "#"
+      demoLink: "https://mental-health-dashboard.streamlit.app/",
+      codeLink: "https://github.com/nabilelbajdi/mental-health-dashboard"
     },
     {
       id: 3,
       title: "E-commerce Platform",
-      description: "Fully functional online store with product catalog, shopping cart, and secure checkout functionality.",
+      description: "Full-featured online store with product catalog, secure checkout, and admin dashboard for inventory and analytics.",
       longDescription: "A complete e-commerce solution built from scratch that handles product listings, inventory management, user accounts, and secure payment processing. The platform includes an intuitive admin dashboard, detailed analytics, and a responsive design optimized for all devices.",
       features: [
         "Comprehensive product catalog with advanced filtering",
@@ -95,7 +95,7 @@ export function ProjectsSection() {
         "Responsive design for mobile and desktop devices",
         "Admin dashboard with sales analytics"
       ],
-      tags: ["React", "Node.js", "MongoDB", "Stripe API", "Redux"],
+      tags: ["React", "Node.js", "MongoDB", "Stripe API", "Redux", "JavaScript", "Tailwind CSS", "JWT Auth"],
       image: "https://images.unsplash.com/photo-1661956602944-249bcd04b63f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
       additionalImages: [
         "https://images.unsplash.com/photo-1526570207772-784d36084510?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
@@ -131,7 +131,7 @@ export function ProjectsSection() {
             Featured Work
           </h3>
           <p className="text-stone-600 dark:text-zinc-400 text-center mb-12">
-            These projects highlight the kind of work I enjoy—combining thoughtful code, backend structure, and a bit of creativity. From full-stack systems to AI integrations, each one helped me grow my skills and build something that feels purposeful.
+            Projects built with thoughtful code, clean structure, and a hint of creativity — each one taught me something new.
           </p>
         </div>
         
