@@ -19,7 +19,7 @@ export function ContactSection() {
           </h3>
           <p className="text-stone-600 dark:text-zinc-400 max-w-2xl mx-auto animate-fade-in opacity-0" style={{ animationDelay: "0.1s" }}>
             Have a project in mind, something you want to build together, or simply want to connect? 
-            Feel free to reach out—I'm always open to a good conversation!
+            Feel free to reach out! I'm always open to a good conversation.
           </p>
         </div>
         

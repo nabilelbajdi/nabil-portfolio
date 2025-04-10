@@ -16,8 +16,8 @@ export function HeroSection() {
               AI Developer & Creative Problem Solver
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-stone-600 dark:text-zinc-400 max-w-2xl mx-auto lg:mx-0 mb-10 animate-fade-in opacity-0" style={{ animationDelay: "0.8s" }}>
-              I craft elegant, efficient, and user-friendly digital experiences
-              that solve real-world problems through clean code and thoughtful design.
+              I build systems that simplify complexity. 
+              Through automation, web development, and AI, I make technology smarter and life easier.
             </p>
             
             {/* Social Media Icons */}

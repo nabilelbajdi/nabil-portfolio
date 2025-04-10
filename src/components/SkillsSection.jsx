@@ -59,7 +59,7 @@ export function SkillsSection() {
             Technical Expertise
           </h3>
           <p className="text-stone-600 dark:text-zinc-400 text-center mb-12 max-w-2xl mx-auto">
-            Here's my core stack—the tools I use to build full-stack applications, automate workflows, and explore the intersection of development and AI.
+            Here's my core tech stack. These are the tools I use to build full-stack applications, automate workflows, and explore the intersection of development and AI.
           </p>
         </div>
 

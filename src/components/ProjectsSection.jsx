@@ -131,7 +131,7 @@ export function ProjectsSection() {
             Featured Work
           </h3>
           <p className="text-stone-600 dark:text-zinc-400 text-center mb-12">
-            Projects built with thoughtful code, clean structure, and a hint of creativity — each one taught me something new.
+            Projects built with thoughtful code, clean structure, and a hint of creativity. Each one of these taught me something new and helped me grow as a developer.
           </p>
         </div>
         
