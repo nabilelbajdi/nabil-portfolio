@@ -42,7 +42,7 @@ export function AboutSection() {
                 One project I'm especially proud of is <span className="font-semibold">GameGloom</span>, a full-stack web app I created from the ground up to explore the intersection of <span className="font-semibold">gaming</span>, <span className="font-semibold">data</span>, and <span className="font-semibold">AI</span>. It started as a simple idea, and through it, I learned how to turn that idea into something <span className="font-semibold">real</span>, <span className="font-semibold">usable</span>, and <span className="font-semibold">polished</span>. That experience sparked a deeper passion for creating tools that people actually enjoy using.
               </p>
               <p>
-                Outside of coding, I'm into <span className="font-semibold">gaming</span>, <span className="font-semibold">fitness</span>, and exploring new <span className="font-semibold">cultures</span>—anything that helps me stay inspired and keep growing, both as a person and a developer.
+                Outside of coding, I'm into <span className="font-semibold">gaming</span>, <span className="font-semibold">fitness</span>, and exploring new <span className="font-semibold">cultures</span>. These help me stay inspired and keep growing, both as a person and a developer.
               </p>
             </div>
             
