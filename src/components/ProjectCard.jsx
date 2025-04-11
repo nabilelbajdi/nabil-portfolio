@@ -20,12 +20,12 @@ export function ProjectCard({ project, index }) {
   
   return (
     <div 
-      className="group relative bg-transparent hover:bg-slate-300/20 dark:bg-transparent dark:hover:bg-zinc-900/30 py-6 animate-fade-in opacity-0 transition-colors duration-300 -mx-6 px-6"
+      className="group relative bg-transparent hover:bg-slate-300/20 dark:bg-transparent dark:hover:bg-zinc-900/30 py-6 animate-fade-in opacity-0 transition-colors duration-300 -mx-8 px-8 md:-mx-6 md:px-6"
       style={{ animationDelay: `${0.1 + index * 0.1}s` }}
     >
-      <div className="flex flex-col md:flex-row gap-6">
+      <div className="flex flex-col md:flex-row gap-4 md:gap-6">
         {/* Project Image */}
-        <div className="md:w-1/3 rounded-lg overflow-hidden flex-shrink-0 shadow-sm group-hover:shadow-md transition-shadow duration-300">
+        <div className="mb-3 md:mb-0 md:w-1/3 rounded-lg overflow-hidden flex-shrink-0 shadow-sm group-hover:shadow-md transition-shadow duration-300">
           <div className={`aspect-video relative ${
             status === "youarehere" 
               ? "p-0" 
@@ -66,8 +66,8 @@ export function ProjectCard({ project, index }) {
                   style={{ objectPosition: imagePosition || "center center" }}
                 />
                 
-                {/* Hover overlay for normal projects */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                {/* Gradient overlay - visible on mobile, hover on desktop */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent md:from-black/40 md:opacity-0 md:group-hover:opacity-100 opacity-100 transition-opacity duration-300"></div>
               </>
             )}
             
@@ -83,11 +83,63 @@ export function ProjectCard({ project, index }) {
         
         {/* Content */}
         <div className="flex-1 flex flex-col">
-          {/* Title */}
-          <h3 className="text-xl font-bold mb-2 text-stone-700 dark:text-zinc-300 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-indigo-500 dark:group-hover:from-indigo-400 dark:group-hover:to-indigo-500 group-hover:bg-clip-text transition-colors duration-300">
+          {/* Title - hidden on mobile, shown on desktop */}
+          <h3 className="hidden md:block text-xl font-bold mb-2 text-stone-700 dark:text-zinc-300 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-indigo-500 dark:group-hover:from-indigo-400 dark:group-hover:to-indigo-500 group-hover:bg-clip-text transition-colors duration-300">
             {title}
             {status === "wip" && <span className="text-stone-500 dark:text-zinc-500 font-normal text-lg ml-2">(work in progress)</span>}
           </h3>
+          
+          {/* Mobile title with action buttons */}
+          <div className="md:hidden flex justify-between items-center mb-4">
+            <h3 className="text-xl font-bold text-transparent bg-gradient-to-r from-indigo-600 to-indigo-500 dark:from-indigo-400 dark:to-indigo-500 bg-clip-text">
+              {title}
+              {status === "wip" && <span className="text-stone-500 dark:text-zinc-500 font-normal text-lg ml-2">(WIP)</span>}
+            </h3>
+            
+            {/* Mobile Action Buttons */}
+            <div className="flex gap-2">
+              {codeLink && (
+                <a 
+                  href={codeLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center w-8 h-8 text-xs font-medium rounded-full
+                            bg-white dark:bg-zinc-800
+                            border border-gray-200 dark:border-gray-700
+                            text-gray-800 dark:text-gray-200
+                            hover:bg-gray-100 dark:hover:bg-zinc-700
+                            transition-colors duration-300 shadow-sm"
+                >
+                  <Github className="w-3.5 h-3.5" />
+                </a>
+              )}
+              
+              {demoLink && (
+                <a 
+                  href={demoLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center w-8 h-8 text-xs font-medium rounded-full
+                            bg-gradient-to-r from-purple-600 to-blue-500
+                            text-white
+                            hover:from-purple-700 hover:to-blue-600
+                            transition-all duration-300 shadow-sm"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              )}
+              
+              {status === "youarehere" && (
+                <span className="inline-flex items-center justify-center w-8 h-8 text-xs font-medium rounded-full
+                          bg-gradient-to-r from-indigo-500 to-purple-500
+                          text-white
+                          shadow-sm
+                          transition-all duration-300">
+                  <Pointer className="w-3.5 h-3.5" />
+                </span>
+              )}
+            </div>
+          </div>
           
           {/* Description */}
           <p className="text-stone-600 dark:text-zinc-400 text-sm mb-4">
@@ -110,14 +162,14 @@ export function ProjectCard({ project, index }) {
             ))}
           </div>
           
-          {/* Action Buttons */}
-          <div className="flex gap-3 mt-auto">
+          {/* Desktop Action Buttons - hidden on mobile */}
+          <div className="hidden md:flex gap-3 mt-auto">
             {codeLink && (
               <a 
                 href={codeLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md
+                className="inline-flex items-center justify-start gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md
                           bg-white dark:bg-zinc-800
                           border border-gray-200 dark:border-gray-700
                           text-gray-800 dark:text-gray-200
@@ -125,7 +177,7 @@ export function ProjectCard({ project, index }) {
                           transition-colors duration-300"
               >
                 <Github className="w-3.5 h-3.5" />
-                Code
+                <span>Code</span>
               </a>
             )}
             
@@ -134,25 +186,25 @@ export function ProjectCard({ project, index }) {
                 href={demoLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md
+                className="inline-flex items-center justify-start gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md
                           bg-gradient-to-r from-purple-600 to-blue-500
                           text-white
                           hover:from-purple-700 hover:to-blue-600
                           transition-all duration-300 shadow-sm hover:shadow"
               >
                 <ExternalLink className="w-3.5 h-3.5" />
-                Live Demo
+                <span>Live Demo</span>
               </a>
             )}
             
             {status === "youarehere" && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md
+              <span className="inline-flex items-center justify-start gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md
                         bg-gradient-to-r from-indigo-500 to-purple-500
                         text-white
                         shadow-sm
                         transition-all duration-300">
                 <Pointer className="w-3.5 h-3.5" />
-                You are here!
+                <span>You are here!</span>
               </span>
             )}
           </div>

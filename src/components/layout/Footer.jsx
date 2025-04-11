@@ -1,6 +1,6 @@
 export function Footer() {
   return (
-    <footer className="mt-20 pb-24 text-sm text-stone-500 dark:text-slate-500 sm:pb-16 flex justify-center">
+    <footer className="mt-20 pb-20 px-4 md:px-0 md:pb-16 text-sm text-stone-500 dark:text-slate-500 flex justify-center">
       <p className="max-w-md text-center">
         Built in{' '}
         <a 
