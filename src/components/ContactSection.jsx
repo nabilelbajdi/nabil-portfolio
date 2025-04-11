@@ -1,8 +1,10 @@
 import { Button } from "./ui/Button";
-import { Input } from "./ui/Input";
-import { Textarea } from "./ui/Textarea";
 
 export function ContactSection() {
+  const handleContactClick = () => {
+    window.open("mailto:nabilelbajdii@gmail.com", "_blank");
+  };
+
   return (
     <section id="contact" className="section-padding relative overflow-hidden">
       <div className="container mx-auto relative z-10">
@@ -17,80 +19,21 @@ export function ContactSection() {
           <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-10 text-gradient leading-tight">
             Let's Work Together
           </h3>
-          <p className="text-stone-600 dark:text-zinc-400 max-w-2xl mx-auto animate-fade-in opacity-0" style={{ animationDelay: "0.1s" }}>
+          <p className="text-stone-600 dark:text-zinc-400 max-w-2xl mx-auto animate-fade-in opacity-0 mb-8" style={{ animationDelay: "0.1s" }}>
             Have a project in mind, something you want to build together, or simply want to connect? 
             Feel free to reach out! I'm always open to a good conversation.
           </p>
+          <Button 
+            onClick={handleContactClick}
+            size="lg"
+            className="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white font-medium animate-fade-in opacity-0 px-8 cursor-pointer"
+            style={{ animationDelay: "0.2s" }}
+          >
+            Say Hello!
+          </Button>
         </div>
         
         <div className="max-w-3xl mx-auto">
-          <div className="glass-card rounded-xl p-8 animate-fade-in opacity-0 relative z-40" style={{ animationDelay: "0.2s" }}>
-            <form onSubmit={(e) => e.preventDefault()}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="block text-sm font-medium text-stone-700 dark:text-zinc-300">
-                    Name
-                  </label>
-                  <Input 
-                    id="name" 
-                    name="name" 
-                    placeholder="Your name" 
-                    required 
-                    className="placeholder:text-stone-400 dark:placeholder:text-zinc-500"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="email" className="block text-sm font-medium text-stone-700 dark:text-zinc-300">
-                    Email
-                  </label>
-                  <Input 
-                    id="email" 
-                    name="email" 
-                    type="email" 
-                    placeholder="Your email" 
-                    required 
-                    className="placeholder:text-stone-400 dark:placeholder:text-zinc-500"
-                  />
-                </div>
-              </div>
-              
-              <div className="space-y-2 mb-6">
-                <label htmlFor="subject" className="block text-sm font-medium text-stone-700 dark:text-zinc-300">
-                  Subject
-                </label>
-                <Input 
-                  id="subject" 
-                  name="subject" 
-                  placeholder="What is this regarding?" 
-                  required 
-                  className="placeholder:text-stone-400 dark:placeholder:text-zinc-500"
-                />
-              </div>
-              
-              <div className="space-y-2 mb-6">
-                <label htmlFor="message" className="block text-sm font-medium text-stone-700 dark:text-zinc-300">
-                  Message
-                </label>
-                <Textarea 
-                  id="message" 
-                  name="message" 
-                  rows={5}
-                  placeholder="Your message" 
-                  required 
-                  className="placeholder:text-stone-400 dark:placeholder:text-zinc-500"
-                />
-              </div>
-              
-              <Button 
-                type="submit" 
-                size="lg"
-                className="w-full bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white dark:text-zinc-900 font-medium"
-              >
-                Send Message
-              </Button>
-            </form>
-          </div>
-          
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in opacity-0 relative z-40" style={{ animationDelay: "0.3s" }}>
             <div className="text-center">
               <div className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mx-auto mb-4">
@@ -120,7 +63,7 @@ export function ContactSection() {
                 </svg>
               </div>
               <h3 className="text-lg font-bold mb-2 text-foreground/80 dark:text-zinc-300">Email</h3>
-              <p className="text-stone-600 dark:text-zinc-400">nabilelbajdi@hotmail.com</p>
+              <p className="text-stone-600 dark:text-zinc-400">nabilelbajdii@gmail.com</p>
             </div>
             
             <div className="text-center">
