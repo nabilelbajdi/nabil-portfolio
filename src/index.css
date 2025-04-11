@@ -248,6 +248,24 @@ code {
   }
 }
 
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.1);
+  }
+  40% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .animate-fade-in {
   animation: fadeIn 0.6s ease-out forwards;
 }
@@ -262,4 +280,27 @@ code {
 
 .animate-gradient-shift {
   animation: gradientShift 3s ease infinite alternate;
+}
+
+.animate-heartbeat {
+  animation: heartbeat 1.2s ease-in-out infinite;
+}
+
+/* Project list hover effect */
+.project-list {
+  position: relative;
+}
+
+.project-list .project-item {
+  transition: opacity 0.3s ease;
+}
+
+.project-list:hover .project-item {
+  opacity: 0.5;
+}
+
+.project-list .project-item:hover {
+  opacity: 1;
+  position: relative;
+  z-index: 10;
 }
