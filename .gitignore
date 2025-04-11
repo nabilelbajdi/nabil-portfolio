@@ -27,7 +27,3 @@ dist-ssr
 .env
 .env.local
 .env.*.local
-
-# Assets
-src/assets/
-public/assets/
