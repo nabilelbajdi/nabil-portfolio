@@ -37,7 +37,7 @@ export function ProjectCard({ project, index }) {
                 <div className="relative w-full h-full">
                   {/* Background image */}
                   <img 
-                    src="src/assets/images/portfolio-bg.jpg" 
+                    src="/assets/images/portfolio-bg.jpg" 
                     alt="Portfolio Background" 
                     className="w-full h-full object-cover"
                   />

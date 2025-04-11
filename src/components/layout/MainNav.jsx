@@ -83,7 +83,7 @@ export function MainNav() {
           {/* Logo */}
           <a href="#home" className="flex items-center">
             <img 
-              src="src/assets/images/logo.png" 
+              src="/assets/images/logo.png" 
               alt="Nabil El Bajdi" 
               className="h-12 w-auto -my-2" 
             />

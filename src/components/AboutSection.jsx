@@ -1,7 +1,8 @@
 import { Code, GraduationCap, Briefcase } from "lucide-react";
-import profileImage from '../assets/images/profile.jpg';
 
 export function AboutSection() {
+  const profileImage = "/assets/images/profile.jpg";
+  
   return (
     <section id="about" className="py-24 section-padding relative">
       <div className="container mx-auto">

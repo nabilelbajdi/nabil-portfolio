@@ -9,19 +9,19 @@ export function HeroSection() {
   // GameGloom screenshots for the carousel with custom positioning
   const projectImages = [
     {
-      src: "src/assets/images/screenshots/gamegloom/gamegloom-homepage.jpg",
+      src: "/assets/images/screenshots/gamegloom/gamegloom-homepage.jpg",
       position: "left center"
     },
     {
-      src: "src/assets/images/screenshots/gamegloom/gamegloom-gamepage.jpg",
+      src: "/assets/images/screenshots/gamegloom/gamegloom-gamepage.jpg",
       position: "110% center"
     },
     {
-      src: "src/assets/images/screenshots/gamegloom/gamegloom-category.jpg",
+      src: "/assets/images/screenshots/gamegloom/gamegloom-category.jpg",
       position: "70% left"
     },
     {
-      src: "src/assets/images/screenshots/gamegloom/gamegloom-reviews.jpg",
+      src: "/assets/images/screenshots/gamegloom/gamegloom-reviews.jpg",
       position: "left center"
     }
   ];
