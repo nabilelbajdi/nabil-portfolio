@@ -38,7 +38,6 @@ export function MainNav() {
   }, [lastScrollY]);
 
   const navItems = [
-    { label: "Home", href: "#home" },
     { label: "About", href: "#about" },
     { label: "Projects", href: "#projects" },
     { label: "Skills", href: "#skills" },
@@ -56,7 +55,14 @@ export function MainNav() {
       )}
     >
       <div className="container mx-auto flex items-center justify-between">
-        <div className="w-8" />
+        {/* Logo */}
+        <a href="#home" className="flex items-center">
+          <img 
+            src="src/assets/images/logo.png" 
+            alt="Nabil El Bajdi" 
+            className="h-10 w-auto -my-1" 
+          />
+        </a>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-1">
