@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, Pointer } from "lucide-react";
 
 // Custom Wrench icon component
 function WrenchIcon({ className }) {
@@ -26,14 +26,50 @@ export function ProjectCard({ project, index }) {
       <div className="flex flex-col md:flex-row gap-6">
         {/* Project Image */}
         <div className="md:w-1/3 rounded-lg overflow-hidden flex-shrink-0 shadow-sm group-hover:shadow-md transition-shadow duration-300">
-          <div className="aspect-video relative">
-            <img 
-              src={image} 
-              alt={title} 
-              className="w-full h-full object-cover"
-              style={{ objectPosition: imagePosition || "center center" }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div className={`aspect-video relative ${
+            status === "youarehere" 
+              ? "p-0" 
+              : ""
+          }`}>
+            {status === "youarehere" ? (
+              <>
+                {/* Portfolio project with background image and overlay */}
+                <div className="relative w-full h-full">
+                  {/* Background image */}
+                  <img 
+                    src="src/assets/images/portfolio-bg.jpg" 
+                    alt="Portfolio Background" 
+                    className="w-full h-full object-cover"
+                  />
+                  
+                  {/* Overlay with logo and name */}
+                  <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center">
+                    <img 
+                      src={image} 
+                      alt="Logo" 
+                      className="w-2/5 h-2/5 object-contain mb-3"
+                    />
+                    <div className="text-center">
+                      <p className="font-bold text-white text-lg">
+                        Nabil El Bajdi
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <img 
+                  src={image} 
+                  alt={title} 
+                  className="w-full h-full object-cover"
+                  style={{ objectPosition: imagePosition || "center center" }}
+                />
+                
+                {/* Hover overlay for normal projects */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </>
+            )}
             
             {/* WIP badge */}
             {status === "wip" && (
@@ -49,7 +85,8 @@ export function ProjectCard({ project, index }) {
         <div className="flex-1 flex flex-col">
           {/* Title */}
           <h3 className="text-xl font-bold mb-2 text-stone-700 dark:text-zinc-300 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-indigo-500 dark:group-hover:from-indigo-400 dark:group-hover:to-indigo-500 group-hover:bg-clip-text transition-colors duration-300">
-            {title}{status === "wip" && <span className="text-stone-500 dark:text-zinc-500 font-normal text-lg ml-2">(work in progress)</span>}
+            {title}
+            {status === "wip" && <span className="text-stone-500 dark:text-zinc-500 font-normal text-lg ml-2">(work in progress)</span>}
           </h3>
           
           {/* Description */}
@@ -106,6 +143,17 @@ export function ProjectCard({ project, index }) {
                 <ExternalLink className="w-3.5 h-3.5" />
                 Live Demo
               </a>
+            )}
+            
+            {status === "youarehere" && (
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md
+                        bg-gradient-to-r from-indigo-500 to-purple-500
+                        text-white
+                        shadow-sm
+                        transition-all duration-300">
+                <Pointer className="w-3.5 h-3.5" />
+                You are here!
+              </span>
             )}
           </div>
         </div>
