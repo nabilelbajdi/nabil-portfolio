@@ -4,16 +4,38 @@ import { cn } from "../../lib/utils";
 
 export function MainNav() {
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+      
+      // Always show navbar at the top of the page
+      if (currentScrollY < 20) {
+        setScrolled(false);
+        setHidden(false);
+        setLastScrollY(currentScrollY);
+        return;
+      }
+
+      // Determine scroll direction and update navbar visibility
+      if (currentScrollY > lastScrollY) {
+        // Scrolling down
+        setHidden(true);
+      } else {
+        // Scrolling up
+        setHidden(false);
+      }
+
+      setScrolled(true);
+      setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   const navItems = [
     { label: "Home", href: "#home" },
@@ -26,10 +48,11 @@ export function MainNav() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 transition-all duration-150",
+        "fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 transition-all duration-300",
         scrolled
           ? "py-3 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md shadow-sm"
-          : "py-5 bg-transparent"
+          : "py-5 bg-transparent",
+        hidden && "-translate-y-full"
       )}
     >
       <div className="container mx-auto flex items-center justify-between">
