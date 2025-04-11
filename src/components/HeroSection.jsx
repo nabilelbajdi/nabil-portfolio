@@ -16,11 +16,11 @@ export function HeroSection() {
       position: "110% center"
     },
     {
-      src: "src/assets/images/screenshots/gamegloom/gamegloom-sc4.jpg",
+      src: "src/assets/images/screenshots/gamegloom/gamegloom-category.jpg",
       position: "70% left"
     },
     {
-      src: "src/assets/images/screenshots/gamegloom/gamegloom-sc6.jpg",
+      src: "src/assets/images/screenshots/gamegloom/gamegloom-reviews.jpg",
       position: "left center"
     }
   ];

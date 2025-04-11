@@ -45,7 +45,7 @@ export function ProjectsSection() {
       title: "Mental Health Dashboard",
       description: "Interactive data visualization tool analyzing mental health trends across demographics using Streamlit and Plotly.",
       tags: ["Python", "Pandas", "Streamlit", "Plotly", "Data Analysis", "Data Visualization", "Statistics"],
-      image: "src/assets/images/screenshots/mental-health-dashboard/mental-health-dashboard-sc1.jpg",
+      image: "src/assets/images/screenshots/mental-health-dashboard/mhd-dashboard.jpg",
       imagePosition: "left center",
       demoLink: "https://mental-health-dashboard.streamlit.app/",
       codeLink: "https://github.com/nabilelbajdi/mental-health-dashboard",
@@ -56,11 +56,21 @@ export function ProjectsSection() {
       title: "DevOps-Enhanced Resume",
       description: "A modern resume website with comprehensive DevOps practices, automated CI/CD pipeline, and performance monitoring.",
       tags: ["Jekyll", "GitHub Actions", "Docker", "CI/CD", "DevOps", "Ruby", "HTML", "YAML"],
-      image: "src/assets/images/screenshots/resume/resume-sc1.svg",
+      image: "src/assets/images/screenshots/resume/resume-bg.svg",
       imagePosition: "center center",
       demoLink: "https://nabilelbajdi.github.io/resume/",
       codeLink: "https://github.com/nabilelbajdi/resume",
       status: "completed"
+    },
+    {
+      id: 4,
+      title: "This Portfolio",
+      description: "Yep, this very site. Built with React, styled with Tailwind, and sprinkled with clean code, smart design, and just the right amount of nerdiness.",
+      tags: ["React", "Vite", "Tailwind CSS", "JavaScript", "Responsive Design", "Vercel"],
+      image: "src/assets/images/logo.png",
+      imagePosition: "center center",
+      codeLink: "https://github.com/nabilelbajdi/nabil-portfolio",
+      status: "youarehere"
     }
   ];
 

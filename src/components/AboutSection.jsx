@@ -1,5 +1,5 @@
 import { Code, GraduationCap, Briefcase } from "lucide-react";
-import profileImage from '../assets/images/nabil-profile-3.jpg';
+import profileImage from '../assets/images/profile.jpg';
 
 export function AboutSection() {
   return (
