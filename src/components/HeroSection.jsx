@@ -1,6 +1,88 @@
-import { Button } from "./ui/Button";
+import { useState, useEffect, useRef } from "react";
 
 export function HeroSection() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const intervalRef = useRef(null);
+  
+  // GameGloom screenshots for the carousel with custom positioning
+  const projectImages = [
+    {
+      src: "src/assets/images/screenshots/gamegloom/gamegloom-homepage.jpg",
+      position: "left center"
+    },
+    {
+      src: "src/assets/images/screenshots/gamegloom/gamegloom-gamepage.jpg",
+      position: "110% center"
+    },
+    {
+      src: "src/assets/images/screenshots/gamegloom/gamegloom-sc4.jpg",
+      position: "70% left"
+    },
+    {
+      src: "src/assets/images/screenshots/gamegloom/gamegloom-sc6.jpg",
+      position: "left center"
+    }
+  ];
+  
+  // Auto-rotate images with progress bar
+  useEffect(() => {
+    const startProgressBar = () => {
+      setProgress(0);
+      
+      // Update progress every 40ms (100 steps for smooth animation)
+      const stepTime = 40;
+      const steps = 4000 / stepTime; // 4000ms total time
+      
+      let currentStep = 0;
+      
+      intervalRef.current = setInterval(() => {
+        currentStep++;
+        setProgress((currentStep / steps) * 100);
+        
+        if (currentStep >= steps) {
+          clearInterval(intervalRef.current);
+          setCurrentImageIndex(prevIndex => 
+            prevIndex === projectImages.length - 1 ? 0 : prevIndex + 1
+          );
+        }
+      }, stepTime);
+    };
+    
+    startProgressBar();
+    
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [currentImageIndex, projectImages.length]);
+  
+  // Handle manual navigation - also resets the progress bar
+  const goToImage = (index) => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    setCurrentImageIndex(index);
+  };
+  
+  const goToPrevious = () => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    setCurrentImageIndex(prevIndex => 
+      prevIndex === 0 ? projectImages.length - 1 : prevIndex - 1
+    );
+  };
+  
+  const goToNext = () => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    setCurrentImageIndex(prevIndex => 
+      prevIndex === projectImages.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+  
+  // Helper to get index with wrapping
+  const getIndexWithWrap = (targetIndex) => {
+    const len = projectImages.length;
+    // Use modulo to wrap around if needed
+    return ((targetIndex % len) + len) % len;
+  };
+  
   return (
     <section id="home" className="min-h-screen flex items-center pt-16 relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
@@ -52,41 +134,161 @@ export function HeroSection() {
                 </svg>
                 <span className="sr-only">Goodreads</span>
               </a>
-            </div>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in opacity-0" style={{ animationDelay: "1s" }}>
-              <Button 
-                size="lg" 
-                className="gradient-bg font-medium text-base text-white dark:text-gray-900 cursor-pointer"
+              <div className="w-px h-6 bg-stone-300 dark:bg-zinc-700"></div>
+              <a 
+                href="/resume.pdf" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-stone-600 hover:text-indigo-600 dark:text-zinc-400 dark:hover:text-indigo-400 transition-colors duration-200 flex items-center gap-1.5"
               >
-                View My Work
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
-                  strokeWidth={1.5} 
-                  stroke="currentColor" 
-                  className="w-4 h-4 ml-2"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                  <path d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0016.5 9h-1.875a1.875 1.875 0 01-1.875-1.875V5.25A3.75 3.75 0 009 1.5H5.625z" />
+                  <path d="M12.971 1.816A5.23 5.23 0 0114.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 013.434 1.279 9.768 9.768 0 00-6.963-6.963z" />
                 </svg>
-              </Button>
-              <Button size="lg" variant="outline" className="font-medium text-base cursor-pointer">
-                Get In Touch
-              </Button>
+                <span>Resume</span>
+              </a>
             </div>
           </div>
           
           <div className="flex-1 max-w-md lg:max-w-none animate-fade-in opacity-0" style={{ animationDelay: "1.2s" }}>
-            <div className="glow relative z-40">
-              <div className="gradient-border rounded-2xl">
-                <div className="p-2">
-                  <img 
-                    src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&q=80" 
-                    alt="Developer Workspace" 
-                    className="rounded-xl w-full h-auto object-cover"
+            {/* Featured Project Showcase */}
+            <div className="relative h-[350px] md:h-[400px] mx-auto perspective pt-10 mb-10">
+              {/* Deck of cards effect */}
+              {projectImages.map((img, index) => {
+                const distance = Math.min(
+                  Math.abs(index - currentImageIndex),
+                  Math.abs(index - currentImageIndex + projectImages.length),
+                  Math.abs(index - currentImageIndex - projectImages.length)
+                );
+                
+                // Simplified fan effect
+                const baseAngle = 10; // Reduced angle for subtler effect
+                const fanRadius = 15; // Controls how spread out the fan is
+                
+                // If it's the current card
+                if (distance === 0) {
+                  // Center card
+                  var rotate = 0;
+                  var translateX = 0;
+                  var translateY = 0;
+                  var zIndex = 30;
+                  var scale = 1;
+                  var opacity = 1;
+                  var blur = 0;
+                } else if (index < currentImageIndex) {
+                  // Card to the left
+                  var rotate = -baseAngle;
+                  var translateX = -fanRadius;
+                  var translateY = 3;
+                  var zIndex = 20;
+                  var scale = 0.95;
+                  var opacity = 0.9;
+                  var blur = 2;
+                } else {
+                  // Card to the right
+                  var rotate = baseAngle;
+                  var translateX = fanRadius;
+                  var translateY = 3;
+                  var zIndex = 20;
+                  var scale = 0.95;
+                  var opacity = 0.9;
+                  var blur = 2;
+                }
+                
+                // Create the fan effect - cards appear to originate from a point at the bottom
+                const transformOrigin = "bottom center";
+                
+                return (
+                  <div
+                    key={index}
+                    className="absolute inset-0 transition-all duration-500 ease-in-out rounded-xl overflow-hidden shadow-lg"
+                    style={{
+                      zIndex,
+                      transform: `translateY(${translateY}px) translateX(${translateX}px) scale(${scale}) rotate(${rotate}deg)`,
+                      opacity,
+                      transformOrigin,
+                      filter: `blur(${blur}px)`,
+                    }}
+                  >
+                    <img 
+                      src={img.src} 
+                      alt={`Project Screenshot ${index + 1}`} 
+                      className="w-full h-full object-cover rounded-xl"
+                      style={{ objectPosition: img.position }}
+                    />
+                    
+                    {/* Show hover info and progress bar on the top card */}
+                    {index === currentImageIndex && (
+                      <>
+                        {/* Hover info overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                          <div className="absolute top-3 left-3">
+                            <span className="px-2 py-1 text-xs font-medium bg-gradient-to-r from-blue-600 to-indigo-500 text-white rounded-md shadow-sm">
+                              Featured Project
+                            </span>
+                          </div>
+                          <div className="text-white">
+                            <a 
+                              href="https://gamegloom.com" 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 text-white hover:text-indigo-300 transition-colors duration-200"
+                            >
+                              View Project
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5">
+                                <path fillRule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clipRule="evenodd" />
+                              </svg>
+                            </a>
+                          </div>
+                        </div>
+                        
+                        {/* Progress bar at the bottom of the active card */}
+                        <div className="absolute bottom-0 left-0 right-0 h-1 bg-black/20 dark:bg-white/10 z-40">
+                          <div 
+                            className="h-full bg-indigo-500/80 dark:bg-indigo-400/80 transition-all duration-100 ease-linear"
+                            style={{ width: `${progress}%` }}
+                          ></div>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                );
+              })}
+              
+              {/* Indicators with subtle navigation arrows */}
+              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 z-30">
+                <button
+                  onClick={goToPrevious}
+                  className="text-gray-400 dark:text-gray-600 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors cursor-pointer"
+                  aria-label="Previous image"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+                    <path fillRule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clipRule="evenodd" />
+                  </svg>
+                </button>
+                
+                {projectImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToImage(index)}
+                    className={`w-2 h-2 rounded-full transition-colors ${
+                      index === currentImageIndex 
+                        ? "bg-indigo-600 dark:bg-indigo-400" 
+                        : "bg-gray-300 dark:bg-zinc-600 hover:bg-indigo-300 dark:hover:bg-indigo-600"
+                    }`}
+                    aria-label={`Go to image ${index + 1}`}
                   />
-                </div>
+                ))}
+                
+                <button
+                  onClick={goToNext}
+                  className="text-gray-400 dark:text-gray-600 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors cursor-pointer"
+                  aria-label="Next image"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+                    <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
+                  </svg>
+                </button>
               </div>
             </div>
           </div>
