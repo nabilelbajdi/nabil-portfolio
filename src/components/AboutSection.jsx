@@ -15,7 +15,7 @@ export function AboutSection() {
                   <img 
                     src={profileImage}
                     alt="Nabil El Bajdi" 
-                    className="rounded-xl object-cover w-full aspect-square"
+                    className="rounded-xl object-cover w-full aspect-square md:aspect-auto"
                   />
                 </div>
               </div>
