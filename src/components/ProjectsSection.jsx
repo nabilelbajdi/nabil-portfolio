@@ -37,7 +37,7 @@ export function ProjectsSection() {
       image: "src/assets/images/screenshots/gamegloom/gamegloom-gamepage.jpg",
       imagePosition: "110% center",
       demoLink: "https://gamegloom.com",
-      codeLink: "#",
+      codeLink: "https://github.com/nabilelbajdi/gameloom-labb3",
       status: "wip"
     },
     {
@@ -59,7 +59,7 @@ export function ProjectsSection() {
       image: "src/assets/images/screenshots/resume/resume-bg.svg",
       imagePosition: "center center",
       demoLink: "https://nabilelbajdi.github.io/resume/",
-      codeLink: "https://github.com/nabilelbajdi/resume",
+      codeLink: "https://github.com/nabilelbajdi/resume/tree/main",
       status: "completed"
     },
     {

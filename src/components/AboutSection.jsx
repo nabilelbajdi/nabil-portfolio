@@ -7,14 +7,14 @@ export function AboutSection() {
       <div className="container mx-auto">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
           {/* Image Column */}
-          <div className="lg:w-2/5 animate-fade-in opacity-0" style={{ animationDelay: "0.2s" }}>
+          <div className="w-3/4 sm:w-3/5 md:w-1/2 lg:w-2/5 max-w-md animate-fade-in opacity-0" style={{ animationDelay: "0.2s" }}>
             <div className="relative z-40">
               <div className="rounded-2xl overflow-hidden gradient-border">
                 <div className="p-2">
                   <img 
                     src={profileImage}
                     alt="Nabil El Bajdi" 
-                    className="rounded-xl object-cover w-full aspect-auto"
+                    className="rounded-xl object-cover w-full aspect-square"
                   />
                 </div>
               </div>

@@ -4,6 +4,7 @@ export function HeroSection() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const intervalRef = useRef(null);
+  const [isOverlayActive, setIsOverlayActive] = useState(false);
   
   // GameGloom screenshots for the carousel with custom positioning
   const projectImages = [
@@ -83,6 +84,15 @@ export function HeroSection() {
     return ((targetIndex % len) + len) % len;
   };
   
+  // Handle tap/click on current image
+  const handleImageTap = (e) => {
+    if (e.target.closest('a')) {
+      return;
+    }
+    e.preventDefault();
+    setIsOverlayActive(!isOverlayActive);
+  };
+  
   return (
     <section id="home" className="min-h-screen flex items-center pt-16 relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
@@ -150,9 +160,9 @@ export function HeroSection() {
             </div>
           </div>
           
-          <div className="flex-1 max-w-md lg:max-w-none animate-fade-in opacity-0" style={{ animationDelay: "1.2s" }}>
+          <div className="w-full lg:w-1/2 lg:flex-1 animate-fade-in opacity-0" style={{ animationDelay: "1.2s" }}>
             {/* Featured Project Showcase */}
-            <div className="relative h-[350px] md:h-[400px] mx-auto perspective pt-10 mb-10">
+            <div className="relative h-[300px] sm:h-[350px] md:h-[400px] w-full mx-auto perspective mb-12">
               {/* Deck of cards effect */}
               {projectImages.map((img, index) => {
                 const distance = Math.min(
@@ -201,14 +211,17 @@ export function HeroSection() {
                 return (
                   <div
                     key={index}
-                    className="absolute inset-0 transition-all duration-500 ease-in-out rounded-xl overflow-hidden shadow-lg"
+                    className="absolute inset-0 transition-all duration-500 ease-in-out rounded-xl overflow-hidden shadow-lg touch-manipulation"
                     style={{
                       zIndex,
                       transform: `translateY(${translateY}px) translateX(${translateX}px) scale(${scale}) rotate(${rotate}deg)`,
                       opacity,
                       transformOrigin,
                       filter: `blur(${blur}px)`,
+                      height: '100%',
                     }}
+                    onClick={index === currentImageIndex ? handleImageTap : undefined}
+                    onTouchEnd={index === currentImageIndex ? handleImageTap : undefined}
                   >
                     <img 
                       src={img.src} 
@@ -221,7 +234,12 @@ export function HeroSection() {
                     {index === currentImageIndex && (
                       <>
                         {/* Hover info overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                        <div 
+                          className={`absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent transition-opacity duration-300 flex flex-col justify-end p-4 ${
+                            isOverlayActive ? 'opacity-100' : 'opacity-0 hover:opacity-100'
+                          }`}
+                          onClick={(e) => e.stopPropagation()}
+                        >
                           <div className="absolute top-3 left-3">
                             <span className="px-2 py-1 text-xs font-medium bg-gradient-to-r from-blue-600 to-indigo-500 text-white rounded-md shadow-sm">
                               Featured Project
@@ -233,6 +251,7 @@ export function HeroSection() {
                               target="_blank" 
                               rel="noopener noreferrer"
                               className="inline-flex items-center gap-1 text-white hover:text-indigo-300 transition-colors duration-200"
+                              onClick={(e) => e.stopPropagation()}
                             >
                               View Project
                               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5">
