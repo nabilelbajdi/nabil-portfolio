@@ -69,8 +69,8 @@ export function Footer() {
         >
           Inter
         </a>{' '}
-        typeface. {' '}
-        It simply looks right.
+        typeface, {' '}
+        because it simply looks right.
       </p>
     </footer>
   );

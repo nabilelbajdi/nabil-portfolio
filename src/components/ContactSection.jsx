@@ -47,7 +47,7 @@ export function ContactSection() {
                 </svg>
               </div>
               <h3 className="text-sm md:text-lg font-bold mb-1 md:mb-2 text-foreground/80 dark:text-zinc-300">Phone</h3>
-              <p className="text-xs md:text-base text-stone-600 dark:text-zinc-400">+46 728 536 662</p>
+              <p className="text-xs md:text-base text-stone-600 dark:text-zinc-400">+46 72 853 66 62</p>
             </div>
             
             <div className="text-center flex-1">
