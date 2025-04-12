@@ -20,7 +20,7 @@ export function ProjectCard({ project, index }) {
   
   return (
     <div 
-      className="group relative bg-transparent hover:bg-slate-300/20 dark:bg-transparent dark:hover:bg-zinc-900/30 py-6 animate-fade-in opacity-0 transition-colors duration-300 -mx-8 px-8 md:-mx-6 md:px-6"
+      className="group relative bg-slate-300/10 md:bg-transparent dark:bg-zinc-900/20 md:dark:bg-transparent hover:bg-slate-300/10 dark:hover:bg-zinc-900/20 py-6 animate-fade-in opacity-0 md:transition-colors md:duration-200 -mx-8 px-8 md:-mx-6 md:px-6 transform-gpu"
       style={{ animationDelay: `${0.1 + index * 0.1}s` }}
     >
       <div className="flex flex-col md:flex-row gap-4 md:gap-6">
@@ -62,12 +62,12 @@ export function ProjectCard({ project, index }) {
                 <img 
                   src={image} 
                   alt={title} 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover scale-102"
                   style={{ objectPosition: imagePosition || "center center" }}
                 />
                 
                 {/* Gradient overlay - visible on mobile, hover on desktop */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent md:from-black/40 md:opacity-0 md:group-hover:opacity-100 opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent md:from-black/40 md:opacity-0 md:group-hover:opacity-100 opacity-100 md:transition-opacity md:duration-300"></div>
               </>
             )}
             
@@ -147,11 +147,11 @@ export function ProjectCard({ project, index }) {
           </p>
           
           {/* Tech Stack Tags */}
-          <div className="flex flex-wrap gap-2 mb-4">
+          <div className="flex flex-wrap gap-1.5 md:gap-2 mb-4">
             {tags && tags.slice(0, 5).map((tag, i) => (
               <span 
                 key={i} 
-                className="px-2.5 py-0.5 text-xs font-medium rounded-full 
+                className="px-2 py-0.5 md:px-2.5 md:py-0.5 text-xs font-medium rounded-full 
                           bg-gradient-to-r from-purple-500/10 to-blue-500/10 
                           dark:from-purple-500/20 dark:to-blue-500/20
                           text-purple-700 dark:text-purple-300
