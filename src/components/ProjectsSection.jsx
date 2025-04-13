@@ -136,7 +136,7 @@ export function ProjectsSection() {
                   </h3>
                   
                   <p className="text-stone-600 dark:text-zinc-400 text-sm">
-                    Stay tuned for more to come! I'm currently working on a machine learning project that applies natural language processing techniques.
+                    Stay tuned for more to come! I'm currently working on a Machine Learning project that applies natural language processing techniques.
                   </p>
                 </div>
               </div>
