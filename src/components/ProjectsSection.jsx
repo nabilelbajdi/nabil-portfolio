@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { ProjectCard } from './ProjectCard';
-import { Plus } from 'lucide-react';
+import { Plus, ChevronDown } from 'lucide-react';
 
 export function ProjectsSection() {
   const sectionRef = useRef(null);
   const [hasAnimated, setHasAnimated] = useState(false);
+  const [showAll, setShowAll] = useState(false);
   
   // Scroll-based animation
   useEffect(() => {
@@ -73,6 +74,9 @@ export function ProjectsSection() {
       status: "youarehere"
     }
   ];
+  
+  // Display only 3 projects by default, or all if showAll is true
+  const displayedProjects = showAll ? projects : projects.slice(0, 3);
 
   return (
     <section 
@@ -106,7 +110,7 @@ export function ProjectsSection() {
         {/* Projects list with hover dimming effect */}
         <div className="max-w-4xl mx-auto project-list px-6">
           {/* Regular projects */}
-          {projects.map((project, index) => (
+          {displayedProjects.map((project, index) => (
             <div 
               key={project.id}
               className="project-item mb-2"
@@ -118,30 +122,49 @@ export function ProjectsSection() {
             </div>
           ))}
           
-          {/* Coming Soon Project */}
-          <div className="project-item mb-2 animate-fade-in opacity-0" style={{ animationDelay: "0.3s" }}>
-            <div className="py-6 -mx-6 px-6">
-              <div className="flex flex-col md:flex-row gap-6">
-                {/* Placeholder Image */}
-                <div className="md:w-1/3 rounded-lg overflow-hidden flex-shrink-0 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 dark:from-indigo-500/20 dark:to-purple-500/20 border border-indigo-200/40 dark:border-indigo-800/40">
-                  <div className="aspect-video relative flex items-center justify-center">
-                    <Plus className="w-12 h-12 text-indigo-400 dark:text-indigo-500 opacity-70" />
+          {/* View More Link - only shown when there are more projects to display */}
+          {!showAll && projects.length > 3 && (
+            <div className="flex justify-center my-8 animate-fade-in opacity-0" style={{ animationDelay: "0.4s" }}>
+              <button
+                onClick={() => setShowAll(true)}
+                className="group inline-flex items-center gap-1.5 
+                          text-indigo-600 dark:text-indigo-400
+                          hover:text-indigo-800 dark:hover:text-indigo-300
+                          font-medium text-sm cursor-pointer
+                          transition-all duration-300"
+              >
+                View More Projects
+                <ChevronDown className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-y-0.5" />
+              </button>
+            </div>
+          )}
+          
+          {/* Coming Soon Project - only shown after all projects are displayed */}
+          {showAll && (
+            <div className="project-item mb-2 animate-fade-in opacity-0" style={{ animationDelay: "0.3s" }}>
+              <div className="py-6 -mx-6 px-6">
+                <div className="flex flex-col md:flex-row gap-6">
+                  {/* Placeholder Image */}
+                  <div className="md:w-1/3 rounded-lg overflow-hidden flex-shrink-0 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 dark:from-indigo-500/20 dark:to-purple-500/20 border border-indigo-200/40 dark:border-indigo-800/40">
+                    <div className="aspect-video relative flex items-center justify-center">
+                      <Plus className="w-12 h-12 text-indigo-400 dark:text-indigo-500 opacity-70" />
+                    </div>
                   </div>
-                </div>
-                
-                {/* Content */}
-                <div className="flex-1 flex flex-col justify-center">
-                  <h3 className="text-xl font-bold mb-2 text-stone-700 dark:text-zinc-300">
-                    More Projects Coming Soon
-                  </h3>
                   
-                  <p className="text-stone-600 dark:text-zinc-400 text-sm">
-                    Stay tuned for more to come! I'm currently working on a Machine Learning project that applies natural language processing techniques.
-                  </p>
+                  {/* Content */}
+                  <div className="flex-1 flex flex-col justify-center">
+                    <h3 className="text-xl font-bold mb-2 text-stone-700 dark:text-zinc-300">
+                      More Projects Coming Soon
+                    </h3>
+                    
+                    <p className="text-stone-600 dark:text-zinc-400 text-sm">
+                      Stay tuned for more to come! I'm currently working on a Machine Learning project that applies natural language processing techniques.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </section>
