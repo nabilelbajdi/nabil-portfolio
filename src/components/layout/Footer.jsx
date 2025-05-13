@@ -49,7 +49,7 @@ export function Footer() {
           aria-label="Tailwind CSS (opens in a new tab)"
         >
           Tailwind
-        </a>, and deployed into the ether with{' '}
+        </a>, and deployed with{' '}
         <a 
           href="https://vercel.com" 
           className="font-bold hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors duration-200" 
