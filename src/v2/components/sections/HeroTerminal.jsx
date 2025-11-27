@@ -100,14 +100,51 @@ const COMMANDS = {
 // Easter egg commands
 const EASTER_EGGS = {
   sudo: ['Nice try! 🔐', '', 'But you don\'t have root access here.'],
+  'sudo su': ['🚫 Permission denied', '', 'This isn\'t that kind of portfolio.'],
+  'sudo rm -rf /': ['🔥 Deleting universe...', '', 'Just kidding. I\'m not that reckless.'],
   vim: ['*opens vim*', '', '...', '', 'How do I exit? 😱', '', '(jk, try :q!)'],
+  ':q!': ['You escaped vim! 🎉', '', 'Not many can say that.'],
+  ':wq': ['Saved and exited! ✨', '', 'A true vim master.'],
+  nano: ['Ah, a person of culture. 🧐', '', 'nano > vim (don\'t @ me)'],
+  emacs: ['*laughs in keybindings*', '', 'How are your pinky fingers doing?'],
   'rm -rf': ['🚨 ABORT ABORT ABORT', '', 'Just kidding. Nice try though.'],
+  'rm -rf /': ['😱 You monster!', '', 'Good thing this is read-only.'],
   coffee: ['☕ Brewing...', '', '██████████ 100%', '', 'Here\'s your mass coffee!'],
+  tea: ['🍵 Steeping...', '', 'A developer of refined taste, I see.'],
   hello: ['Hello, World! 👋', '', 'Welcome to my portfolio.'],
   hi: ['Hey there! 👋'],
+  hey: ['Hey yourself! 😄'],
   ls: ['about/  projects/  skills/  contact/', '', '→ Type any folder name to explore'],
+  'ls -la': ['drwxr-xr-x  nabil  staff  about/', 'drwxr-xr-x  nabil  staff  projects/', 'drwxr-xr-x  nabil  staff  skills/', 'drwxr-xr-x  nabil  staff  contact/', '-rw-r--r--  nabil  staff  .secret', '', 'Wait, what\'s that .secret file? 👀'],
+  'cat .secret': ['🔓 You found the secret!', '', 'Here\'s a cookie: 🍪', '', 'Thanks for exploring!'],
   pwd: ['/home/nabil/portfolio/v2'],
+  cd: ['Already home. 🏠'],
+  'cd ..': ['You can\'t escape that easily!'],
+  'cd /': ['Root access denied. Nice try though.'],
+  whoami: null, // Handled by main commands
   date: [new Date().toLocaleString()],
+  uptime: [`Portfolio running for ${Math.floor(Math.random() * 365)} days, ${Math.floor(Math.random() * 24)} hours`],
+  top: ['PID  USER   %CPU  COMMAND', '001  nabil  100%  creativity.js', '002  nabil   85%  problem-solving.exe', '003  nabil   42%  coffee-intake.sh'],
+  htop: ['Fancy! But this terminal is too minimal for htop. 😎'],
+  man: ['No manual entry. Just vibes. ✨'],
+  git: ['git commit -m "visited portfolio" 📝'],
+  'git status': ['On branch: hired-soon', 'Your resume: ready to merge'],
+  'git push': ['Pushing your visit to the cloud... ☁️', '', 'Thanks for stopping by!'],
+  npm: ['npm install talent --save', '', 'Installing... Done! ✅'],
+  'npm install': ['📦 Installing dependencies...', '', 'node_modules: 847MB', 'Just kidding. React is already here.'],
+  yarn: ['🧶 Yarn? In this economy?', '', 'jk yarn is great too'],
+  pip: ['🐍 Wrong terminal, but I appreciate Python devs!'],
+  python: ['>>> print("Hello from Python!")', 'Hello from Python!', '', '(This is actually JavaScript though 😅)'],
+  node: ['Welcome to Node.js (but React)', '> console.log("hired?")', 'hopefully!'],
+  exit: ['👋 Goodbye!', '', '...', '', 'Wait, where would you even go?'],
+  quit: ['There is no escape. 😈', '', 'Just kidding, scroll down!'],
+  matrix: ['Wake up, Neo...', '', 'The Matrix has you.', '', 'Follow the white rabbit. 🐇'],
+  hack: ['🔓 Accessing mainframe...', '████░░░░░░ 40%', '███████░░░ 70%', '██████████ 100%', '', 'Access granted! JK, this is just CSS. 😂'],
+  ping: ['PING nabilelbajdi.com', '64 bytes: time=1ms ✓', '64 bytes: time=1ms ✓', '64 bytes: time=1ms ✓', '', 'Portfolio is online! 🌐'],
+  curl: ['curl https://hire.nabil.dev', '', '{"status": "available", "coffee": "required"}'],
+  wget: ['Downloading talent.zip...', '', 'Download complete! 📥'],
+  cat: ['🐱 Meow?', '', 'Try: cat .secret'],
+  dog: ['🐕 Woof!', '', 'Good boy.'],
   neofetch: [
     '        .--.        nabil@portfolio',
     '       |o_o |       ----------------',
@@ -117,6 +154,32 @@ const EASTER_EGGS = {
     '    /\'\\_   _/`\\     Shell: Framer Motion',
     '    \\___)=(___/     Theme: Midnight Terminal',
   ],
+  screenfetch: ['Try neofetch instead. It\'s cooler. 😎'],
+  fortune: [
+    '🔮 Your fortune:',
+    '',
+    '"A great developer will visit your portfolio today."',
+    '',
+    'Oh wait, that\'s you! 🎉',
+  ],
+  cowsay: [
+    ' _____________',
+    '< Hire Nabil! >',
+    ' -------------',
+    '        \\   ^__^',
+    '         \\  (oo)\\_______',
+    '            (__)\\       )\\/\\',
+    '                ||----w |',
+    '                ||     ||',
+  ],
+  sl: ['🚂 Choo choo!', '', 'You meant "ls", didn\'t you?'],
+  please: ['Since you asked nicely... ✨', '', 'Try: help'],
+  thanks: ['You\'re welcome! 🙏'],
+  lol: ['😂'],
+  haha: ['I\'m glad you\'re having fun!'],
+  69: ['Nice. 😏'],
+  420: ['Blaze it? 🌿', '', 'This is a professional portfolio though.'],
+  42: ['The answer to life, the universe, and everything.', '', 'You\'re a person of culture. 🎩'],
 };
 
 /**
@@ -394,7 +457,26 @@ export function HeroTerminal() {
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && handleSubmit(inputValue)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    handleSubmit(inputValue);
+                  } else if (e.ctrlKey && e.key === 'l') {
+                    e.preventDefault();
+                    setHistory([{ command: '^L', output: ['✨ Ooh, someone knows their Linux shortcuts!', '', 'Terminal cleared.'] }]);
+                    setCurrentCommand(null);
+                  } else if (e.ctrlKey && e.key === 'c') {
+                    e.preventDefault();
+                    setInputValue('');
+                    setHistory(prev => [...prev, { command: '^C', output: ['Interrupted. Type "help" to start fresh.'] }]);
+                  } else if (e.ctrlKey && e.key === 'u') {
+                    e.preventDefault();
+                    setInputValue('');
+                  } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    const lastCmd = history.filter(h => h.command && !h.command.startsWith('^')).pop();
+                    if (lastCmd) setInputValue(lastCmd.command);
+                  }
+                }}
                 placeholder="Type a command..."
                 className="ml-2 flex-1 bg-transparent text-[var(--v2-text-primary)] outline-none mono placeholder:text-[var(--v2-text-dimmed)] text-sm sm:text-base"
                 autoComplete="off"
