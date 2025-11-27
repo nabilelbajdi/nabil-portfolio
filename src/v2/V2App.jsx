@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import './styles/v2.css';
 
 /**
@@ -7,89 +8,144 @@ import './styles/v2.css';
  */
 function V2App() {
   return (
-    <div className="v2 min-h-screen bg-[var(--v2-bg-primary)] text-[var(--v2-text-primary)]">
-      {/* Noise/grain overlay for texture */}
+    <div className="v2 min-h-screen bg-[var(--v2-bg-primary)] text-[var(--v2-text-primary)] overflow-hidden">
+      {/* Subtle grid background */}
+      <div className="fixed inset-0 bg-grid opacity-50" />
+      
+      {/* Gradient orbs */}
+      <div className="fixed top-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-[var(--v2-accent)] opacity-[0.03] blur-[100px]" />
+      <div className="fixed bottom-[-20%] left-[-10%] w-[400px] h-[400px] rounded-full bg-purple-500 opacity-[0.03] blur-[100px]" />
+      
+      {/* Noise overlay */}
       <div 
-        className="fixed inset-0 pointer-events-none z-50 opacity-[0.015]"
+        className="fixed inset-0 pointer-events-none z-50 opacity-[0.02]"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
         }}
       />
       
-      {/* Placeholder content - will be replaced with actual sections */}
+      {/* Main content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6">
-        {/* Terminal-style header */}
-        <div className="mb-8 font-mono text-sm text-[var(--v2-text-muted)]">
-          <span className="text-[var(--v2-accent)]">~</span> / portfolio / v2
-        </div>
+        {/* Breadcrumb path */}
+        <motion.div 
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="mb-8 mono text-sm text-[var(--v2-text-muted)]"
+        >
+          <span className="text-[var(--v2-accent)]">~</span>
+          <span className="text-[var(--v2-text-dimmed)]">/</span>
+          <span>portfolio</span>
+          <span className="text-[var(--v2-text-dimmed)]">/</span>
+          <span className="text-[var(--v2-text-secondary)]">v2</span>
+        </motion.div>
         
         {/* Main heading */}
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-          <span className="text-[var(--v2-accent)]">V2</span> Coming Soon
-        </h1>
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-5xl md:text-7xl font-black mb-6 tracking-tight text-center"
+        >
+          <span className="text-[var(--v2-accent)] text-glow">V2</span>
+          <span className="text-[var(--v2-text-primary)]"> is brewing</span>
+        </motion.h1>
         
         {/* Subtitle */}
-        <p className="text-xl text-[var(--v2-text-secondary)] mb-12 max-w-md text-center">
-          A completely reimagined portfolio experience. 
-          Interactive. Immersive. Unique.
-        </p>
-        
-        {/* Terminal-style command preview */}
-        <div className="bg-[var(--v2-bg-secondary)] border border-[var(--v2-border)] rounded-lg p-6 mb-12 font-mono text-sm max-w-lg w-full">
-          <div className="flex items-center gap-2 mb-4 text-[var(--v2-text-muted)]">
-            <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
-            <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-            <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
-            <span className="ml-2">terminal</span>
-          </div>
-          <div className="space-y-2">
-            <p>
-              <span className="text-[var(--v2-accent)]">$</span> whoami
-            </p>
-            <p className="text-[var(--v2-text-secondary)]">
-              → Nabil El Bajdi - AI Developer
-            </p>
-            <p>
-              <span className="text-[var(--v2-accent)]">$</span> cat status.txt
-            </p>
-            <p className="text-[var(--v2-text-secondary)]">
-              → Building something amazing...
-            </p>
-            <p className="flex items-center">
-              <span className="text-[var(--v2-accent)]">$</span>
-              <span className="ml-1 w-2 h-4 bg-[var(--v2-accent)] animate-pulse"></span>
-            </p>
-          </div>
-        </div>
-        
-        {/* Link to V1 (main site) */}
-        <Link 
-          to="/" 
-          className="group inline-flex items-center gap-2 px-6 py-3 bg-[var(--v2-bg-secondary)] border border-[var(--v2-border)] rounded-lg text-[var(--v2-text-secondary)] hover:text-[var(--v2-text-primary)] hover:border-[var(--v2-accent)] transition-all duration-300"
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="text-lg md:text-xl text-[var(--v2-text-secondary)] mb-12 max-w-lg text-center leading-relaxed"
         >
-          <svg 
-            className="w-4 h-4 group-hover:-translate-x-1 transition-transform" 
-            fill="none" 
-            viewBox="0 0 24 24" 
-            stroke="currentColor"
+          A completely reimagined portfolio experience. 
+          <br className="hidden sm:block" />
+          <span className="text-[var(--v2-text-muted)]">Interactive. Immersive. Unique.</span>
+        </motion.p>
+        
+        {/* Terminal preview */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.4 }}
+          className="terminal max-w-xl w-full mb-12 shadow-lg"
+        >
+          <div className="terminal-header">
+            <div className="terminal-dot red" />
+            <div className="terminal-dot yellow" />
+            <div className="terminal-dot green" />
+            <span className="ml-3 text-xs text-[var(--v2-text-muted)] mono">terminal — zsh</span>
+          </div>
+          <div className="terminal-body space-y-3">
+            <div>
+              <span className="terminal-prompt">$</span>
+              <span className="text-[var(--v2-text-primary)] ml-2">whoami</span>
+            </div>
+            <div className="text-[var(--v2-text-secondary)] pl-4">
+              → Nabil El Bajdi — AI Developer & Problem Solver
+            </div>
+            <div>
+              <span className="terminal-prompt">$</span>
+              <span className="text-[var(--v2-text-primary)] ml-2">cat status.txt</span>
+            </div>
+            <div className="text-[var(--v2-text-secondary)] pl-4">
+              → Building something amazing...
+            </div>
+            <div>
+              <span className="terminal-prompt">$</span>
+              <span className="text-[var(--v2-text-primary)] ml-2">ls features/</span>
+            </div>
+            <div className="text-[var(--v2-text-secondary)] pl-4 flex flex-wrap gap-x-4">
+              <span className="text-[var(--v2-accent)]">terminal-hero/</span>
+              <span className="text-[var(--v2-accent)]">bento-grid/</span>
+              <span className="text-[var(--v2-accent)]">3d-cards/</span>
+              <span className="text-[var(--v2-accent)]">cmd-palette/</span>
+            </div>
+            <div className="flex items-center">
+              <span className="terminal-prompt">$</span>
+              <span className="terminal-cursor" />
+            </div>
+          </div>
+        </motion.div>
+        
+        {/* CTA Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+        >
+          <Link 
+            to="/" 
+            className="group btn btn-secondary gap-3 px-6 py-3"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
-          </svg>
-          <span>Back to Main Portfolio</span>
-        </Link>
+            <svg 
+              className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-200" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+            </svg>
+            <span>Back to Main Portfolio</span>
+          </Link>
+        </motion.div>
         
         {/* Version indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-4 text-xs text-[var(--v2-text-muted)] font-mono">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.8 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-4 text-xs text-[var(--v2-text-dimmed)] mono"
+        >
           <span>react 19</span>
-          <span className="w-1 h-1 rounded-full bg-[var(--v2-border)]"></span>
+          <span className="w-1 h-1 rounded-full bg-[var(--v2-border)]" />
           <span>framer-motion</span>
-          <span className="w-1 h-1 rounded-full bg-[var(--v2-border)]"></span>
+          <span className="w-1 h-1 rounded-full bg-[var(--v2-border)]" />
           <span>tailwind v4</span>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
 }
 
 export default V2App;
-
