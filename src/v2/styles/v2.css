@@ -372,9 +372,9 @@
 }
 
 .vortex-spin-slow {
-  animation: vortex-spin 12s linear infinite;
+  animation: vortex-spin 15s linear infinite;
 }
 
 .vortex-spin-fast {
-  animation: vortex-spin 2s linear infinite;
+  animation: vortex-spin 6s linear infinite;
 }
