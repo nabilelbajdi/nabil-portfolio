@@ -13,7 +13,7 @@ import { Header } from './Header';
  * - Mouse position tracking for future cursor effects
  * - Smooth page transitions
  */
-export function PageWrapper({ children }) {
+export function PageWrapper({ children, onOpenCommandPalette }) {
   const { theme } = useV2Theme();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -79,7 +79,7 @@ export function PageWrapper({ children }) {
       />
 
       {/* Header */}
-      <Header />
+      <Header onOpenCommandPalette={onOpenCommandPalette} />
 
       {/* Page content with entrance animation */}
       <motion.div

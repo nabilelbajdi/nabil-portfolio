@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { motion, useScroll } from 'framer-motion';
 import { useV2Theme } from '../../context/V2ThemeProvider';
 
 /**
@@ -12,9 +12,8 @@ import { useV2Theme } from '../../context/V2ThemeProvider';
  * - Theme toggle
  * - Command palette hint (⌘K)
  */
-export function Header() {
+export function Header({ onOpenCommandPalette }) {
   const { theme, toggleTheme } = useV2Theme();
-  const location = useLocation();
   const { scrollYProgress } = useScroll();
   const [hasScrolled, setHasScrolled] = useState(false);
 
@@ -87,10 +86,7 @@ export function Header() {
             {/* Command Palette Hint */}
             <button
               className="hidden sm:flex items-center gap-2 px-3 py-1.5 text-xs text-[var(--v2-text-muted)] bg-[var(--v2-bg-secondary)] border border-[var(--v2-border)] rounded-lg hover:border-[var(--v2-border-hover)] transition-colors"
-              onClick={() => {
-                // Will trigger command palette when implemented
-                console.log('Command palette triggered');
-              }}
+              onClick={onOpenCommandPalette}
             >
               <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />

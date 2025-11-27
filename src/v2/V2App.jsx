@@ -6,17 +6,21 @@ import { AboutBento } from './components/sections/AboutBento';
 import { ProjectsShowcase } from './components/sections/ProjectsShowcase';
 import { SkillsSection } from './components/sections/SkillsSection';
 import { ContactSection } from './components/sections/ContactSection';
+import { CommandPalette, useCommandPalette } from './components/ui/CommandPalette';
 import './styles/v2.css';
 
 function V2Content() {
+  const commandPalette = useCommandPalette();
+  
   return (
-    <PageWrapper>
+    <PageWrapper onOpenCommandPalette={commandPalette.open}>
       <HeroTerminal />
       <AboutBento />
       <ProjectsShowcase />
       <SkillsSection />
       <ContactSection />
       <Footer />
+      <CommandPalette isOpen={commandPalette.isOpen} onClose={commandPalette.close} />
     </PageWrapper>
   );
 }
