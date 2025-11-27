@@ -1,6 +1,7 @@
 import { V2ThemeProvider } from './context/V2ThemeProvider';
 import { PageWrapper } from './components/layout/PageWrapper';
 import { HeroTerminal } from './components/sections/HeroTerminal';
+import { AboutBento } from './components/sections/AboutBento';
 import './styles/v2.css';
 
 /**
@@ -12,14 +13,10 @@ function V2Content() {
       {/* Hero Section with Interactive Terminal */}
       <HeroTerminal />
 
-      {/* Placeholder for upcoming sections */}
-      <section id="about" className="min-h-screen flex items-center justify-center px-6">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold text-[var(--v2-text-muted)] mb-4">About Section</h2>
-          <p className="text-[var(--v2-text-dimmed)] mono text-sm">Coming soon...</p>
-        </div>
-      </section>
+      {/* About Section with Bento Grid */}
+      <AboutBento />
 
+      {/* Placeholder for upcoming sections */}
       <section id="projects" className="min-h-screen flex items-center justify-center px-6">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-[var(--v2-text-muted)] mb-4">Projects Section</h2>
