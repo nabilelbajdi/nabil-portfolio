@@ -2,22 +2,14 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll } from 'framer-motion';
 import { useV2Theme } from '../../context/V2ThemeProvider';
+import { MobileMenu } from '../ui/MobileMenu';
 
-/**
- * V2 Header - Minimal, modern navigation
- * 
- * Features:
- * - Scroll progress indicator
- * - Backdrop blur on scroll
- * - Theme toggle
- * - Command palette hint (⌘K)
- */
 export function Header({ onOpenCommandPalette }) {
   const { theme, toggleTheme } = useV2Theme();
   const { scrollYProgress } = useScroll();
   const [hasScrolled, setHasScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Track scroll position for header styling
   useEffect(() => {
     const handleScroll = () => {
       setHasScrolled(window.scrollY > 20);
@@ -27,7 +19,17 @@ export function Header({ onOpenCommandPalette }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Navigation items (will link to sections when built)
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
+
   const navItems = [
     { label: 'About', href: '#about' },
     { label: 'Projects', href: '#projects' },
@@ -37,13 +39,11 @@ export function Header({ onOpenCommandPalette }) {
 
   return (
     <>
-      {/* Scroll Progress Bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-[2px] bg-[var(--v2-accent)] origin-left z-[200]"
         style={{ scaleX: scrollYProgress }}
       />
 
-      {/* Header */}
       <motion.header
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -55,7 +55,6 @@ export function Header({ onOpenCommandPalette }) {
         }`}
       >
         <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-          {/* Logo / Brand */}
           <Link 
             to="/v2" 
             className="flex items-center gap-2 group"
@@ -68,7 +67,6 @@ export function Header({ onOpenCommandPalette }) {
             </span>
           </Link>
 
-          {/* Center Navigation */}
           <nav className="hidden md:flex items-center gap-1">
             {navItems.map((item) => (
               <a
@@ -81,9 +79,7 @@ export function Header({ onOpenCommandPalette }) {
             ))}
           </nav>
 
-          {/* Right Actions */}
           <div className="flex items-center gap-2">
-            {/* Command Palette Hint */}
             <button
               className="hidden sm:flex items-center gap-2 px-3 py-1.5 text-xs text-[var(--v2-text-muted)] bg-[var(--v2-bg-secondary)] border border-[var(--v2-border)] rounded-lg hover:border-[var(--v2-border-hover)] transition-colors"
               onClick={onOpenCommandPalette}
@@ -94,10 +90,9 @@ export function Header({ onOpenCommandPalette }) {
               <span className="mono">⌘K</span>
             </button>
 
-            {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="p-2 text-[var(--v2-text-secondary)] hover:text-[var(--v2-text-primary)] hover:bg-[var(--v2-bg-tertiary)] rounded-lg transition-all duration-200"
+              className="p-2 text-[var(--v2-text-secondary)] hover:text-[var(--v2-text-primary)] hover:bg-[var(--v2-bg-tertiary)] rounded-lg transition-all duration-200 hidden md:flex"
               aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
             >
               {theme === 'dark' ? (
@@ -111,8 +106,8 @@ export function Header({ onOpenCommandPalette }) {
               )}
             </button>
 
-            {/* Mobile Menu Button */}
             <button
+              onClick={() => setIsMobileMenuOpen(true)}
               className="p-2 text-[var(--v2-text-secondary)] hover:text-[var(--v2-text-primary)] hover:bg-[var(--v2-bg-tertiary)] rounded-lg transition-all duration-200 md:hidden"
               aria-label="Open menu"
             >
@@ -123,7 +118,8 @@ export function Header({ onOpenCommandPalette }) {
           </div>
         </div>
       </motion.header>
+
+      <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
     </>
   );
 }
-
