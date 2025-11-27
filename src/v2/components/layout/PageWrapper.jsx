@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useV2Theme } from '../../context/V2ThemeProvider';
+import { Header } from './Header';
 
 /**
  * PageWrapper - Main layout wrapper for V2 pages
@@ -76,6 +77,9 @@ export function PageWrapper({ children }) {
           opacity: 0.015,
         }}
       />
+
+      {/* Header */}
+      <Header />
 
       {/* Page content with entrance animation */}
       <motion.div
