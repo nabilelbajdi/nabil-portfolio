@@ -2,27 +2,15 @@ import { V2ThemeProvider } from './context/V2ThemeProvider';
 import { PageWrapper } from './components/layout/PageWrapper';
 import { HeroTerminal } from './components/sections/HeroTerminal';
 import { AboutBento } from './components/sections/AboutBento';
+import { ProjectsShowcase } from './components/sections/ProjectsShowcase';
 import './styles/v2.css';
 
-/**
- * V2Content - The actual page content
- */
 function V2Content() {
   return (
     <PageWrapper>
-      {/* Hero Section with Interactive Terminal */}
       <HeroTerminal />
-
-      {/* About Section with Bento Grid */}
       <AboutBento />
-
-      {/* Placeholder for upcoming sections */}
-      <section id="projects" className="min-h-screen flex items-center justify-center px-6">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold text-[var(--v2-text-muted)] mb-4">Projects Section</h2>
-          <p className="text-[var(--v2-text-dimmed)] mono text-sm">Coming soon...</p>
-        </div>
-      </section>
+      <ProjectsShowcase />
 
       <section id="skills" className="min-h-screen flex items-center justify-center px-6">
         <div className="text-center">
@@ -41,9 +29,6 @@ function V2Content() {
   );
 }
 
-/**
- * V2App - Entry point with providers
- */
 function V2App() {
   return (
     <V2ThemeProvider defaultTheme="dark">
