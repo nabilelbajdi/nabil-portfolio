@@ -3,6 +3,7 @@ import { PageWrapper } from './components/layout/PageWrapper';
 import { HeroTerminal } from './components/sections/HeroTerminal';
 import { AboutBento } from './components/sections/AboutBento';
 import { ProjectsShowcase } from './components/sections/ProjectsShowcase';
+import { SkillsSection } from './components/sections/SkillsSection';
 import './styles/v2.css';
 
 function V2Content() {
@@ -11,13 +12,7 @@ function V2Content() {
       <HeroTerminal />
       <AboutBento />
       <ProjectsShowcase />
-
-      <section id="skills" className="min-h-screen flex items-center justify-center px-6">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold text-[var(--v2-text-muted)] mb-4">Skills Section</h2>
-          <p className="text-[var(--v2-text-dimmed)] mono text-sm">Coming soon...</p>
-        </div>
-      </section>
+      <SkillsSection />
 
       <section id="contact" className="min-h-screen flex items-center justify-center px-6">
         <div className="text-center">
