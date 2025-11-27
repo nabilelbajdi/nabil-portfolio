@@ -21,14 +21,14 @@ function App() {
   return (
     <Suspense fallback={<LoadingFallback />}>
       <Routes>
-        {/* V2 is the new default */}
-        <Route path="/" element={<V2App />} />
+        {/* V1 remains the default until V2 is ready */}
+        <Route path="/" element={<V1App />} />
         
-        {/* V1 preserved at /v1 */}
-        <Route path="/v1" element={<V1App />} />
+        {/* V2 in development at /v2 */}
+        <Route path="/v2/*" element={<V2App />} />
         
-        {/* Catch-all redirects to V2 */}
-        <Route path="*" element={<V2App />} />
+        {/* Catch-all stays on V1 */}
+        <Route path="*" element={<V1App />} />
       </Routes>
     </Suspense>
   );

@@ -62,20 +62,20 @@ function V2App() {
           </div>
         </div>
         
-        {/* Link to V1 */}
+        {/* Link to V1 (main site) */}
         <Link 
-          to="/v1" 
+          to="/" 
           className="group inline-flex items-center gap-2 px-6 py-3 bg-[var(--v2-bg-secondary)] border border-[var(--v2-border)] rounded-lg text-[var(--v2-text-secondary)] hover:text-[var(--v2-text-primary)] hover:border-[var(--v2-accent)] transition-all duration-300"
         >
-          <span>View Current Portfolio (V1)</span>
           <svg 
-            className="w-4 h-4 group-hover:translate-x-1 transition-transform" 
+            className="w-4 h-4 group-hover:-translate-x-1 transition-transform" 
             fill="none" 
             viewBox="0 0 24 24" 
             stroke="currentColor"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
           </svg>
+          <span>Back to Main Portfolio</span>
         </Link>
         
         {/* Version indicator */}
