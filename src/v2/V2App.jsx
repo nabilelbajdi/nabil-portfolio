@@ -7,6 +7,7 @@ import { ProjectsShowcase } from './components/sections/ProjectsShowcase';
 import { SkillsSection } from './components/sections/SkillsSection';
 import { ContactSection } from './components/sections/ContactSection';
 import { CommandPalette, useCommandPalette } from './components/ui/CommandPalette';
+import { TimeMachine } from './components/ui/TimeMachine';
 import './styles/v2.css';
 
 function V2Content() {
@@ -21,6 +22,7 @@ function V2Content() {
       <ContactSection />
       <Footer />
       <CommandPalette isOpen={commandPalette.isOpen} onClose={commandPalette.close} />
+      <TimeMachine />
     </PageWrapper>
   );
 }
