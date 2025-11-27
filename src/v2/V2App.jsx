@@ -1,31 +1,16 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { V2ThemeProvider } from './context/V2ThemeProvider';
+import { PageWrapper } from './components/layout/PageWrapper';
 import './styles/v2.css';
 
 /**
- * V2App - The new portfolio experience
- * Features: Terminal hero, bento grid, 3D cards, command palette
+ * V2Content - The actual page content (separated for provider wrapping)
  */
-function V2App() {
+function V2Content() {
   return (
-    <div className="v2 min-h-screen bg-[var(--v2-bg-primary)] text-[var(--v2-text-primary)] overflow-hidden">
-      {/* Subtle grid background */}
-      <div className="fixed inset-0 bg-grid opacity-50" />
-      
-      {/* Gradient orbs */}
-      <div className="fixed top-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-[var(--v2-accent)] opacity-[0.03] blur-[100px]" />
-      <div className="fixed bottom-[-20%] left-[-10%] w-[400px] h-[400px] rounded-full bg-purple-500 opacity-[0.03] blur-[100px]" />
-      
-      {/* Noise overlay */}
-      <div 
-        className="fixed inset-0 pointer-events-none z-50 opacity-[0.02]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-        }}
-      />
-      
-      {/* Main content */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6">
+    <PageWrapper>
+      <div className="flex flex-col items-center justify-center min-h-screen px-6">
         {/* Breadcrumb path */}
         <motion.div 
           initial={{ opacity: 0, y: -10 }}
@@ -144,7 +129,18 @@ function V2App() {
           <span>tailwind v4</span>
         </motion.div>
       </div>
-    </div>
+    </PageWrapper>
+  );
+}
+
+/**
+ * V2App - Entry point with providers
+ */
+function V2App() {
+  return (
+    <V2ThemeProvider defaultTheme="dark">
+      <V2Content />
+    </V2ThemeProvider>
   );
 }
 
