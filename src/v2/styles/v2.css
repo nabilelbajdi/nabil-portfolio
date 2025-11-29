@@ -378,3 +378,8 @@
 .vortex-spin-fast {
   animation: vortex-spin 6s linear infinite;
 }
+
+/* Portal ring animation */
+.animate-spin-slow {
+  animation: vortex-spin 8s linear infinite;
+}

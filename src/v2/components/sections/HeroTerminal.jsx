@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Terminal, TerminalPrompt, TerminalOutput } from '../ui/Terminal';
-import { useTypewriter } from '../../hooks/useTypewriter';
 
 /**
  * Command definitions with their outputs
@@ -49,7 +48,6 @@ const COMMANDS = {
       '',
       '→ Type "projects" to see these in action',
     ],
-    scrollTo: '#skills',
   },
   projects: {
     output: [
@@ -67,7 +65,6 @@ const COMMANDS = {
       '',
       '→ Scroll down to explore each project',
     ],
-    scrollTo: '#projects',
   },
   contact: {
     output: [
@@ -79,7 +76,6 @@ const COMMANDS = {
       '',
       '→ Type "social" for clickable links',
     ],
-    scrollTo: '#contact',
   },
   social: {
     output: [
@@ -219,42 +215,23 @@ function HistoryLine({ entry, onCommandClick }) {
 }
 
 /**
- * TypedOutput - Animates typing for command output
+ * TypedOutput - Shows command output instantly (realistic terminal behavior)
  */
 function TypedOutput({ lines, onComplete, links }) {
-  const [visibleLines, setVisibleLines] = useState([]);
-  const [currentLineIndex, setCurrentLineIndex] = useState(0);
-  
-  const currentLine = lines[currentLineIndex];
-  const { displayText, isComplete } = useTypewriter(currentLine || '', {
-    speed: 15,
-    enabled: currentLineIndex < lines.length,
-  });
-
   useEffect(() => {
-    if (isComplete && currentLineIndex < lines.length) {
-      setVisibleLines(prev => [...prev, lines[currentLineIndex]]);
-      
-      if (currentLineIndex < lines.length - 1) {
-        const timer = setTimeout(() => {
-          setCurrentLineIndex(prev => prev + 1);
-        }, 50);
-        return () => clearTimeout(timer);
-      } else {
-        onComplete?.();
-      }
-    }
-  }, [isComplete, currentLineIndex, lines, onComplete]);
+    // Small delay then complete - feels snappy like real terminal
+    const timer = setTimeout(() => {
+      onComplete?.();
+    }, 50);
+    return () => clearTimeout(timer);
+  }, [onComplete]);
 
   return (
     <TerminalOutput className="mt-1">
-      {visibleLines.map((line, i) => (
+      {lines.map((line, i) => (
         <div key={i} className="whitespace-pre">{line}</div>
       ))}
-      {currentLineIndex < lines.length && (
-        <div className="whitespace-pre">{displayText}</div>
-      )}
-      {links && visibleLines.length === lines.length && (
+      {links && (
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -338,7 +315,6 @@ export function HeroTerminal() {
         command: cmd,
         output: commandData.output || [],
         links: commandData.links,
-        scrollTo: commandData.scrollTo,
       });
     } else if (easterEgg) {
       setIsTyping(true);
@@ -362,16 +338,6 @@ export function HeroTerminal() {
         output: currentCommand.output,
         links: currentCommand.links,
       }]);
-      
-      // Scroll to section if specified
-      if (currentCommand.scrollTo) {
-        setTimeout(() => {
-          document.querySelector(currentCommand.scrollTo)?.scrollIntoView({ 
-            behavior: 'smooth' 
-          });
-        }, 500);
-      }
-      
       setCurrentCommand(null);
       setIsTyping(false);
     }
@@ -462,7 +428,7 @@ export function HeroTerminal() {
                     handleSubmit(inputValue);
                   } else if (e.ctrlKey && e.key === 'l') {
                     e.preventDefault();
-                    setHistory([{ command: '^L', output: ['✨ Ooh, someone knows their Linux shortcuts!', '', 'Terminal cleared.'] }]);
+                    setHistory([{ command: 'clear', output: ['✨ Ooh, someone knows their Linux shortcuts!'] }]);
                     setCurrentCommand(null);
                   } else if (e.ctrlKey && e.key === 'c') {
                     e.preventDefault();
@@ -489,23 +455,48 @@ export function HeroTerminal() {
         </div>
       </Terminal>
 
-      {/* Quick Commands */}
+      {/* Social Links */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.6 }}
-        className="flex flex-wrap justify-center gap-2 mt-6"
+        transition={{ duration: 0.5, delay: 0.8 }}
+        className="flex items-center gap-4 mt-8"
       >
-        {['whoami', 'skills', 'projects', 'contact'].map((cmd) => (
-          <button
-            key={cmd}
-            onClick={() => handleQuickCommand(cmd)}
-            disabled={isTyping}
-            className="px-4 py-2 text-sm mono text-[var(--v2-text-muted)] bg-[var(--v2-bg-secondary)] border border-[var(--v2-border)] rounded-lg hover:text-[var(--v2-accent)] hover:border-[var(--v2-accent)] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {cmd}
-          </button>
-        ))}
+        <a
+          href="https://github.com/nabilelbajdi"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[var(--v2-text-muted)] hover:text-[var(--v2-accent)] transition-colors"
+          aria-label="GitHub"
+        >
+          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a
+          href="https://linkedin.com/in/nabilelbajdi"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[var(--v2-text-muted)] hover:text-[var(--v2-accent)] transition-colors"
+          aria-label="LinkedIn"
+        >
+          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+        <span className="w-1 h-1 rounded-full bg-[var(--v2-text-dimmed)]" />
+        <a
+          href="/resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 text-[var(--v2-text-muted)] hover:text-[var(--v2-accent)] transition-colors"
+          aria-label="Resume"
+        >
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+          </svg>
+          <span className="text-sm">Resume</span>
+        </a>
       </motion.div>
 
       {/* Scroll Hint */}

@@ -73,7 +73,7 @@ function ProjectCard({ project, index }) {
             {project.tags.map((tag) => (
               <span 
                 key={tag}
-                className="px-2 py-1 text-xs mono text-[var(--v2-text-muted)] bg-[var(--v2-bg-tertiary)] rounded border border-[var(--v2-border)]"
+                className="px-2 py-1 text-xs mono text-[var(--v2-accent)]/70 bg-[var(--v2-bg-tertiary)] rounded border border-[var(--v2-border)]"
               >
                 {tag}
               </span>
@@ -159,23 +159,15 @@ export function ProjectsShowcase() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mt-12 p-6 rounded-2xl border border-dashed border-[var(--v2-border)] bg-[var(--v2-bg-secondary)]/50"
+          className="mt-8 text-center"
         >
-          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-[var(--v2-accent)]/10 flex items-center justify-center flex-shrink-0">
-              <span className="text-[var(--v2-accent)] text-xl">+</span>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-[var(--v2-text-primary)] mb-1">More Coming Soon</h3>
-              <p className="text-sm text-[var(--v2-text-secondary)]">
-                Currently working on ML projects involving NLP and generative AI.
-              </p>
-            </div>
-          </div>
+          <p className="text-sm text-[var(--v2-text-dimmed)] mono">
+            More projects coming soon...
+          </p>
         </motion.div>
       </div>
     </section>
