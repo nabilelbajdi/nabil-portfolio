@@ -77,7 +77,7 @@ export function ContactSection() {
             <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-0">
               <span className="text-purple-400 w-24">"status"</span>
               <span className="text-[var(--v2-text-muted)] hidden sm:inline">:</span>
-              <span className="sm:ml-2 text-[var(--v2-text-secondary)]">"Open to opportunities"</span>
+              <span className="sm:ml-2 text-[var(--v2-text-secondary)]">"Currently at Capgemini"</span>
             </div>
           </div>
         </motion.div>

@@ -15,7 +15,7 @@ const skillCategories = [
   },
   {
     name: 'DevOps',
-    items: ['Docker', 'GitHub Actions', 'AWS', 'Linux/Bash'],
+    items: ['Docker', 'Jenkins', 'Ansible', 'AWS'],
   },
   {
     name: 'AI/ML',
@@ -80,10 +80,10 @@ export function SkillsSection() {
             className="p-5 rounded-2xl bg-[var(--v2-bg-secondary)] border border-[var(--v2-border)]"
           >
             <h3 className="text-sm font-medium text-[var(--v2-text-primary)] mb-3">
-              Exploring
+              Current Focus
             </h3>
             <ul className="space-y-1.5">
-              {['LangChain', 'RAG', 'LLM Fine-tuning', 'Vector Databases'].map((skill) => (
+              {['Google ADK', 'LLM Agents', 'RAG Pipelines', 'LangChain'].map((skill) => (
                 <li key={skill} className="flex items-center gap-2 text-sm text-[var(--v2-text-secondary)]">
                   <span className="w-1 h-1 rounded-full bg-[var(--v2-accent)]" />
                   {skill}

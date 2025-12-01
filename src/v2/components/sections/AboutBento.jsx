@@ -86,20 +86,20 @@ export function AboutBento() {
             <div className="absolute bottom-0 left-0 w-24 h-24 bg-purple-500/5 rounded-full blur-2xl" />
             <div className="relative">
               <BentoText className="text-base leading-relaxed">
-                I'm a developer who enjoys the sweet spot between{' '}
-                <span className="text-[var(--v2-text-primary)] font-medium">logic</span> and{' '}
-                <span className="text-[var(--v2-text-primary)] font-medium">creativity</span>, 
-                where thoughtful code meets meaningful design. Whether it's architecting{' '}
-                <span className="text-[var(--v2-accent)] font-medium">backend systems</span>, shaping{' '}
-                <span className="text-[var(--v2-accent)] font-medium">clean user flows</span>, or experimenting with{' '}
-                <span className="text-[var(--v2-accent)] font-medium">AI</span>, I find joy in building systems 
-                that are both intelligent and intuitive.
+                I'm a developer who loves building things that work well and feel right to use. 
+                I started out in{' '}
+                <span className="text-[var(--v2-accent)] font-medium">DevOps</span>, spending six months 
+                at <span className="text-purple-400 font-medium">Scila</span> automating CI/CD pipelines 
+                with <span className="text-[var(--v2-text-primary)] font-medium">Jenkins</span>, <span className="text-[var(--v2-text-primary)] font-medium">Ansible</span>, and <span className="text-[var(--v2-text-primary)] font-medium">Docker</span>. 
+                That taught me how to think in systems and care about reliability.
               </BentoText>
               <div className="mt-4 pt-4 border-t border-[var(--v2-border)]">
                 <BentoText>
-                  I have a background in <span className="text-[var(--v2-text-primary)] font-medium">DevOps</span>, 
-                  including hands-on experience as a DevOps engineer. Now I'm diving deeper into{' '}
-                  <span className="text-[var(--v2-text-primary)] font-medium">AI and Machine Learning</span>.
+                  Now I'm studying{' '}
+                  <span className="text-[var(--v2-accent)] font-medium">AI Engineering</span> at 
+                  Nackademin and interning at{' '}
+                  <span className="text-purple-400 font-medium">Capgemini</span>, where I'm 
+                  working on <span className="text-[var(--v2-accent)] font-medium">AI agent systems</span>. On the side, I build full-stack projects like GameGloom.
                 </BentoText>
               </div>
             </div>
@@ -139,24 +139,23 @@ export function AboutBento() {
             <p className="text-sm text-[var(--v2-text-secondary)] leading-relaxed">
               Full-stack gaming platform with AI-powered recommendations
             </p>
-            <div className="mt-4 flex items-center gap-2">
-              <div className="h-1 flex-1 rounded-full bg-[var(--v2-bg-tertiary)] overflow-hidden">
-                <motion.div 
-                  className="h-full bg-gradient-to-r from-[var(--v2-accent)] to-purple-500 rounded-full"
-                  initial={{ width: 0 }}
-                  whileInView={{ width: '75%' }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1, delay: 0.5 }}
-                />
-              </div>
-              <span className="text-xs mono text-[var(--v2-text-muted)]">75%</span>
-            </div>
+            <a 
+              href="https://gamegloom.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 mt-4 text-xs text-[var(--v2-accent)] hover:underline"
+            >
+              gamegloom.com
+              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
           </BentoCard>
 
           <BentoCard variant="solid" delay={0.4} className="md:col-span-4 relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[var(--v2-accent)] via-purple-500 to-purple-400" />
             <div className="flex items-baseline gap-2 mb-4 mt-1">
-              <span className="text-xs font-medium text-[var(--v2-text-muted)] uppercase tracking-wider">Learning</span>
+              <span className="text-xs font-medium text-[var(--v2-text-muted)] uppercase tracking-wider">Currently Learning</span>
               <span className="flex-1 h-px bg-[var(--v2-border)]" />
             </div>
             <ul className="space-y-1.5">
@@ -166,15 +165,15 @@ export function AboutBento() {
               </li>
               <li className="flex items-center gap-2 text-sm text-[var(--v2-text-secondary)]">
                 <span className="w-1 h-1 rounded-full bg-[var(--v2-accent)]" />
-                NLP & Transformers
+                LLM Applications
               </li>
               <li className="flex items-center gap-2 text-sm text-[var(--v2-text-secondary)]">
                 <span className="w-1 h-1 rounded-full bg-[var(--v2-accent)]" />
-                RAG & LLMs
+                Building AI Agents
               </li>
               <li className="flex items-center gap-2 text-sm text-[var(--v2-text-secondary)]">
                 <span className="w-1 h-1 rounded-full bg-[var(--v2-accent)]" />
-                Agentic Systems
+                RAG Systems
               </li>
             </ul>
           </BentoCard>

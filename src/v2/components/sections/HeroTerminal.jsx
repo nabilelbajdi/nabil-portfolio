@@ -17,23 +17,23 @@ const COMMANDS = {
       '  social      → Find me online',
       '  clear       → Clear terminal',
       '',
-      'Tip: Click any command or type and press Enter',
+      'Type a command and press Enter, or just scroll down.',
     ],
   },
   whoami: {
     output: [
       '┌─────────────────────────────────────────┐',
       '│  Nabil El Bajdi                         │',
-      '│  AI Developer & Creative Problem Solver │',
+      '│  AI Developer & Full-Stack Engineer     │',
       '└─────────────────────────────────────────┘',
       '',
-      'I build systems that simplify complexity.',
-      'Through automation, web development, and AI,',
-      'I make technology smarter and life easier.',
+      'I build intelligent systems that actually work.',
+      'From DevOps pipelines to AI agents, I like',
+      'making complex things simple and reliable.',
       '',
       '📍 Stockholm, Sweden',
-      '🎓 DevOps Engineering + AI/ML Studies',
-      '💼 Open to opportunities',
+      '🎓 AI Engineering @ Nackademin (2026)',
+      '💼 Currently at Capgemini',
     ],
   },
   skills: {
@@ -372,8 +372,8 @@ export function HeroTerminal() {
           <span className="text-[var(--v2-text-primary)]">Hi, I'm </span>
           <span className="text-[var(--v2-accent)] text-glow">Nabil</span>
         </h1>
-        <p className="text-lg text-[var(--v2-text-secondary)] max-w-md mx-auto">
-          AI Developer & Creative Problem Solver
+        <p className="text-lg text-[var(--v2-text-secondary)] max-w-lg mx-auto">
+          I build intelligent systems that turn complex ideas into simple, usable experiences.
         </p>
       </motion.div>
 

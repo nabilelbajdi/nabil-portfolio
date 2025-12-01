@@ -40,7 +40,7 @@ export function TimeMachine() {
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 0.6 }}
-                className="w-[500px] h-[500px] vortex-spin-slow"
+                className="w-[600px] h-[600px] vortex-spin-slow"
               >
                 <TimeVortexSvg showStars={true} />
               </motion.div>
@@ -77,38 +77,65 @@ export function TimeMachine() {
               
               {/* Version Preview */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.9, rotateY: -5 }}
-                animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-                transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                initial={{ opacity: 0, scale: 0.8, rotateX: 15, rotateY: -15 }}
+                animate={{ opacity: 1, scale: 1, rotateX: 8, rotateY: -12 }}
+                transition={{ delay: 0.2, type: "spring", stiffness: 150, damping: 20 }}
                 onClick={handleConfirm}
                 className="group cursor-pointer"
-                style={{ perspective: '1000px' }}
+                style={{ perspective: '1200px', transformStyle: 'preserve-3d' }}
               >
                 <div 
-                  className="relative w-72 sm:w-80 mx-auto rounded-xl overflow-hidden shadow-2xl transform transition-all duration-300 group-hover:scale-105 group-hover:-rotate-1"
+                  className="relative w-96 sm:w-96 mx-auto rounded-2xl overflow-hidden transition-all duration-500 group-hover:scale-110"
                   style={{ 
-                    boxShadow: '0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.1)',
-                    transform: 'rotateY(-2deg) rotateX(2deg)'
+                    boxShadow: '0 30px 120px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.08), 0 0 80px rgba(6,182,212,0.18)',
+                    transform: 'rotateX(10deg) rotateY(-14deg) rotateZ(2deg) translateZ(0)',
+                    transformStyle: 'preserve-3d'
                   }}
                 >
+                  {/* Browser chrome mockup */}
+                  <div className="bg-zinc-800 px-3 py-2 flex items-center gap-1.5 border-b border-zinc-700">
+                    <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
+                    <div className="ml-2 flex-1 bg-zinc-700 rounded px-2 py-0.5 text-[10px] text-zinc-400 font-mono">
+                      nabilelbajdi.com
+                    </div>
+                  </div>
+                  
                   <img 
                     src="/assets/images/portfolio-v1.png" 
                     alt="Portfolio V1"
-                    className="w-full object-contain group-hover:blur-sm transition-all duration-300"
+                    className="w-full object-cover group-hover:scale-102 transition-transform duration-500"
+                    style={{ transformOrigin: 'center' }}
                   />
                   
-                  {/* Overlay with V1 text */}
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/60 transition-all duration-300">
-                    <span className="text-white text-4xl font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      V1
-                    </span>
+                  {/* Hover overlay */}
+                  <div className="absolute inset-0 top-8 flex items-center justify-center bg-black/0 group-hover:bg-black/70 transition-all duration-300">
+                    <motion.div 
+                      className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      <span className="text-white text-3xl font-bold block">Visit V1</span>
+                      <span className="text-white/60 text-sm">Click to travel</span>
+                    </motion.div>
                   </div>
                   
-                  {/* Bottom label */}
-                  <div className="absolute bottom-0 left-0 right-0 py-2 bg-gradient-to-t from-black/80 to-transparent">
-                    <span className="text-white text-xs font-medium">2024</span>
+                  {/* Year badge */}
+                  <div className="absolute top-12 right-3 px-2 py-1 bg-black/60 backdrop-blur-sm rounded text-[10px] text-white/80 font-mono">
+                    2024
                   </div>
                 </div>
+                
+                {/* Reflection effect */}
+                <div 
+                  className="w-96 sm:w-96 mx-auto h-20 mt-2 rounded-2xl opacity-22 blur-sm"
+                  style={{
+                    background: 'linear-gradient(to bottom, rgba(255,255,255,0.14), transparent)',
+                    transform: 'rotateX(-10deg) rotateY(-14deg) rotateZ(2deg) scaleY(-0.28)',
+                    transformOrigin: 'top center',
+                    filter: 'brightness(0.95)'
+                  }}
+                />
               </motion.div>
             </motion.div>
           </motion.div>
@@ -162,7 +189,7 @@ export function TimeMachine() {
         className="fixed bottom-6 right-6 z-[200]"
       >
         <div className="relative flex flex-col items-center">
-          <motion.button
+            <motion.button
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onClick={handleClick}
@@ -171,8 +198,10 @@ export function TimeMachine() {
             whileTap={{ scale: 0.95 }}
             className="cursor-pointer w-20 h-20"
           >
-            <div className={isHovered ? 'vortex-spin-fast' : 'vortex-spin-slow'}>
-              <TimeVortexSvg showStars={true} />
+            <div className={isHovered ? 'vortex-spin-fast' : 'vortex-spin-slow'} style={{ width: '100%', height: '100%' }}>
+              <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <TimeVortexSvg showStars={true} width={80} height={80} />
+              </div>
             </div>
           </motion.button>
           
