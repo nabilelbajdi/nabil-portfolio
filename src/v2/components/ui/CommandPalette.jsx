@@ -1,20 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useV2Theme } from '../../context/V2ThemeProvider';
-
-const commands = [
-  { id: 'home', label: 'Go to Home', section: 'Navigation', action: 'scroll', target: '#home' },
-  { id: 'about', label: 'Go to About', section: 'Navigation', action: 'scroll', target: '#about' },
-  { id: 'projects', label: 'Go to Projects', section: 'Navigation', action: 'scroll', target: '#projects' },
-  { id: 'skills', label: 'Go to Skills', section: 'Navigation', action: 'scroll', target: '#skills' },
-  { id: 'contact', label: 'Go to Contact', section: 'Navigation', action: 'scroll', target: '#contact' },
-  { id: 'theme', label: 'Toggle Theme', section: 'Actions', action: 'theme' },
-  { id: 'github', label: 'Open GitHub', section: 'Links', action: 'link', target: 'https://github.com/nabilelbajdi' },
-  { id: 'linkedin', label: 'Open LinkedIn', section: 'Links', action: 'link', target: 'https://www.linkedin.com/in/nabil-el-bajdi-51726b24b/' },
-  { id: 'email', label: 'Send Email', section: 'Links', action: 'link', target: 'mailto:nabilelbajdii@gmail.com' },
-  { id: 'resume', label: 'View Resume', section: 'Links', action: 'link', target: '/resume.pdf' },
-  { id: 'v1', label: 'View Portfolio V1', section: 'Links', action: 'navigate', target: '/' },
-];
+import { PALETTE_COMMANDS } from '../../data/paletteCommands';
 
 export function CommandPalette({ isOpen, onClose }) {
   const [search, setSearch] = useState('');
@@ -22,7 +9,7 @@ export function CommandPalette({ isOpen, onClose }) {
   const inputRef = useRef(null);
   const { toggleTheme } = useV2Theme();
 
-  const filteredCommands = commands.filter(cmd =>
+  const filteredCommands = PALETTE_COMMANDS.filter(cmd =>
     cmd.label.toLowerCase().includes(search.toLowerCase()) ||
     cmd.section.toLowerCase().includes(search.toLowerCase())
   );
@@ -140,21 +127,19 @@ export function CommandPalette({ isOpen, onClose }) {
                       {sectionCommands.map((cmd) => {
                         const globalIndex = flatFilteredCommands.findIndex(c => c.id === cmd.id);
                         const isSelected = globalIndex === selectedIndex;
-                        
+
                         return (
                           <button
                             key={cmd.id}
                             onClick={() => executeCommand(cmd)}
                             onMouseEnter={() => setSelectedIndex(globalIndex)}
-                            className={`w-full px-4 py-2 flex items-center gap-3 text-left text-sm transition-colors ${
-                              isSelected 
-                                ? 'bg-[var(--v2-accent)]/10 text-[var(--v2-text-primary)]' 
-                                : 'text-[var(--v2-text-secondary)] hover:bg-[var(--v2-bg-tertiary)]'
-                            }`}
+                            className={`w-full px-4 py-2 flex items-center gap-3 text-left text-sm transition-colors ${isSelected
+                              ? 'bg-[var(--v2-accent)]/10 text-[var(--v2-text-primary)]'
+                              : 'text-[var(--v2-text-secondary)] hover:bg-[var(--v2-bg-tertiary)]'
+                              }`}
                           >
-                            <span className={`w-5 h-5 flex items-center justify-center rounded ${
-                              isSelected ? 'text-[var(--v2-accent)]' : 'text-[var(--v2-text-muted)]'
-                            }`}>
+                            <span className={`w-5 h-5 flex items-center justify-center rounded ${isSelected ? 'text-[var(--v2-accent)]' : 'text-[var(--v2-text-muted)]'
+                              }`}>
                               {cmd.action === 'scroll' && (
                                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
