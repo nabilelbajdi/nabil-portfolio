@@ -25,7 +25,6 @@ export function BentoCard({
   className = '',
   variant = 'default',
   delay = 0,
-  hover = true,
 }) {
   const variantClasses = {
     default: 'bg-[var(--v2-bg-secondary)] border border-[var(--v2-border)]',
@@ -41,11 +40,10 @@ export function BentoCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.5, delay }}
-      whileHover={hover ? { y: -3, transition: { duration: 0.2 } } : {}}
+      whileHover={{}}
       className={`
         rounded-2xl p-6 
         ${variantClasses[variant]}
-        ${hover ? 'transition-all duration-300 hover:shadow-lg hover:shadow-[var(--v2-accent)]/5 hover:border-[var(--v2-border-hover)]' : ''}
         ${className}
       `}
     >
