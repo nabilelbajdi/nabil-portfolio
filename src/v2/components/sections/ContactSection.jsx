@@ -57,7 +57,7 @@ export function ContactSection() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="p-8 rounded-2xl bg-[var(--v2-bg-secondary)] border border-[var(--v2-border)] mb-8"
         >
-          <div className="mono text-xs text-[var(--v2-text-dimmed)] mb-6">$ cat contact.json</div>
+          <div className="mono text-xs text-[var(--v2-text-dimmed)] mb-6">% cat contact.json</div>
           <div className="space-y-4 mono text-sm">
             <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-0">
               <span className="text-purple-400 w-24">"email"</span>

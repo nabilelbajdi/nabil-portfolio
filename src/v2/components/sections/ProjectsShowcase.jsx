@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const projects = [
@@ -11,7 +10,7 @@ const projects = [
     demoLink: "https://gamegloom.com",
     codeLink: "https://github.com/nabilelbajdi/gamegloom",
     status: "wip",
-    year: "2024",
+    year: "2025",
   },
   {
     id: 2,
@@ -22,7 +21,7 @@ const projects = [
     demoLink: "https://mental-health-dashboard.streamlit.app/",
     codeLink: "https://github.com/nabilelbajdi/mental-health-dashboard",
     status: "completed",
-    year: "2024",
+    year: "2025",
   },
   {
     id: 3,
@@ -38,16 +37,12 @@ const projects = [
 ];
 
 function ProjectCard({ project, index }) {
-  const [isHovered, setIsHovered] = useState(false);
-  
   return (
     <motion.article
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       className="group relative"
     >
       <div className="grid md:grid-cols-12 gap-6 py-8 border-b border-[var(--v2-border)]">
@@ -111,21 +106,13 @@ function ProjectCard({ project, index }) {
         </div>
         
         <div className="md:col-span-5 order-1 md:order-2">
-          <motion.div 
-            className="relative aspect-video rounded-lg overflow-hidden bg-[var(--v2-bg-tertiary)] border border-[var(--v2-border)]"
-            animate={{ 
-              scale: isHovered ? 1.02 : 1,
-              y: isHovered ? -4 : 0,
-            }}
-            transition={{ duration: 0.3 }}
-          >
+          <div className="relative aspect-video rounded-lg overflow-hidden bg-[var(--v2-bg-tertiary)] border border-[var(--v2-border)] group-hover:scale-[1.02] transition-transform duration-300">
             <img 
               src={project.image}
               alt={project.title}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[var(--v2-bg-primary)]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-          </motion.div>
+          </div>
         </div>
       </div>
     </motion.article>
