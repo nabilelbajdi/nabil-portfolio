@@ -81,7 +81,7 @@ export function Header({ onOpenCommandPalette }) {
 
           <div className="flex items-center gap-2">
             <button
-              className="group hidden sm:flex items-center gap-2 px-3 py-1.5 text-xs text-[var(--v2-text-muted)] bg-[var(--v2-bg-secondary)] border border-[var(--v2-border)] rounded-lg hover:border-[var(--v2-border-hover)] hover:text-[var(--v2-text-secondary)] transition-colors"
+              className="group hidden sm:flex items-center gap-2 px-3 py-1.5 text-xs text-[var(--v2-text-muted)] bg-[var(--v2-bg-secondary)] border border-[var(--v2-border)] rounded-lg hover:border-[var(--v2-border-hover)] hover:text-[var(--v2-text-secondary)] transition-colors cursor-pointer"
               onClick={onOpenCommandPalette}
               title="Quick navigation"
             >
@@ -93,7 +93,7 @@ export function Header({ onOpenCommandPalette }) {
 
             <button
               onClick={toggleTheme}
-              className="p-2 text-[var(--v2-text-secondary)] hover:text-[var(--v2-accent)] rounded-lg transition-all duration-300 hidden md:flex group"
+              className="p-2 text-[var(--v2-text-secondary)] hover:text-[var(--v2-accent)] rounded-lg transition-all duration-300 hidden md:flex group cursor-pointer"
               aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
             >
               {theme === 'dark' ? (
