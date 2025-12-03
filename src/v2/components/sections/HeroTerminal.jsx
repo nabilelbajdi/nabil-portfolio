@@ -379,7 +379,7 @@ export function HeroTerminal() {
 
       {/* Terminal */}
       <Terminal 
-        title="nabil/portfolio — -zsh — 80×24" 
+        title="portfolio — -zsh — 80×24" 
         className="w-full max-w-2xl shadow-2xl"
       >
         <div 
