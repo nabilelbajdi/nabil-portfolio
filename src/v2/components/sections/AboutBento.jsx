@@ -99,7 +99,7 @@ export function AboutBento() {
                   <span className="text-[var(--v2-accent)] font-medium">AI Engineering</span> at 
                   Nackademin and interning at{' '}
                   <span className="text-purple-400 font-medium">Capgemini</span>, where I'm 
-                  working on <span className="text-[var(--v2-accent)] font-medium">AI agent systems</span>. On the side, I build full-stack projects like GameGloom.
+                  working on <span className="text-[var(--v2-accent)] font-medium">AI agent systems</span>. On the side, I build full-stack projects like GameGloom, and this portfolio.
                 </BentoText>
               </div>
             </div>
