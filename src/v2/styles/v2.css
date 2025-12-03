@@ -6,7 +6,7 @@
 .v2 {
   /* Typography */
   --v2-font-display: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
-  --v2-font-mono: 'Geist Mono', 'SF Mono', 'Fira Code', monospace;
+  --v2-font-mono: 'SF Mono', 'Geist Mono', 'Fira Code', monospace;
   
   /* Colors - Dark Mode (default) */
   --v2-bg-primary: #0a0a0b;

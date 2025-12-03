@@ -379,7 +379,7 @@ export function HeroTerminal() {
 
       {/* Terminal */}
       <Terminal 
-        title="nabil@portfolio:~" 
+        title="nabil/portfolio — -zsh — 80×24" 
         className="w-full max-w-2xl shadow-2xl"
       >
         <div 
@@ -417,7 +417,9 @@ export function HeroTerminal() {
               animate={{ opacity: 1 }}
               className="flex items-center"
             >
-              <span className="terminal-prompt">$</span>
+              <span className="text-purple-400 mono text-sm">nabil@portfolio</span>
+              <span className="text-[var(--v2-accent)] ml-1">~</span>
+              <span className="text-white ml-2">%</span>
               <input
                 ref={inputRef}
                 type="text"

@@ -35,7 +35,8 @@ export const Terminal = forwardRef(function Terminal({
           <div className="terminal-dot yellow w-3 h-3" />
           <div className="terminal-dot green w-3 h-3" />
         </div>
-        <span className="ml-2 text-xs text-[var(--v2-text-muted)] mono flex-1 text-center pr-16">
+        <span className="ml-2 text-xs text-gray-300 font-bold flex items-center gap-2" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif' }}>
+          <img src="/mac-folder.png" alt="folder" className="w-4 h-4" />
           {title}
         </span>
       </div>
@@ -65,7 +66,9 @@ export function TerminalLine({ children, className = '' }) {
 export function TerminalPrompt({ children, showCursor = false }) {
   return (
     <div className="flex items-center">
-      <span className="terminal-prompt">$</span>
+      <span className="text-purple-400 mono text-sm">nabil@portfolio</span>
+      <span className="text-[var(--v2-accent)] ml-1">~</span>
+      <span className="text-white ml-2">%</span>
       <span className="ml-2 text-[var(--v2-text-primary)]">{children}</span>
       {showCursor && <span className="terminal-cursor" />}
     </div>
@@ -101,7 +104,9 @@ export function TerminalInput({
 
   return (
     <div className="flex items-center">
-      <span className="terminal-prompt">$</span>
+      <span className="text-purple-400 mono text-sm">nabil@portfolio</span>
+      <span className="text-[var(--v2-accent)] ml-1">~</span>
+      <span className="text-white ml-2">%</span>
       <input
         type="text"
         value={value}

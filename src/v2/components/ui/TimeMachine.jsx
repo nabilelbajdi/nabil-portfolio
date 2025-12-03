@@ -226,10 +226,9 @@ export function TimeMachine() {
                     />
                     
                     {/* Hover overlay - Crystal glass effect */}
-                    <div className="absolute inset-0 hidden items-center justify-center rounded-2xl border border-cyan-400/20 bg-slate-900/40 opacity-0 backdrop-blur-md transition-all duration-300 group-hover:opacity-100 lg:flex">
+                    <div className="absolute inset-0 hidden items-center justify-center rounded-2xl border border-cyan-400/20 opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100 lg:flex">
                       <div className="text-center">
                         <h3 className="text-2xl font-bold text-white drop-shadow-lg">v2</h3>
-                        <p className="text-sm text-cyan-200/80 mt-1">Portfolio</p>
                       </div>
                     </div>
                   </div>
