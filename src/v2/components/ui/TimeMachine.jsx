@@ -1,11 +1,29 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { TimeVortexSvg } from './TimeVortexSvg';
 
 export function TimeMachine() {
   const [isHovered, setIsHovered] = useState(false);
   const [isConfirming, setIsConfirming] = useState(false);
   const [isActivated, setIsActivated] = useState(false);
+  const scrollYRef = useRef(0);
+
+  // Disable background scrolling when modal is open
+  useEffect(() => {
+    if (isConfirming || isActivated) {
+      scrollYRef.current = window.scrollY;
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      // Restore scroll position
+      window.scrollTo(0, scrollYRef.current);
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
+  }, [isConfirming, isActivated]);
 
   const handleClick = () => {
     setIsConfirming(true);
@@ -35,109 +53,211 @@ export function TimeMachine() {
             onClick={handleCancel}
             className="fixed inset-0 z-[400] flex items-center justify-center bg-[var(--v2-bg-primary)]/80 backdrop-blur-md"
           >
-            {/* Vortex - reasonable size */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 0.6 }}
-                className="w-[600px] h-[600px] vortex-spin-slow"
-              >
-                <TimeVortexSvg showStars={true} />
-              </motion.div>
+            {/* Animated blob background */}
+            <div className="absolute inset-0 overflow-hidden">
+              <style jsx>{`
+                :root {
+                  --deg: 1;
+                  --x: -50%;
+                  --y: -50%;
+                  --speed: 150ms;
+                }
+                
+                .blob {
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(var(--x, -50%), var(--y, -50%)) rotate(0deg);
+                  font-size: 20vmin;
+                  width: 3em;
+                  height: 3em;
+                  border-radius: 90% 95% 85% 105%;
+                  background: #0f0;
+                  mix-blend-mode: screen;
+                  filter: hue-rotate(0deg);
+                  animation: wobble calc(var(--speed) * var(--t)) linear infinite;
+                  transform-origin: -var(--y) -var(--x);
+                  box-shadow: 0 0 .5em .2em #000 inset, 0 0 .15em 0 #fff;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                }
+                
+                .blob:nth-child(1) {
+                  --x: -53%;
+                  --y: -53%;
+                  --t: 37;
+                }
+                
+                .blob:nth-child(2) {
+                  --x: -47%;
+                  --y: -52%;
+                  --t: 58;
+                }
+                
+                .blob:nth-child(3) {
+                  --x: -45%;
+                  --y: -50%;
+                  --t: 46;
+                }
+                
+                .blob:nth-child(4) {
+                  --x: -53%;
+                  --y: -45%;
+                  --t: 72;
+                }
+                
+                .blob:nth-child(5) {
+                  --x: -55%;
+                  --y: -45%;
+                  --t: 62;
+                }
+                
+                @keyframes wobble {
+                  to {
+                    filter: hue-rotate(360deg);
+                    transform: translate(var(--x), var(--y)) rotate(360deg);
+                  }
+                }
+              `}</style>
+              <div className="blob"></div>
+              <div className="blob"></div>
+              <div className="blob"></div>
+              <div className="blob"></div>
+              <div className="blob"></div>
             </div>
 
             {/* Close button */}
-            <motion.button
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              onClick={handleCancel}
-              className="absolute top-6 right-6 z-20 p-2 text-white/60 hover:text-white transition-colors"
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleCancel();
+              }}
+              className="absolute top-16 right-6 z-[999] p-2 text-white/70 hover:text-white rounded transition-all cursor-pointer"
             >
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
-            </motion.button>
+            </button>
 
-            {/* Content */}
+            {/* Content - Star Wars crawl perspective */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
               onClick={(e) => e.stopPropagation()}
               className="relative z-10 text-center"
-              style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8), 0 0 40px rgba(0,0,0,0.5)' }}
+              style={{ 
+                perspective: '400px',
+                perspectiveOrigin: 'center bottom'
+              }}
             >
-              <h2 className="text-xl sm:text-2xl font-semibold text-white mb-2">
-                Go back in time
-              </h2>
-              <p className="text-sm text-white/60 mb-8">
-                Explore past versions
-              </p>
-              
-              {/* Version Preview */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8, rotateX: 15, rotateY: -15 }}
-                animate={{ opacity: 1, scale: 1, rotateX: 8, rotateY: -12 }}
-                transition={{ delay: 0.2, type: "spring", stiffness: 150, damping: 20 }}
-                onClick={handleConfirm}
-                className="group cursor-pointer"
-                style={{ perspective: '1200px', transformStyle: 'preserve-3d' }}
+              <div
+                style={{
+                  transform: 'rotateX(18deg)',
+                  transformOrigin: 'center bottom',
+                  textShadow: '0 2px 20px rgba(0,0,0,0.8), 0 0 40px rgba(0,0,0,0.5)'
+                }}
               >
-                <div 
-                  className="relative w-96 sm:w-96 mx-auto rounded-2xl overflow-hidden transition-all duration-500 group-hover:scale-110"
-                  style={{ 
-                    boxShadow: '0 30px 120px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.08), 0 0 80px rgba(6,182,212,0.18)',
-                    transform: 'rotateX(10deg) rotateY(-14deg) rotateZ(2deg) translateZ(0)',
-                    transformStyle: 'preserve-3d'
-                  }}
+                <h2 className="text-xl sm:text-2xl font-semibold mb-16" style={{ color: '#282442' }}>
+                  Travel back in time to<br />
+                  explore past versions
+                </h2>
+                
+                {/* Version Preview */}
+                <motion.a
+                  href="/"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.2, type: "spring", stiffness: 150, damping: 20 }}
+                  className="group cursor-pointer block"
                 >
-                  {/* Browser chrome mockup */}
-                  <div className="bg-zinc-800 px-3 py-2 flex items-center gap-1.5 border-b border-zinc-700">
-                    <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
-                    <div className="ml-2 flex-1 bg-zinc-700 rounded px-2 py-0.5 text-[10px] text-zinc-400 font-mono">
-                      nabilelbajdi.com
+                  <div 
+                    className="relative w-72 sm:w-80 mx-auto rounded-2xl overflow-hidden transition-all duration-500"
+                    style={{ 
+                      boxShadow: '0 30px 120px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.08), 0 0 80px rgba(6,182,212,0.18)'
+                    }}
+                  >
+                    {/* Browser chrome mockup */}
+                    <div className="bg-zinc-800 px-3 py-2 flex items-center gap-1 border-b border-zinc-700">
+                      <div className="w-2 h-2 rounded-full bg-red-500/80" />
+                      <div className="w-2 h-2 rounded-full bg-yellow-500/80" />
+                      <div className="w-2 h-2 rounded-full bg-green-500/80" />
+                      
+                      {/* Left arrow */}
+                      <div className="flex items-center justify-center w-4 h-4 text-zinc-500 hover:text-zinc-400 transition-colors ml-2">
+                        <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                      </div>
+                      
+                      {/* Refresh button */}
+                      <div className="flex items-center justify-center w-4 h-4 text-zinc-500 hover:text-zinc-400 transition-colors">
+                        <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                      </div>
+                      
+                      <div className="flex-1 bg-zinc-700 rounded px-2 py-0.5 text-[10px] text-zinc-400 font-sans flex items-center justify-between">
+                        <div className="flex items-center">
+                          <svg className="w-3 h-3 text-zinc-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                          </svg>
+                          <span>https://nabilelbajdi.com</span>
+                        </div>
+                        <div className="flex items-center">
+                          <span className="text-zinc-600 mx-1">|</span>
+                          <div className="flex items-center justify-center w-4 h-4 text-blue-500 hover:text-blue-400 transition-colors">
+                            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+
+                      </div>
+
+                    <img
+                      src="/assets/images/portfolio-v1.png"
+                      alt="Portfolio V1"
+                      className="w-full object-cover transition-all duration-500"
+                      style={{ transformOrigin: 'center' }}
+                    />
+                    
+                    {/* Hover overlay - Crystal glass effect */}
+                    <div className="absolute inset-0 hidden items-center justify-center rounded-2xl border border-cyan-400/20 bg-slate-900/40 opacity-0 backdrop-blur-md transition-all duration-300 group-hover:opacity-100 lg:flex">
+                      <div className="text-center">
+                        <h3 className="text-2xl font-bold text-white drop-shadow-lg">v2</h3>
+                        <p className="text-sm text-cyan-200/80 mt-1">Portfolio</p>
+                      </div>
                     </div>
                   </div>
                   
-                  <img 
-                    src="/assets/images/portfolio-v1.png" 
-                    alt="Portfolio V1"
-                    className="w-full object-cover group-hover:scale-102 transition-transform duration-500"
-                    style={{ transformOrigin: 'center' }}
+                  {/* Reflection effect - subtle */}
+                  <div 
+                    className="w-72 sm:w-80 mx-auto h-14 mt-1 rounded-2xl opacity-15 blur-sm"
+                    style={{
+                      background: 'linear-gradient(to bottom, rgba(255,255,255,0.1), transparent)',
+                      transform: 'scaleY(-0.2)',
+                      transformOrigin: 'top center'
+                    }}
                   />
-                  
-                  {/* Hover overlay */}
-                  <div className="absolute inset-0 top-8 flex items-center justify-center bg-black/0 group-hover:bg-black/70 transition-all duration-300">
-                    <motion.div 
-                      className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center"
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      <span className="text-white text-3xl font-bold block">Visit V1</span>
-                      <span className="text-white/60 text-sm">Click to travel</span>
-                    </motion.div>
-                  </div>
-                  
-                  {/* Year badge */}
-                  <div className="absolute top-12 right-3 px-2 py-1 bg-black/60 backdrop-blur-sm rounded text-[10px] text-white/80 font-mono">
-                    2024
-                  </div>
-                </div>
-                
-                {/* Reflection effect */}
-                <div 
-                  className="w-96 sm:w-96 mx-auto h-20 mt-2 rounded-2xl opacity-22 blur-sm"
-                  style={{
-                    background: 'linear-gradient(to bottom, rgba(255,255,255,0.14), transparent)',
-                    transform: 'rotateX(-10deg) rotateY(-14deg) rotateZ(2deg) scaleY(-0.28)',
-                    transformOrigin: 'top center',
-                    filter: 'brightness(0.95)'
-                  }}
-                />
-              </motion.div>
+                </motion.a>
+              </div>
             </motion.div>
+            
+            {/* Shader credit - bottom right of screen */}
+            <div className="absolute bottom-4 right-4">
+              <a 
+                href="https://codepen.io/jasesmith/pen/qqgvZe" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-[10px] text-[var(--v2-text-dimmed)] hover:text-[var(--v2-text-secondary)] transition-colors"
+              >
+                A Portal to Tomorrow by @jasesmith
+              </a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -196,32 +316,19 @@ export function TimeMachine() {
             disabled={isActivated || isConfirming}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="cursor-pointer w-20 h-20"
+            className="w-20 h-20 cursor-pointer"
           >
-            <div className={isHovered ? 'vortex-spin-fast' : 'vortex-spin-slow'} style={{ width: '100%', height: '100%' }}>
-              <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <TimeVortexSvg showStars={true} width={80} height={80} />
-              </div>
-            </div>
+            <img 
+              src="/tardis.gif" 
+              alt="Time machine" 
+              className="w-full h-full object-contain"
+              style={{ filter: isHovered ? 'brightness(1.2)' : 'brightness(1)' }}
+            />
           </motion.button>
           
           <span className="mt-2 text-[10px] mono text-[var(--v2-text-dimmed)] uppercase tracking-wider">
             Time Machine
           </span>
-
-          <AnimatePresence>
-            {isHovered && !isConfirming && (
-              <motion.div
-                initial={{ opacity: 0, y: 5 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 5 }}
-                className="absolute -top-10 px-3 py-1.5 bg-[var(--v2-bg-tertiary)] border border-[var(--v2-border)] rounded-lg shadow-xl whitespace-nowrap"
-              >
-                <span className="text-xs text-[var(--v2-text-secondary)]">View V1</span>
-                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[var(--v2-bg-tertiary)] border-r border-b border-[var(--v2-border)] rotate-45" />
-              </motion.div>
-            )}
-          </AnimatePresence>
         </div>
       </motion.div>
     </>
