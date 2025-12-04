@@ -93,6 +93,9 @@ export function CommandPalette({ isOpen, onClose }) {
             exit={{ opacity: 0, scale: 0.95, y: -20 }}
             transition={{ duration: 0.15 }}
             className="fixed top-[20%] left-1/2 -translate-x-1/2 w-full max-w-lg z-[301] px-4"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Command palette"
           >
             <div className="bg-[var(--v2-bg-secondary)] border border-[var(--v2-border)] rounded-xl shadow-2xl overflow-hidden">
               <div className="flex items-center gap-3 px-4 py-3 border-b border-[var(--v2-border)]">
@@ -103,6 +106,7 @@ export function CommandPalette({ isOpen, onClose }) {
                   ref={inputRef}
                   type="text"
                   value={search}
+                  aria-label="Search commands"
                   onChange={(e) => setSearch(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder="Search commands..."

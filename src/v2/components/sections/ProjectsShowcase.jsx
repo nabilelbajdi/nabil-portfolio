@@ -48,7 +48,8 @@ function ProjectCard({ project, index }) {
                 href={project.demoLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-[var(--v2-text-primary)] hover:text-[var(--v2-accent)] transition-colors"
+                aria-label={`View ${project.title} live demo`}
+                className="inline-flex items-center gap-2 text-sm text-[var(--v2-text-primary)] hover:text-[var(--v2-accent)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--v2-accent)]/50 rounded"
               >
                 <span>View Project</span>
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -61,7 +62,8 @@ function ProjectCard({ project, index }) {
                 href={project.codeLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-[var(--v2-text-muted)] hover:text-[var(--v2-text-primary)] transition-colors"
+                aria-label={`View ${project.title} source code on GitHub`}
+                className="inline-flex items-center gap-2 text-sm text-[var(--v2-text-muted)] hover:text-[var(--v2-text-primary)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--v2-accent)]/50 rounded"
               >
                 <span>Source</span>
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">

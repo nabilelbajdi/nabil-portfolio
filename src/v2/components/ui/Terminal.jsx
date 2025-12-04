@@ -114,7 +114,8 @@ export function TerminalInput({
         onKeyDown={handleKeyDown}
         disabled={disabled}
         placeholder={placeholder}
-        className="ml-2 flex-1 bg-transparent text-[var(--v2-text-primary)] outline-none mono placeholder:text-[var(--v2-text-dimmed)]"
+        aria-label="Terminal command input"
+        className="ml-2 flex-1 bg-transparent text-[var(--v2-text-primary)] outline-none mono placeholder:text-[var(--v2-text-dimmed)] focus:ring-1 focus:ring-[var(--v2-accent)]/50 rounded"
         autoComplete="off"
         spellCheck={false}
       />

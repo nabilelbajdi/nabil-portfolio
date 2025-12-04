@@ -134,7 +134,8 @@ export function TimeMachine() {
                 e.stopPropagation();
                 handleCancel();
               }}
-              className="absolute top-16 right-6 z-[999] p-2 text-white/70 hover:text-white rounded transition-all cursor-pointer"
+              aria-label="Close time machine dialog"
+              className="absolute top-16 right-6 z-[999] p-2 text-white/70 hover:text-white rounded transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />

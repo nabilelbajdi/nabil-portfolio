@@ -35,7 +35,8 @@ export function MobileMenu({ isOpen, onClose }) {
                 <span className="font-semibold text-[var(--v2-text-primary)]">Menu</span>
                 <button
                   onClick={onClose}
-                  className="p-2 text-[var(--v2-text-muted)] hover:text-[var(--v2-text-primary)] hover:bg-[var(--v2-bg-tertiary)] rounded-lg transition-colors"
+                  aria-label="Close menu"
+                  className="p-2 text-[var(--v2-text-muted)] hover:text-[var(--v2-text-primary)] hover:bg-[var(--v2-bg-tertiary)] rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--v2-accent)]/50"
                 >
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
