@@ -7,6 +7,7 @@ export function SkeletonImage({
   src, 
   alt, 
   className = '',
+  containerClassName = '',
   skeletonClassName = '',
   ...props 
 }) {
@@ -14,7 +15,7 @@ export function SkeletonImage({
   const [hasError, setHasError] = useState(false);
 
   return (
-    <div className={`relative ${className}`}>
+    <>
       {/* Skeleton placeholder */}
       {!isLoaded && !hasError && (
         <div 
@@ -40,6 +41,6 @@ export function SkeletonImage({
           <span className="text-[var(--v2-text-muted)] text-sm">Failed to load</span>
         </div>
       )}
-    </div>
+    </>
   );
 }

@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "v1.nabilelbajdi.com" }],
+      "destination": "/v1"
+    }
+  ]
+}
