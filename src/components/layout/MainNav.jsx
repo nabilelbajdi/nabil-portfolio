@@ -80,8 +80,15 @@ export function MainNav() {
         )}
       >
         <div className="container mx-auto flex items-center justify-between">
-          {/* Logo */}
-          <a href="#home" className="flex items-center">
+          {/* Logo - scroll to top */}
+          <a 
+            href="#" 
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className="flex items-center"
+          >
             <img 
               src="/assets/images/logo.png" 
               alt="Nabil El Bajdi" 

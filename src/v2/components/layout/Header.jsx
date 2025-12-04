@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { motion, useScroll } from 'framer-motion';
 import { useV2Theme } from '../../context/V2ThemeProvider';
 import { MobileMenu } from '../ui/MobileMenu';
@@ -49,8 +48,12 @@ export function Header({ onOpenCommandPalette }) {
         }`}
       >
         <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-          <Link 
-            to="/v2" 
+          <a 
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
             className="flex items-center gap-2 group"
           >
             <div className="w-8 h-8 rounded-lg bg-[var(--v2-accent)] flex items-center justify-center text-[var(--v2-bg-primary)] font-bold text-sm">
@@ -59,7 +62,7 @@ export function Header({ onOpenCommandPalette }) {
             <span className="font-semibold text-[var(--v2-text-primary)] group-hover:text-[var(--v2-accent)] transition-colors hidden sm:block">
               nabil.dev
             </span>
-          </Link>
+          </a>
 
           <nav className="hidden md:flex items-center gap-1">
             {NAV_ITEMS.map((item) => (
