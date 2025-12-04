@@ -4,17 +4,17 @@ A modern, interactive portfolio showcasing my projects and skills. Built with Re
 
 ![Portfolio Preview](public/assets/images/og-thumbnail.jpg)
 
-## ✨ Features
+## Features
 
-- **Dual Versions**: V1 (classic) and V2 (terminal-themed) accessible via routing
-- **Interactive Terminal**: Type commands like `help`, `projects`, `skills` in the V2 hero section
-- **Command Palette**: Quick navigation with `⌘K` / `Ctrl+K`
+- **Dual Versions**: Main (terminal-themed) and V1 (classic) accessible via routing
+- **Interactive Terminal**: Type commands like `help`, `projects`, `skills` in the hero section
+- **Command Palette**: Quick navigation with `Cmd+K` / `Ctrl+K`
 - **Time Machine**: Travel between portfolio versions with a creative UI
 - **Dark/Light Mode**: Theme toggle with localStorage persistence
 - **Responsive Design**: Mobile-first approach with smooth animations
 - **Accessibility**: ARIA labels, focus states, and semantic HTML
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Framework**: React 19 + Vite 6
 - **Styling**: Tailwind CSS 4
@@ -22,28 +22,27 @@ A modern, interactive portfolio showcasing my projects and skills. Built with Re
 - **Routing**: React Router v7
 - **Icons**: Lucide React
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 src/
-├── data/              # Centralized data (projects, skills, social links)
-├── components/        # Shared V1 components
-├── context/           # Theme provider
 ├── data/              # Centralized data (TypeScript)
+├── components/        # Shared components
+├── context/           # Theme provider
 ├── v1/                # V1 portfolio (classic design)
 │   └── V1App.jsx
-├── v2/                # V2 portfolio (terminal theme)
+├── v2/                # Main portfolio (terminal theme)
 │   ├── components/
 │   │   ├── layout/    # Header, Footer, PageWrapper
 │   │   ├── sections/  # Hero, About, Projects, Skills, Contact
 │   │   └── ui/        # Terminal, CommandPalette, BentoGrid
-│   ├── context/       # V2-specific theme
+│   ├── context/       # Theme provider
 │   ├── data/          # Terminal commands, palette commands
-│   └── styles/        # V2 CSS variables
+│   └── styles/        # CSS variables
 └── App.jsx            # Root with lazy-loaded routing
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
 ```bash
 # Clone the repository
@@ -60,11 +59,11 @@ npm run dev
 npm run build
 ```
 
-## 🌐 Live Demo
+## Live Demo
 
-- **V1 (Default)**: [nabilelbajdi.com](https://nabilelbajdi.com)
-- **V2 (Terminal)**: [nabilelbajdi.com/v2](https://nabilelbajdi.com/v2)
+- **Main**: [nabilelbajdi.com](https://nabilelbajdi.com)
+- **V1 (Classic)**: [v1.nabilelbajdi.com](https://v1.nabilelbajdi.com)
 
-## 📜 License
+## License
 
 MIT © Nabil El Bajdi

@@ -48,10 +48,10 @@ export function NotFound() {
                   → cd /home <span className="text-zinc-600"># Go to homepage</span>
                 </Link>
                 <Link 
-                  to="/v2" 
+                  to="/v1" 
                   className="block hover:text-cyan-400 transition-colors"
                 >
-                  → cd /v2 <span className="text-zinc-600"># Try the new version</span>
+                  → cd /v1 <span className="text-zinc-600"># Classic version</span>
                 </Link>
               </div>
 

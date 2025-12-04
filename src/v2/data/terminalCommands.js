@@ -108,7 +108,7 @@ export const EASTER_EGGS = {
     ls: ['about/  projects/  skills/  contact/', '', '→ Type any folder name to explore'],
     'ls -la': ['drwxr-xr-x  nabil  staff  about/', 'drwxr-xr-x  nabil  staff  projects/', 'drwxr-xr-x  nabil  staff  skills/', 'drwxr-xr-x  nabil  staff  contact/', '-rw-r--r--  nabil  staff  .secret', '', 'Wait, what\'s that .secret file? 👀'],
     'cat .secret': ['🔓 You found the secret!', '', 'Here\'s a cookie: 🍪', '', 'Thanks for exploring!'],
-    pwd: ['/home/nabil/portfolio/v2'],
+    pwd: ['/home/nabil/portfolio'],
     cd: ['Already home. 🏠'],
     'cd ..': ['You can\'t escape that easily!'],
     'cd /': ['Root access denied. Nice try though.'],

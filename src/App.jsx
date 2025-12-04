@@ -22,13 +22,13 @@ function App() {
   return (
     <Suspense fallback={<LoadingFallback />}>
       <Routes>
-        {/* V1 remains the default until V2 is ready */}
-        <Route path="/" element={<V1App />} />
+        {/* Main portfolio (terminal theme) */}
+        <Route path="/" element={<V2App />} />
         
-        {/* V2 in development at /v2 */}
-        <Route path="/v2/*" element={<V2App />} />
+        {/* V1 classic version */}
+        <Route path="/v1" element={<V1App />} />
         
-        {/* 404 page */}
+        {/* 404 for all other routes */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>

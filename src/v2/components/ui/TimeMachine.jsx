@@ -33,7 +33,7 @@ export function TimeMachine() {
     setIsConfirming(false);
     setIsActivated(true);
     setTimeout(() => {
-      window.location.href = '/';
+      window.location.href = '/v1';
     }, 2000);
   };
 
@@ -103,7 +103,7 @@ export function TimeMachine() {
                 
                 {/* Version Preview */}
                 <motion.a
-                  href="/"
+                  href="/v1"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.2, type: "spring", stiffness: 150, damping: 20 }}
@@ -140,7 +140,7 @@ export function TimeMachine() {
                           <svg className="w-3 h-3 text-zinc-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                           </svg>
-                          <span>https://nabilelbajdi.com</span>
+                          <span>https://v1.nabilelbajdi.com</span>
                         </div>
                         <div className="flex items-center">
                           <span className="text-zinc-600 mx-1">|</span>
@@ -164,7 +164,7 @@ export function TimeMachine() {
                     {/* Hover overlay - Crystal glass effect */}
                     <div className="absolute inset-0 hidden items-center justify-center rounded-2xl border border-cyan-400/20 opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100 lg:flex">
                       <div className="text-center">
-                        <h3 className="text-2xl font-bold text-white drop-shadow-lg">v2</h3>
+                        <h3 className="text-2xl font-bold text-white drop-shadow-lg">v1</h3>
                       </div>
                     </div>
                   </div>
