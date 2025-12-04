@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { BentoCard, BentoText } from '../ui/BentoGrid';
+import { SkeletonImage } from '../ui/SkeletonImage';
 
 export function AboutBento() {
   return (
@@ -26,7 +27,7 @@ export function AboutBento() {
             className="md:col-span-4 md:row-span-2 relative overflow-hidden group min-h-[400px]"
           >
             <div className="absolute inset-0 bg-gradient-to-t from-[var(--v2-bg-primary)] via-transparent to-transparent z-10" />
-            <img 
+            <SkeletonImage 
               src="/assets/images/profile.jpg" 
               alt="Nabil El Bajdi"
               className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"

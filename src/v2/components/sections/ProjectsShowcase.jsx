@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { getFeaturedProjects } from '../../../data/projects';
+import { SkeletonImage } from '../ui/SkeletonImage';
 
 const projects = getFeaturedProjects();
 
@@ -76,7 +77,7 @@ function ProjectCard({ project, index }) {
         
         <div className="md:col-span-5 order-1 md:order-2">
           <div className="relative aspect-video rounded-lg overflow-hidden bg-[var(--v2-bg-tertiary)] border border-[var(--v2-border)] group-hover:scale-[1.02] transition-transform duration-300">
-            <img 
+            <SkeletonImage 
               src={project.image}
               alt={project.title}
               className="w-full h-full object-cover"
