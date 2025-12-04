@@ -55,76 +55,11 @@ export function TimeMachine() {
           >
             {/* Animated blob background */}
             <div className="absolute inset-0 overflow-hidden">
-              <style jsx>{`
-                :root {
-                  --deg: 1;
-                  --x: -50%;
-                  --y: -50%;
-                  --speed: 150ms;
-                }
-                
-                .blob {
-                  position: absolute;
-                  top: 50%;
-                  left: 50%;
-                  transform: translate(var(--x, -50%), var(--y, -50%)) rotate(0deg);
-                  font-size: 20vmin;
-                  width: 3em;
-                  height: 3em;
-                  border-radius: 90% 95% 85% 105%;
-                  background: #0f0;
-                  mix-blend-mode: screen;
-                  filter: hue-rotate(0deg);
-                  animation: wobble calc(var(--speed) * var(--t)) linear infinite;
-                  transform-origin: -var(--y) -var(--x);
-                  box-shadow: 0 0 .5em .2em #000 inset, 0 0 .15em 0 #fff;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                }
-                
-                .blob:nth-child(1) {
-                  --x: -53%;
-                  --y: -53%;
-                  --t: 37;
-                }
-                
-                .blob:nth-child(2) {
-                  --x: -47%;
-                  --y: -52%;
-                  --t: 58;
-                }
-                
-                .blob:nth-child(3) {
-                  --x: -45%;
-                  --y: -50%;
-                  --t: 46;
-                }
-                
-                .blob:nth-child(4) {
-                  --x: -53%;
-                  --y: -45%;
-                  --t: 72;
-                }
-                
-                .blob:nth-child(5) {
-                  --x: -55%;
-                  --y: -45%;
-                  --t: 62;
-                }
-                
-                @keyframes wobble {
-                  to {
-                    filter: hue-rotate(360deg);
-                    transform: translate(var(--x), var(--y)) rotate(360deg);
-                  }
-                }
-              `}</style>
-              <div className="blob"></div>
-              <div className="blob"></div>
-              <div className="blob"></div>
-              <div className="blob"></div>
-              <div className="blob"></div>
+              <div className="time-machine-blob"></div>
+              <div className="time-machine-blob"></div>
+              <div className="time-machine-blob"></div>
+              <div className="time-machine-blob"></div>
+              <div className="time-machine-blob"></div>
             </div>
 
             {/* Close button */}

@@ -383,3 +383,64 @@
 .animate-spin-slow {
   animation: vortex-spin 8s linear infinite;
 }
+
+/* ============================================
+   Time Machine Blob Animation
+   ============================================ */
+
+.time-machine-blob {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(var(--blob-x, -50%), var(--blob-y, -50%)) rotate(0deg);
+  font-size: 20vmin;
+  width: 3em;
+  height: 3em;
+  border-radius: 90% 95% 85% 105%;
+  background: #0f0;
+  mix-blend-mode: screen;
+  filter: hue-rotate(0deg);
+  animation: blob-wobble calc(150ms * var(--blob-t)) linear infinite;
+  transform-origin: calc(-1 * var(--blob-y)) calc(-1 * var(--blob-x));
+  box-shadow: 0 0 0.5em 0.2em #000 inset, 0 0 0.15em 0 #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.time-machine-blob:nth-child(1) {
+  --blob-x: -53%;
+  --blob-y: -53%;
+  --blob-t: 37;
+}
+
+.time-machine-blob:nth-child(2) {
+  --blob-x: -47%;
+  --blob-y: -52%;
+  --blob-t: 58;
+}
+
+.time-machine-blob:nth-child(3) {
+  --blob-x: -45%;
+  --blob-y: -50%;
+  --blob-t: 46;
+}
+
+.time-machine-blob:nth-child(4) {
+  --blob-x: -53%;
+  --blob-y: -45%;
+  --blob-t: 72;
+}
+
+.time-machine-blob:nth-child(5) {
+  --blob-x: -55%;
+  --blob-y: -45%;
+  --blob-t: 62;
+}
+
+@keyframes blob-wobble {
+  to {
+    filter: hue-rotate(360deg);
+    transform: translate(var(--blob-x), var(--blob-y)) rotate(360deg);
+  }
+}
