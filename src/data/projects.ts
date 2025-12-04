@@ -3,7 +3,21 @@
  * Single source of truth for all project information.
  */
 
-export const PROJECTS = [
+export interface Project {
+  id: number;
+  title: string;
+  description: string;
+  tags: string[];
+  image: string;
+  imagePosition: string;
+  demoLink?: string;
+  codeLink: string;
+  status: "wip" | "completed" | "youarehere";
+  year: string;
+  featured: boolean;
+}
+
+export const PROJECTS: Project[] = [
   {
     id: 1,
     title: "GameGloom",
@@ -60,17 +74,17 @@ export const PROJECTS = [
 /**
  * Get featured projects (for V2 showcase)
  */
-export const getFeaturedProjects = () => PROJECTS.filter(p => p.featured);
+export const getFeaturedProjects = (): Project[] => PROJECTS.filter(p => p.featured);
 
 /**
  * Get all projects (for V1 section)
  */
-export const getAllProjects = () => PROJECTS;
+export const getAllProjects = (): Project[] => PROJECTS;
 
 /**
  * Format projects for terminal display
  */
-export const getProjectsTerminalOutput = () => [
+export const getProjectsTerminalOutput = (): string[] => [
   'Featured Projects:',
   '',
   ...PROJECTS.filter(p => p.featured).flatMap(p => [

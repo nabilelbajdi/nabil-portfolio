@@ -3,7 +3,21 @@
  * Single source of truth for all navigation items.
  */
 
-export const NAV_ITEMS = [
+export interface NavItem {
+  id: string;
+  label: string;
+  href: string;
+}
+
+export interface NavCommand {
+  id: string;
+  label: string;
+  section: string;
+  action: string;
+  target: string;
+}
+
+export const NAV_ITEMS: NavItem[] = [
   { id: 'about', label: 'About', href: '#about' },
   { id: 'projects', label: 'Projects', href: '#projects' },
   { id: 'skills', label: 'Skills', href: '#skills' },
@@ -13,7 +27,7 @@ export const NAV_ITEMS = [
 /**
  * Navigation items with home (for mobile menus)
  */
-export const NAV_ITEMS_WITH_HOME = [
+export const NAV_ITEMS_WITH_HOME: NavItem[] = [
   { id: 'home', label: 'Home', href: '#home' },
   ...NAV_ITEMS,
 ];
@@ -21,7 +35,7 @@ export const NAV_ITEMS_WITH_HOME = [
 /**
  * Get navigation items for command palette
  */
-export const getNavCommandsForPalette = () => 
+export const getNavCommandsForPalette = (): NavCommand[] => 
   NAV_ITEMS_WITH_HOME.map(item => ({
     id: item.id,
     label: `Go to ${item.label}`,

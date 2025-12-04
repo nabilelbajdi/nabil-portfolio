@@ -3,7 +3,13 @@
  * Single source of truth for all skill/technology information.
  */
 
-export const SKILL_CATEGORIES = [
+export interface SkillCategory {
+  id: string;
+  name: string;
+  items: string[];
+}
+
+export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     id: 'languages',
     name: 'Languages',
@@ -31,7 +37,7 @@ export const SKILL_CATEGORIES = [
   },
 ];
 
-export const CURRENT_FOCUS = {
+export const CURRENT_FOCUS: SkillCategory = {
   id: 'focus',
   name: 'Current Focus',
   items: ['Google ADK', 'LLM Agents', 'RAG Pipelines', 'LangChain'],
@@ -40,17 +46,17 @@ export const CURRENT_FOCUS = {
 /**
  * Get all skill categories including current focus
  */
-export const getAllSkills = () => [...SKILL_CATEGORIES, CURRENT_FOCUS];
+export const getAllSkills = (): SkillCategory[] => [...SKILL_CATEGORIES, CURRENT_FOCUS];
 
 /**
  * Get core skill categories (without current focus)
  */
-export const getCoreSkills = () => SKILL_CATEGORIES;
+export const getCoreSkills = (): SkillCategory[] => SKILL_CATEGORIES;
 
 /**
  * Format skills for terminal display
  */
-export const getSkillsTerminalOutput = () => [
+export const getSkillsTerminalOutput = (): string[] => [
   '// Tech Stack',
   '',
   ...SKILL_CATEGORIES.map(cat => 

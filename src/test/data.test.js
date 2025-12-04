@@ -4,20 +4,20 @@ import {
   getFeaturedProjects,
   getAllProjects,
   getProjectsTerminalOutput,
-} from "../data/projects";
+} from "../data/projects.ts";
 import {
   SKILL_CATEGORIES,
   getAllSkills,
   getCoreSkills,
-} from "../data/skills";
+} from "../data/skills.ts";
 import {
   SOCIAL_LINKS,
   PERSONAL_INFO,
-} from "../data/socialLinks";
+} from "../data/socialLinks.ts";
 import {
   NAV_ITEMS,
   NAV_ITEMS_WITH_HOME,
-} from "../data/navigation";
+} from "../data/navigation.ts";
 
 describe("Data: Projects", () => {
   it("should have at least one project", () => {

@@ -3,7 +3,24 @@
  * Single source of truth for contact/social information.
  */
 
-export const SOCIAL_LINKS = [
+export interface SocialLink {
+  id: string;
+  name: string;
+  url: string;
+  icon: string;
+  emoji: string;
+}
+
+export interface PersonalInfo {
+  name: string;
+  title: string;
+  email: string;
+  location: string;
+  currentCompany: string;
+  education: string;
+}
+
+export const SOCIAL_LINKS: SocialLink[] = [
   {
     id: 'github',
     name: 'GitHub',
@@ -27,7 +44,7 @@ export const SOCIAL_LINKS = [
   },
 ];
 
-export const RESUME_LINK = {
+export const RESUME_LINK: SocialLink = {
   id: 'resume',
   name: 'Resume',
   url: '/resume.pdf',
@@ -38,7 +55,7 @@ export const RESUME_LINK = {
 /**
  * Personal information
  */
-export const PERSONAL_INFO = {
+export const PERSONAL_INFO: PersonalInfo = {
   name: 'Nabil El Bajdi',
   title: 'AI Developer',
   email: 'nabilelbajdii@gmail.com',
@@ -60,7 +77,7 @@ export const getSocialLinksForTerminal = () =>
 /**
  * Get contact info for terminal display
  */
-export const getContactTerminalOutput = () => [
+export const getContactTerminalOutput = (): string[] => [
   "Let's connect!",
   '',
   `📧 Email:    ${PERSONAL_INFO.email}`,
@@ -73,7 +90,7 @@ export const getContactTerminalOutput = () => [
 /**
  * Get whoami info for terminal display  
  */
-export const getWhoamiTerminalOutput = () => [
+export const getWhoamiTerminalOutput = (): string[] => [
   '┌─────────────────────────────────────────┐',
   `│  ${PERSONAL_INFO.name.padEnd(37)}│`,
   `│  ${PERSONAL_INFO.title} & Full-Stack Engineer     │`,
