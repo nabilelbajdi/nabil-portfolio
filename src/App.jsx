@@ -18,7 +18,20 @@ function LoadingFallback() {
   );
 }
 
+// Check if we're on the v1 subdomain
+const isV1Subdomain = typeof window !== 'undefined' && 
+  window.location.hostname.startsWith('v1.');
+
 function App() {
+  // If on v1 subdomain, render V1App directly
+  if (isV1Subdomain) {
+    return (
+      <Suspense fallback={<LoadingFallback />}>
+        <V1App />
+      </Suspense>
+    );
+  }
+
   return (
     <Suspense fallback={<LoadingFallback />}>
       <Routes>
