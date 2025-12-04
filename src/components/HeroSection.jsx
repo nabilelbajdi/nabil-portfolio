@@ -175,35 +175,21 @@ export function HeroSection() {
                 const baseAngle = 10; // Reduced angle for subtler effect
                 const fanRadius = 15; // Controls how spread out the fan is
                 
-                // If it's the current card
-                if (distance === 0) {
-                  // Center card
-                  var rotate = 0;
-                  var translateX = 0;
-                  var translateY = 0;
-                  var zIndex = 30;
-                  var scale = 1;
-                  var opacity = 1;
-                  var blur = 0;
-                } else if (index < currentImageIndex) {
-                  // Card to the left
-                  var rotate = -baseAngle;
-                  var translateX = -fanRadius;
-                  var translateY = 3;
-                  var zIndex = 20;
-                  var scale = 0.95;
-                  var opacity = 0.9;
-                  var blur = 2;
-                } else {
-                  // Card to the right
-                  var rotate = baseAngle;
-                  var translateX = fanRadius;
-                  var translateY = 3;
-                  var zIndex = 20;
-                  var scale = 0.95;
-                  var opacity = 0.9;
-                  var blur = 2;
-                }
+                // Calculate card transform properties based on position
+                const getCardTransform = () => {
+                  if (distance === 0) {
+                    // Center card (current)
+                    return { rotate: 0, translateX: 0, translateY: 0, zIndex: 30, scale: 1, opacity: 1, blur: 0 };
+                  } else if (index < currentImageIndex) {
+                    // Card to the left
+                    return { rotate: -baseAngle, translateX: -fanRadius, translateY: 3, zIndex: 20, scale: 0.95, opacity: 0.9, blur: 2 };
+                  } else {
+                    // Card to the right
+                    return { rotate: baseAngle, translateX: fanRadius, translateY: 3, zIndex: 20, scale: 0.95, opacity: 0.9, blur: 2 };
+                  }
+                };
+                
+                const { rotate, translateX, translateY, zIndex, scale, opacity, blur } = getCardTransform();
                 
                 // Create the fan effect - cards appear to originate from a point at the bottom
                 const transformOrigin = "bottom center";
