@@ -33,7 +33,7 @@ export function TimeMachine() {
     setIsConfirming(false);
     setIsActivated(true);
     setTimeout(() => {
-      window.location.href = '/v1';
+      window.location.href = 'https://v1.nabilelbajdi.com';
     }, 2000);
   };
 
@@ -103,7 +103,7 @@ export function TimeMachine() {
                 
                 {/* Version Preview */}
                 <motion.a
-                  href="/v1"
+                  href="https://v1.nabilelbajdi.com"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.2, type: "spring", stiffness: 150, damping: 20 }}

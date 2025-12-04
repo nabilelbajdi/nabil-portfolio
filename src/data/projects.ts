@@ -44,8 +44,21 @@ export const PROJECTS: Project[] = [
     year: "2025",
     featured: true,
   },
-  {
+    {
     id: 3,
+    title: "Portfolio v1",
+    description: "The first version of this portfolio. Clean, minimal design with smooth animations and a DevOps resume page. Try the Time Machine in the bottom right!",
+    tags: ["React", "Vite", "Tailwind CSS", "Framer Motion"],
+    image: "/assets/images/portfolio-v1.png",
+    imagePosition: "center center",
+    demoLink: "https://v1.nabilelbajdi.com",
+    codeLink: "https://github.com/nabilelbajdi/nabil-portfolio",
+    status: "completed",
+    year: "2025",
+    featured: true,
+  },
+  {
+    id: 4,
     title: "DevOps Resume",
     description: "Modern resume with comprehensive DevOps practices — automated CI/CD pipeline, Docker containerization, and performance monitoring.",
     tags: ["Jekyll", "GitHub Actions", "Docker", "CI/CD"],
@@ -56,18 +69,6 @@ export const PROJECTS: Project[] = [
     status: "completed",
     year: "2024",
     featured: true,
-  },
-  {
-    id: 4,
-    title: "This Portfolio",
-    description: "This very site — built with React, styled with Tailwind, featuring dual versions with an interactive terminal interface and command palette.",
-    tags: ["React", "Vite", "Tailwind CSS", "Framer Motion"],
-    image: "/assets/images/logo.png",
-    imagePosition: "center center",
-    codeLink: "https://github.com/nabilelbajdi/nabil-portfolio",
-    status: "youarehere",
-    year: "2024",
-    featured: false,
   },
 ];
 
