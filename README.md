@@ -2,7 +2,7 @@
 
 A modern, interactive portfolio showcasing my projects and skills. Built with React 19, featuring two distinct design versions and an interactive terminal interface.
 
-![Portfolio Preview](public/assets/images/og-thumbnail.jpg)
+![Portfolio Preview](public/assets/images/portfolio-preview.png)
 
 ## Features
 

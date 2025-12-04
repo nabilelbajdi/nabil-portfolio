@@ -28,7 +28,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     id: 'devops',
     name: 'DevOps',
-    items: ['Docker', 'Jenkins', 'Ansible', 'AWS', 'GitHub Actions'],
+    items: ['Docker', 'Jenkins', 'Ansible', 'AWS'],
   },
   {
     id: 'aiml',
