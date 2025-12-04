@@ -1,27 +1,5 @@
 import { motion } from 'framer-motion';
-
-const skillCategories = [
-  {
-    name: 'Languages',
-    items: ['Python', 'JavaScript', 'TypeScript', 'SQL'],
-  },
-  {
-    name: 'Frontend',
-    items: ['React', 'Tailwind CSS', 'Framer Motion', 'HTML/CSS'],
-  },
-  {
-    name: 'Backend',
-    items: ['FastAPI', 'PostgreSQL', 'SQLAlchemy', 'REST APIs'],
-  },
-  {
-    name: 'DevOps',
-    items: ['Docker', 'Jenkins', 'Ansible', 'AWS'],
-  },
-  {
-    name: 'AI/ML',
-    items: ['PyTorch', 'Scikit-learn', 'Pandas/NumPy', 'Hugging Face'],
-  },
-];
+import { SKILL_CATEGORIES, CURRENT_FOCUS } from '../../../data/skills';
 
 function SkillCategory({ category, index }) {
   return (
@@ -68,7 +46,7 @@ export function SkillsSection() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {skillCategories.map((category, index) => (
+          {SKILL_CATEGORIES.map((category, index) => (
             <SkillCategory key={category.name} category={category} index={index} />
           ))}
           
@@ -80,10 +58,10 @@ export function SkillsSection() {
             className="p-5 rounded-2xl bg-[var(--v2-bg-secondary)] border border-[var(--v2-border)]"
           >
             <h3 className="text-sm font-medium text-[var(--v2-text-primary)] mb-3">
-              Current Focus
+              {CURRENT_FOCUS.name}
             </h3>
             <ul className="space-y-1.5">
-              {['Google ADK', 'LLM Agents', 'RAG Pipelines', 'LangChain'].map((skill) => (
+              {CURRENT_FOCUS.items.map((skill) => (
                 <li key={skill} className="flex items-center gap-2 text-sm text-[var(--v2-text-secondary)]">
                   <span className="w-1 h-1 rounded-full bg-[var(--v2-accent)]" />
                   {skill}

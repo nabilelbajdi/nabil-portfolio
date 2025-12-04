@@ -1,40 +1,7 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { getFeaturedProjects } from '../../../data/projects';
 
-const projects = [
-  {
-    id: 1,
-    title: "GameGloom",
-    description: "Full-stack gaming platform with AI-powered recommendations. Discover games based on your preferences, track your collection, and explore detailed game information.",
-    tags: ["Python", "React", "FastAPI", "PostgreSQL", "AWS"],
-    image: "/assets/images/screenshots/gamegloom/gamegloom-gamepage.jpg",
-    demoLink: "https://gamegloom.com",
-    codeLink: "https://github.com/nabilelbajdi/gamegloom",
-    status: "wip",
-    year: "2025",
-  },
-  {
-    id: 2,
-    title: "Mental Health Dashboard",
-    description: "Interactive data visualization analyzing mental health trends across demographics. Built with Streamlit for real-time data exploration.",
-    tags: ["Python", "Pandas", "Streamlit", "Plotly"],
-    image: "/assets/images/screenshots/mental-health-dashboard/mhd-dashboard.jpg",
-    demoLink: "https://mental-health-dashboard.streamlit.app/",
-    codeLink: "https://github.com/nabilelbajdi/mental-health-dashboard",
-    status: "completed",
-    year: "2025",
-  },
-  {
-    id: 3,
-    title: "DevOps Resume",
-    description: "Modern resume with comprehensive DevOps practices — automated CI/CD pipeline, Docker containerization, and performance monitoring.",
-    tags: ["Jekyll", "GitHub Actions", "Docker", "CI/CD"],
-    image: "/assets/images/screenshots/resume/resume-bg.svg",
-    demoLink: "https://nabilelbajdi.github.io/resume/",
-    codeLink: "https://github.com/nabilelbajdi/resume",
-    status: "completed",
-    year: "2024",
-  },
-];
+const projects = getFeaturedProjects();
 
 function ProjectCard({ project, index }) {
   return (

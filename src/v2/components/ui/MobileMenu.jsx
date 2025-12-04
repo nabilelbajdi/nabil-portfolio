@@ -1,19 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useV2Theme } from '../../context/V2ThemeProvider';
-
-const navItems = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Contact', href: '#contact' },
-];
-
-const socialLinks = [
-  { label: 'GitHub', href: 'https://github.com/nabilelbajdi' },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/nabil-el-bajdi-51726b24b/' },
-  { label: 'Email', href: 'mailto:nabilelbajdii@gmail.com' },
-];
+import { NAV_ITEMS_WITH_HOME } from '../../../data/navigation';
+import { SOCIAL_LINKS } from '../../../data/socialLinks';
 
 export function MobileMenu({ isOpen, onClose }) {
   const { theme, toggleTheme } = useV2Theme();
@@ -57,7 +45,7 @@ export function MobileMenu({ isOpen, onClose }) {
 
               <nav className="flex-1 p-4">
                 <ul className="space-y-1">
-                  {navItems.map((item, index) => (
+                  {NAV_ITEMS_WITH_HOME.map((item, index) => (
                     <motion.li
                       key={item.href}
                       initial={{ opacity: 0, x: 20 }}
@@ -79,20 +67,20 @@ export function MobileMenu({ isOpen, onClose }) {
                     Links
                   </div>
                   <ul className="space-y-1 mt-2">
-                    {socialLinks.map((link, index) => (
+                    {SOCIAL_LINKS.map((link, index) => (
                       <motion.li
-                        key={link.href}
+                        key={link.url}
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: (navItems.length + index) * 0.05 }}
+                        transition={{ delay: (NAV_ITEMS_WITH_HOME.length + index) * 0.05 }}
                       >
                         <a
-                          href={link.href}
+                          href={link.url}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex items-center justify-between px-4 py-3 text-[var(--v2-text-muted)] hover:text-[var(--v2-text-primary)] hover:bg-[var(--v2-bg-secondary)] rounded-lg transition-colors"
                         >
-                          <span>{link.label}</span>
+                          <span>{link.name}</span>
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                           </svg>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, useScroll } from 'framer-motion';
 import { useV2Theme } from '../../context/V2ThemeProvider';
 import { MobileMenu } from '../ui/MobileMenu';
+import { NAV_ITEMS } from '../../../data/navigation';
 
 export function Header({ onOpenCommandPalette }) {
   const { theme, toggleTheme } = useV2Theme();
@@ -29,13 +30,6 @@ export function Header({ onOpenCommandPalette }) {
       document.body.style.overflow = '';
     };
   }, [isMobileMenuOpen]);
-
-  const navItems = [
-    { label: 'About', href: '#about' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Contact', href: '#contact' },
-  ];
 
   return (
     <>
@@ -68,7 +62,7 @@ export function Header({ onOpenCommandPalette }) {
           </Link>
 
           <nav className="hidden md:flex items-center gap-1">
-            {navItems.map((item) => (
+            {NAV_ITEMS.map((item) => (
               <a
                 key={item.href}
                 href={item.href}

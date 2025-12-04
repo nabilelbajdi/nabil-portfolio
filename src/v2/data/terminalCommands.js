@@ -1,5 +1,12 @@
+import { 
+    getSocialLinksForTerminal, 
+    getContactTerminalOutput, 
+    getWhoamiTerminalOutput 
+} from '../../data/socialLinks';
+
 /**
  * Command definitions with their outputs
+ * Uses centralized data from src/data/
  */
 export const COMMANDS = {
     help: {
@@ -17,20 +24,7 @@ export const COMMANDS = {
         ],
     },
     whoami: {
-        output: [
-            '┌─────────────────────────────────────────┐',
-            '│  Nabil El Bajdi                         │',
-            '│  AI Developer & Full-Stack Engineer     │',
-            '└─────────────────────────────────────────┘',
-            '',
-            'I build intelligent systems that actually work.',
-            'From DevOps pipelines to AI agents, I like',
-            'making complex things simple and reliable.',
-            '',
-            '📍 Stockholm, Sweden',
-            '🎓 AI Engineering @ Nackademin (2026)',
-            '💼 Currently at Capgemini',
-        ],
+        output: getWhoamiTerminalOutput(),
     },
     skills: {
         output: [
@@ -63,26 +57,14 @@ export const COMMANDS = {
         ],
     },
     contact: {
-        output: [
-            'Let\'s connect!',
-            '',
-            '📧 Email:    nabilelbajdii@gmail.com',
-            '💼 LinkedIn: /in/nabil-el-bajdi',
-            '🐙 GitHub:   /nabilelbajdi',
-            '',
-            '→ Type "social" for clickable links',
-        ],
+        output: getContactTerminalOutput(),
     },
     social: {
         output: [
             'Find me online:',
             '',
         ],
-        links: [
-            { label: 'GitHub', url: 'https://github.com/nabilelbajdi', icon: '🐙' },
-            { label: 'LinkedIn', url: 'https://www.linkedin.com/in/nabil-el-bajdi-51726b24b/', icon: '💼' },
-            { label: 'Email', url: 'mailto:nabilelbajdii@gmail.com', icon: '📧' },
-        ],
+        links: getSocialLinksForTerminal(),
     },
     clear: {
         action: 'clear',

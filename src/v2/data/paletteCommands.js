@@ -1,13 +1,25 @@
+import { getNavCommandsForPalette } from '../../data/navigation';
+import { SOCIAL_LINKS, RESUME_LINK } from '../../data/socialLinks';
+
+/**
+ * Command palette commands
+ * Uses centralized data from src/data/
+ */
 export const PALETTE_COMMANDS = [
-    { id: 'home', label: 'Go to Home', section: 'Navigation', action: 'scroll', target: '#home' },
-    { id: 'about', label: 'Go to About', section: 'Navigation', action: 'scroll', target: '#about' },
-    { id: 'projects', label: 'Go to Projects', section: 'Navigation', action: 'scroll', target: '#projects' },
-    { id: 'skills', label: 'Go to Skills', section: 'Navigation', action: 'scroll', target: '#skills' },
-    { id: 'contact', label: 'Go to Contact', section: 'Navigation', action: 'scroll', target: '#contact' },
+    // Navigation commands from centralized data
+    ...getNavCommandsForPalette(),
+    
+    // Actions
     { id: 'theme', label: 'Toggle Theme', section: 'Actions', action: 'theme' },
-    { id: 'github', label: 'Open GitHub', section: 'Links', action: 'link', target: 'https://github.com/nabilelbajdi' },
-    { id: 'linkedin', label: 'Open LinkedIn', section: 'Links', action: 'link', target: 'https://www.linkedin.com/in/nabil-el-bajdi-51726b24b/' },
-    { id: 'email', label: 'Send Email', section: 'Links', action: 'link', target: 'mailto:nabilelbajdii@gmail.com' },
-    { id: 'resume', label: 'View Resume', section: 'Links', action: 'link', target: '/resume.pdf' },
+    
+    // Links from centralized data
+    ...SOCIAL_LINKS.map(link => ({
+        id: link.id,
+        label: `Open ${link.name}`,
+        section: 'Links',
+        action: 'link',
+        target: link.url,
+    })),
+    { id: 'resume', label: 'View Resume', section: 'Links', action: 'link', target: RESUME_LINK.url },
     { id: 'v1', label: 'View Portfolio V1', section: 'Links', action: 'navigate', target: '/' },
 ];
