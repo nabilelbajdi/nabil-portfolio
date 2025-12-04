@@ -18,6 +18,8 @@ export const COMMANDS = {
             '  projects    → See my work',
             '  contact     → Get in touch',
             '  social      → Find me online',
+            '  resume      → Download my resume',
+            '  theme       → Toggle light/dark mode',
             '  clear       → Clear terminal',
             '',
             'Type a command and press Enter, or just scroll down.',
@@ -65,6 +67,21 @@ export const COMMANDS = {
             '',
         ],
         links: getSocialLinksForTerminal(),
+    },
+    resume: {
+        output: [
+            '📄 Opening resume...',
+            '',
+            '→ Download started!',
+        ],
+        action: 'download',
+        target: '/resume.pdf',
+    },
+    theme: {
+        output: [
+            '🎨 Toggling theme...',
+        ],
+        action: 'theme',
     },
     clear: {
         action: 'clear',

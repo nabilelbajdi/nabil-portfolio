@@ -3,11 +3,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Terminal, TerminalPrompt } from '../ui/Terminal';
 import { HistoryLine, TypedOutput } from '../ui/TerminalComponents';
 import { COMMANDS, EASTER_EGGS } from '../../data/terminalCommands';
+import { useV2Theme } from '../../context/V2ThemeProvider';
 
 /**
  * HeroTerminal - Interactive terminal hero section
  */
 export function HeroTerminal() {
+  const { toggleTheme } = useV2Theme();
   const [history, setHistory] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -59,6 +61,13 @@ export function HeroTerminal() {
     const easterEgg = EASTER_EGGS[command];
 
     if (commandData) {
+      // Handle special actions
+      if (commandData.action === 'download') {
+        window.open(commandData.target, '_blank');
+      } else if (commandData.action === 'theme') {
+        toggleTheme();
+      }
+
       setIsTyping(true);
       setCurrentCommand({
         command: cmd,
