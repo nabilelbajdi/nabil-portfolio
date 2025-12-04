@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
+import { NotFound } from './components/NotFound';
 
 // Lazy load both versions for better performance
 const V1App = lazy(() => import('./v1/V1App'));
@@ -27,8 +28,8 @@ function App() {
         {/* V2 in development at /v2 */}
         <Route path="/v2/*" element={<V2App />} />
         
-        {/* Catch-all stays on V1 */}
-        <Route path="*" element={<V1App />} />
+        {/* 404 page */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
   );
