@@ -29,6 +29,7 @@ src/
 ├── data/              # Centralized data (projects, skills, social links)
 ├── components/        # Shared V1 components
 ├── context/           # Theme provider
+├── data/              # Centralized data (TypeScript)
 ├── v1/                # V1 portfolio (classic design)
 │   └── V1App.jsx
 ├── v2/                # V2 portfolio (terminal theme)
@@ -38,7 +39,6 @@ src/
 │   │   └── ui/        # Terminal, CommandPalette, BentoGrid
 │   ├── context/       # V2-specific theme
 │   ├── data/          # Terminal commands, palette commands
-│   ├── hooks/         # Custom hooks (useTypewriter)
 │   └── styles/        # V2 CSS variables
 └── App.jsx            # Root with lazy-loaded routing
 ```
