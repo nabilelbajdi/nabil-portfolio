@@ -56,6 +56,51 @@ export function HeroTerminal() {
       return;
     }
 
+    // Handle cd navigation (easter egg for devs)
+    if (command.startsWith('cd ')) {
+      let path = command.slice(3).trim();
+      // Normalize: remove trailing slash
+      if (path.length > 1 && path.endsWith('/')) {
+        path = path.slice(0, -1);
+      }
+      const sections = {
+        'about': 'about',
+        'projects': 'projects',
+        'skills': 'skills',
+        'contact': 'contact',
+        '~': null, // home
+      };
+
+      const sectionId = sections[path];
+
+      if (path in sections) {
+        if (sectionId) {
+          const element = document.getElementById(sectionId);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+            setHistory(prev => [...prev, {
+              command: cmd,
+              output: [`📂 Navigating to /${sectionId}...`],
+            }]);
+          }
+        } else {
+          // Home
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          setHistory(prev => [...prev, {
+            command: cmd,
+            output: ['📂 Navigating to home...'],
+          }]);
+        }
+        return;
+      } else {
+        setHistory(prev => [...prev, {
+          command: cmd,
+          output: [`cd: no such directory: ${path}`],
+        }]);
+        return;
+      }
+    }
+
     // Check for command or easter egg
     const commandData = COMMANDS[command];
     const easterEgg = EASTER_EGGS[command];
@@ -87,7 +132,7 @@ export function HeroTerminal() {
         output: [`Command not found: ${cmd}`, '', 'Type "help" for available commands.'],
       }]);
     }
-  }, []);
+  }, [toggleTheme]);
 
   const handleTypingComplete = useCallback(() => {
     if (currentCommand) {

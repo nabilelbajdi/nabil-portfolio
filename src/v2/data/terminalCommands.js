@@ -1,7 +1,7 @@
-import { 
-    getSocialLinksForTerminal, 
-    getContactTerminalOutput, 
-    getWhoamiTerminalOutput 
+import {
+    getSocialLinksForTerminal,
+    getContactTerminalOutput,
+    getWhoamiTerminalOutput
 } from '../../data/socialLinks';
 
 /**
@@ -105,12 +105,12 @@ export const EASTER_EGGS = {
     hello: ['Hello, World! 👋', '', 'Welcome to my portfolio.'],
     hi: ['Hey there! 👋'],
     hey: ['Hey yourself! 😄'],
-    ls: ['about/  projects/  skills/  contact/', '', '→ Type any folder name to explore'],
+    ls: ['about/  projects/  skills/  contact/', '', '→ Type "cd <folder>" to navigate'],
     'ls -la': ['drwxr-xr-x  nabil  staff  about/', 'drwxr-xr-x  nabil  staff  projects/', 'drwxr-xr-x  nabil  staff  skills/', 'drwxr-xr-x  nabil  staff  contact/', '-rw-r--r--  nabil  staff  .secret', '', 'Wait, what\'s that .secret file? 👀'],
     'cat .secret': ['🔓 You found the secret!', '', 'Here\'s a cookie: 🍪', '', 'Thanks for exploring!'],
     pwd: ['/home/nabil/portfolio'],
-    cd: ['Already home. 🏠'],
-    'cd ..': ['You can\'t escape that easily!'],
+    cd: ['Usage: cd <directory>', '', 'Try: cd about, cd projects, cd skills, cd contact'],
+    'cd ..': ['Already at root. There\'s nowhere to go! 🏠'],
     'cd /': ['Root access denied. Nice try though.'],
     whoami: null, // Handled by main commands
     date: [new Date().toLocaleString()],
@@ -136,6 +136,18 @@ export const EASTER_EGGS = {
     wget: ['Downloading talent.zip...', '', 'Download complete! 📥'],
     cat: ['🐱 Meow?', '', 'Try: cat .secret'],
     dog: ['🐕 Woof!', '', 'Good boy.'],
+    // New commands
+    ssh: ['🔐 ssh nabil@portfolio.dev', '', 'Connection established!', 'Welcome to the portfolio server.', '', '(You\'re already here though 😄)'],
+    touch: ['touch new-file.txt', '', 'File created! (not really, this is read-only)'],
+    mkdir: ['mkdir new-folder', '', 'Permission denied. This portfolio is immutable. 📁'],
+    chmod: ['chmod 777 portfolio', '', 'Nice try, but permissions are locked. 🔒'],
+    grep: ['grep -r "talent" ./', '', './about.md: "Full of talent"', './skills.md: "Talented developer"'],
+    'grep -r': ['Usage: grep -r <pattern> <path>'],
+    which: ['which nabil', '', '/usr/local/bin/nabil', '', '(That\'s me!)'],
+    history: ['    1  whoami', '    2  help', '    3  ls', '    4  cat .secret', '    5  history', '', 'Wow, you\'ve been busy!'],
+    awk: ['awk? More like awkward... 😅', '', 'Try something simpler.'],
+    sed: ['sed s/visitor/friend/g', '', 'You\'re now a friend! 🤝'],
+    // Existing commands continued
     neofetch: [
         '        .--.        nabil@portfolio',
         '       |o_o |       ----------------',
