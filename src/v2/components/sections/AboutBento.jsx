@@ -20,15 +20,15 @@ export function AboutBento() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-          
-          <BentoCard 
-            variant="gradient" 
+
+          <BentoCard
+            variant="gradient"
             delay={0.1}
             className="md:col-span-4 md:row-span-2 relative overflow-hidden group min-h-[400px]"
           >
             <div className="absolute inset-0 bg-gradient-to-t from-[var(--v2-bg-primary)] via-transparent to-transparent z-10" />
-            <SkeletonImage 
-              src="/assets/images/profile.jpg" 
+            <SkeletonImage
+              src="/assets/images/profile.jpg"
               alt="Nabil El Bajdi"
               className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
             />
@@ -38,9 +38,9 @@ export function AboutBento() {
               <div className="flex items-center gap-2 mt-2">
                 <div className="w-5 h-3 rounded-sm overflow-hidden">
                   <svg viewBox="0 0 16 10" className="w-full h-full">
-                    <rect width="16" height="10" fill="#006AA7"/>
-                    <rect x="5" width="2" height="10" fill="#FECC00"/>
-                    <rect y="4" width="16" height="2" fill="#FECC00"/>
+                    <rect width="16" height="10" fill="#006AA7" />
+                    <rect x="5" width="2" height="10" fill="#FECC00" />
+                    <rect y="4" width="16" height="2" fill="#FECC00" />
                   </svg>
                 </div>
                 <span className="text-white/50 text-xs">Stockholm, Sweden</span>
@@ -87,19 +87,19 @@ export function AboutBento() {
             <div className="absolute bottom-0 left-0 w-24 h-24 bg-purple-500/5 rounded-full blur-2xl" />
             <div className="relative">
               <BentoText className="text-base leading-relaxed">
-                I'm a developer who loves building things that work well and feel right to use. 
+                I'm a developer who loves building things that work well and feel right to use.
                 I started out in{' '}
-                <span className="text-[var(--v2-accent)] font-medium">DevOps</span>, spending six months 
-                at <span className="text-purple-400 font-medium">Scila</span> automating CI/CD pipelines 
-                with <span className="text-[var(--v2-text-primary)] font-medium">Jenkins</span>, <span className="text-[var(--v2-text-primary)] font-medium">Ansible</span>, and <span className="text-[var(--v2-text-primary)] font-medium">Docker</span>. 
+                <span className="text-[var(--v2-accent)] font-medium">DevOps</span>, spending six months
+                at <span className="text-purple-400 font-medium">Scila</span> automating CI/CD pipelines
+                with <span className="text-[var(--v2-text-primary)] font-medium">Jenkins</span>, <span className="text-[var(--v2-text-primary)] font-medium">Ansible</span>, and <span className="text-[var(--v2-text-primary)] font-medium">Docker</span>.
                 That taught me how to think in systems and care about reliability.
               </BentoText>
               <div className="mt-4 pt-4 border-t border-[var(--v2-border)]">
                 <BentoText>
                   Now I'm studying{' '}
-                  <span className="text-[var(--v2-accent)] font-medium">AI Engineering</span> at 
+                  <span className="text-[var(--v2-accent)] font-medium">AI Engineering</span> at
                   Nackademin and interning at{' '}
-                  <span className="text-purple-400 font-medium">Capgemini</span>, where I'm 
+                  <span className="text-purple-400 font-medium">Capgemini</span>, where I'm
                   working on <span className="text-[var(--v2-accent)] font-medium">AI agent systems</span>. On the side, I build full-stack projects like GameGloom, and this portfolio.
                 </BentoText>
               </div>
@@ -140,9 +140,9 @@ export function AboutBento() {
             <p className="text-sm text-[var(--v2-text-secondary)] leading-relaxed">
               Full-stack gaming platform with AI-powered recommendations
             </p>
-            <a 
-              href="https://gamegloom.com" 
-              target="_blank" 
+            <a
+              href="https://gamegloom.com"
+              target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 mt-4 text-xs text-[var(--v2-accent)] hover:underline"
             >

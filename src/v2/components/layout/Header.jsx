@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { motion, useScroll } from 'framer-motion';
 import { useV2Theme } from '../../context/V2ThemeProvider';
 import { MobileMenu } from '../ui/MobileMenu';
@@ -10,11 +10,19 @@ export function Header({ onOpenCommandPalette }) {
   const [hasScrolled, setHasScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  // Detect if user is on Mac
+  const isMac = useMemo(() => {
+    if (typeof navigator === 'undefined') return false;
+    return /Mac|iPhone|iPad|iPod/.test(navigator.platform || navigator.userAgent);
+  }, []);
+
+  const keyboardShortcut = isMac ? '⌘K' : 'Ctrl+K';
+
   useEffect(() => {
     const handleScroll = () => {
       setHasScrolled(window.scrollY > 20);
     };
-    
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -41,27 +49,23 @@ export function Header({ onOpenCommandPalette }) {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className={`fixed top-0 left-0 right-0 z-[150] transition-all duration-300 ${
-          hasScrolled 
-            ? 'py-3 bg-[var(--v2-bg-primary)]/80 backdrop-blur-xl border-b border-[var(--v2-border)]' 
+        className={`fixed top-0 left-0 right-0 z-[150] transition-all duration-300 ${hasScrolled
+            ? 'py-3 bg-[var(--v2-bg-primary)]/80 backdrop-blur-xl border-b border-[var(--v2-border)]'
             : 'py-5 bg-transparent'
-        }`}
+          }`}
       >
         <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-          <a 
+          <a
             href="#"
             onClick={(e) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="flex items-center gap-2 group"
+            className="flex items-center group"
           >
-            <div className="w-8 h-8 rounded-lg bg-[var(--v2-accent)] flex items-center justify-center text-[var(--v2-bg-primary)] font-bold text-sm">
+            <div className="w-8 h-8 rounded-lg bg-[var(--v2-accent)] flex items-center justify-center text-[var(--v2-bg-primary)] font-bold text-sm group-hover:scale-110 transition-transform">
               N
             </div>
-            <span className="font-semibold text-[var(--v2-text-primary)] group-hover:text-[var(--v2-accent)] transition-colors hidden sm:block">
-              nabil.dev
-            </span>
           </a>
 
           <nav className="hidden md:flex items-center gap-1">
@@ -85,7 +89,7 @@ export function Header({ onOpenCommandPalette }) {
               <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
-              <span className="mono">⌘K</span>
+              <span className="mono">{keyboardShortcut}</span>
             </button>
 
             <button

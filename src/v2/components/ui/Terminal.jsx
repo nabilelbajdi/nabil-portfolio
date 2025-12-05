@@ -9,8 +9,8 @@ import { motion } from 'framer-motion';
  * - Customizable title
  * - Entrance animation
  */
-export const Terminal = forwardRef(function Terminal({ 
-  children, 
+export const Terminal = forwardRef(function Terminal({
+  children,
   title = 'terminal',
   className = '',
   animate = true,
@@ -40,7 +40,7 @@ export const Terminal = forwardRef(function Terminal({
           {title}
         </span>
       </div>
-      
+
       {/* Terminal Body */}
       <div className="terminal-body">
         {children}
@@ -89,10 +89,10 @@ export function TerminalOutput({ children, className = '' }) {
 /**
  * TerminalInput - Interactive command input
  */
-export function TerminalInput({ 
-  value, 
-  onChange, 
-  onSubmit, 
+export function TerminalInput({
+  value,
+  onChange,
+  onSubmit,
   disabled = false,
   placeholder = '',
 }) {

@@ -13,34 +13,34 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     id: 'languages',
     name: 'Languages',
-    items: ['Python', 'JavaScript', 'TypeScript', 'SQL'],
+    items: ['Python', 'JavaScript', 'TypeScript', 'SQL', 'Bash'],
   },
   {
-    id: 'frontend',
-    name: 'Frontend',
-    items: ['React', 'Tailwind CSS', 'Framer Motion', 'HTML/CSS'],
+    id: 'aiml',
+    name: 'AI / Machine Learning',
+    items: ['PyTorch', 'Pandas / NumPy', 'Hugging Face', 'Sentence Transformers', 'Google Gemini / ADK'],
   },
   {
     id: 'backend',
     name: 'Backend',
-    items: ['FastAPI', 'PostgreSQL', 'SQLAlchemy', 'REST APIs'],
+    items: ['FastAPI', 'PostgreSQL', 'SQLAlchemy 2', 'Alembic', 'REST APIs'],
+  },
+  {
+    id: 'frontend',
+    name: 'Frontend',
+    items: ['React (Vite)', 'Tailwind CSS', 'Framer Motion', 'Zustand', 'Component-driven UI'],
   },
   {
     id: 'devops',
-    name: 'DevOps',
-    items: ['Docker', 'Jenkins', 'Ansible', 'AWS'],
-  },
-  {
-    id: 'aiml',
-    name: 'AI/ML',
-    items: ['PyTorch', 'Scikit-learn', 'Pandas/NumPy', 'Hugging Face'],
+    name: 'DevOps / Cloud',
+    items: ['Docker', 'GitHub Actions', 'Jenkins', 'AWS (EC2, RDS, S3)', 'Linux / Bash'],
   },
 ];
 
 export const CURRENT_FOCUS: SkillCategory = {
   id: 'focus',
   name: 'Current Focus',
-  items: ['Google ADK', 'LLM Agents', 'RAG Pipelines', 'LangChain'],
+  items: ['AI Agent Systems', 'Google ADK', 'MCP Tools', 'RAG Concepts', 'Full-stack AI Apps'],
 };
 
 /**
@@ -59,7 +59,7 @@ export const getCoreSkills = (): SkillCategory[] => SKILL_CATEGORIES;
 export const getSkillsTerminalOutput = (): string[] => [
   '// Tech Stack',
   '',
-  ...SKILL_CATEGORIES.map(cat => 
+  ...SKILL_CATEGORIES.map(cat =>
     `${cat.name.toLowerCase().padEnd(14)}${cat.items.join(', ')}`
   ),
   '',

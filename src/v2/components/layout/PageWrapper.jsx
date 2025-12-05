@@ -30,7 +30,7 @@ export function PageWrapper({ children, onOpenCommandPalette }) {
   return (
     <div className={`v2 ${theme} min-h-screen bg-[var(--v2-bg-primary)] text-[var(--v2-text-primary)] overflow-x-hidden`}>
       {/* Grid background */}
-      <div 
+      <div
         className="fixed inset-0 pointer-events-none"
         style={{
           backgroundImage: `
@@ -43,7 +43,7 @@ export function PageWrapper({ children, onOpenCommandPalette }) {
       />
 
       {/* Gradient orbs for depth */}
-      <div 
+      <div
         className="fixed top-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full pointer-events-none"
         style={{
           background: 'radial-gradient(circle, var(--v2-accent) 0%, transparent 70%)',
@@ -51,7 +51,7 @@ export function PageWrapper({ children, onOpenCommandPalette }) {
           filter: 'blur(80px)',
         }}
       />
-      <div 
+      <div
         className="fixed bottom-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full pointer-events-none"
         style={{
           background: 'radial-gradient(circle, #a855f7 0%, transparent 70%)',
@@ -61,7 +61,7 @@ export function PageWrapper({ children, onOpenCommandPalette }) {
       />
 
       {/* Subtle spotlight following cursor (desktop only) */}
-      <div 
+      <div
         className="fixed inset-0 pointer-events-none transition-opacity duration-300 hidden md:block"
         style={{
           background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, var(--v2-accent-glow), transparent 40%)`,
@@ -70,7 +70,7 @@ export function PageWrapper({ children, onOpenCommandPalette }) {
       />
 
       {/* Noise texture overlay */}
-      <div 
+      <div
         className="fixed inset-0 pointer-events-none z-[100]"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,

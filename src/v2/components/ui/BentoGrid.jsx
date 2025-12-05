@@ -20,8 +20,8 @@ export function BentoGrid({ children, className = '' }) {
  * - gradient: Gradient background
  * - outline: Border only
  */
-export function BentoCard({ 
-  children, 
+export function BentoCard({
+  children,
   className = '',
   variant = 'default',
   delay = 0,

@@ -1,15 +1,31 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// Blob Background - Same gentle, mesmerizing vibe as the hero blob
+function BlobBackground() {
+  return (
+    <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+      {/* The morphing blob container */}
+      <div className="relative" style={{ width: '60vmin', height: '60vmin' }}>
+        <div className="time-machine-blob" />
+        <div className="time-machine-blob" />
+        <div className="time-machine-blob" />
+        <div className="time-machine-blob" />
+        <div className="time-machine-blob" />
+      </div>
+    </div>
+  );
+}
+
+
 export function TimeMachine() {
   const [isHovered, setIsHovered] = useState(false);
   const [isConfirming, setIsConfirming] = useState(false);
-  const [isActivated, setIsActivated] = useState(false);
   const scrollYRef = useRef(0);
 
   // Disable background scrolling when modal is open
   useEffect(() => {
-    if (isConfirming || isActivated) {
+    if (isConfirming) {
       scrollYRef.current = window.scrollY;
       document.body.style.overflow = 'hidden';
       document.documentElement.style.overflow = 'hidden';
@@ -23,18 +39,10 @@ export function TimeMachine() {
       document.body.style.overflow = '';
       document.documentElement.style.overflow = '';
     };
-  }, [isConfirming, isActivated]);
+  }, [isConfirming]);
 
   const handleClick = () => {
     setIsConfirming(true);
-  };
-
-  const handleConfirm = () => {
-    setIsConfirming(false);
-    setIsActivated(true);
-    setTimeout(() => {
-      window.location.href = 'https://v1.nabilelbajdi.com';
-    }, 2000);
   };
 
   const handleCancel = () => {
@@ -51,16 +59,10 @@ export function TimeMachine() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={handleCancel}
-            className="fixed inset-0 z-[400] flex items-center justify-center bg-[var(--v2-bg-primary)]/80 backdrop-blur-md"
+            className="fixed inset-0 z-[400] flex items-center justify-center bg-[#0a0a0b]"
           >
-            {/* Animated blob background */}
-            <div className="absolute inset-0 overflow-hidden">
-              <div className="time-machine-blob"></div>
-              <div className="time-machine-blob"></div>
-              <div className="time-machine-blob"></div>
-              <div className="time-machine-blob"></div>
-              <div className="time-machine-blob"></div>
-            </div>
+            {/* Blob Background */}
+            <BlobBackground />
 
             {/* Close button */}
             <button
@@ -84,7 +86,7 @@ export function TimeMachine() {
               transition={{ delay: 0.1 }}
               onClick={(e) => e.stopPropagation()}
               className="relative z-10 text-center"
-              style={{ 
+              style={{
                 perspective: '400px',
                 perspectiveOrigin: 'center bottom'
               }}
@@ -96,11 +98,10 @@ export function TimeMachine() {
                   textShadow: '0 2px 20px rgba(0,0,0,0.8), 0 0 40px rgba(0,0,0,0.5)'
                 }}
               >
-                <h2 className="text-xl sm:text-2xl font-semibold mb-16" style={{ color: '#282442' }}>
-                  Travel back in time to<br />
-                  explore past versions
+                <h2 className="text-xl sm:text-2xl font-semibold mb-16 text-white/90">
+                  Travel back in time to<br />explore past versions
                 </h2>
-                
+
                 {/* Version Preview */}
                 <motion.a
                   href="https://v1.nabilelbajdi.com"
@@ -109,9 +110,9 @@ export function TimeMachine() {
                   transition={{ delay: 0.2, type: "spring", stiffness: 150, damping: 20 }}
                   className="group cursor-pointer block"
                 >
-                  <div 
+                  <div
                     className="relative w-72 sm:w-80 mx-auto rounded-2xl overflow-hidden transition-all duration-500"
-                    style={{ 
+                    style={{
                       boxShadow: '0 30px 120px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.08), 0 0 80px rgba(6,182,212,0.18)'
                     }}
                   >
@@ -120,21 +121,21 @@ export function TimeMachine() {
                       <div className="w-2 h-2 rounded-full bg-red-500/80" />
                       <div className="w-2 h-2 rounded-full bg-yellow-500/80" />
                       <div className="w-2 h-2 rounded-full bg-green-500/80" />
-                      
+
                       {/* Left arrow */}
                       <div className="flex items-center justify-center w-4 h-4 text-zinc-500 hover:text-zinc-400 transition-colors ml-2">
                         <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                         </svg>
                       </div>
-                      
+
                       {/* Refresh button */}
                       <div className="flex items-center justify-center w-4 h-4 text-zinc-500 hover:text-zinc-400 transition-colors">
                         <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                         </svg>
                       </div>
-                      
+
                       <div className="flex-1 bg-zinc-700 rounded px-2 py-0.5 text-[10px] text-zinc-400 font-sans flex items-center justify-between">
                         <div className="flex items-center">
                           <svg className="w-3 h-3 text-zinc-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -152,7 +153,7 @@ export function TimeMachine() {
                         </div>
                       </div>
 
-                      </div>
+                    </div>
 
                     <img
                       src="/assets/images/portfolio-v1.png"
@@ -160,7 +161,7 @@ export function TimeMachine() {
                       className="w-full object-cover transition-all duration-500"
                       style={{ transformOrigin: 'center' }}
                     />
-                    
+
                     {/* Hover overlay - Crystal glass effect */}
                     <div className="absolute inset-0 hidden items-center justify-center rounded-2xl border border-cyan-400/20 opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100 lg:flex">
                       <div className="text-center">
@@ -168,9 +169,9 @@ export function TimeMachine() {
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* Reflection effect - subtle */}
-                  <div 
+                  <div
                     className="w-72 sm:w-80 mx-auto h-14 mt-1 rounded-2xl opacity-15 blur-sm"
                     style={{
                       background: 'linear-gradient(to bottom, rgba(255,255,255,0.1), transparent)',
@@ -181,56 +182,12 @@ export function TimeMachine() {
                 </motion.a>
               </div>
             </motion.div>
-            
-            {/* Shader credit - bottom right of screen */}
-            <div className="absolute bottom-4 right-4">
-              <a 
-                href="https://codepen.io/jasesmith/pen/qqgvZe" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-[10px] text-[var(--v2-text-dimmed)] hover:text-[var(--v2-text-secondary)] transition-colors"
-              >
-                A Portal to Tomorrow by @jasesmith
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
-      {/* Travel Animation */}
-      <AnimatePresence>
-        {isActivated && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[400] flex items-center justify-center bg-[#020617]"
-          >
-            <div className="text-center">
-              <motion.div
-                initial={{ scale: 0.5, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1, rotate: 360 }}
-                transition={{ duration: 1.5, ease: "easeOut" }}
-                className="w-72 h-72 mx-auto"
-              >
-                <TimeVortexSvg showStars={true} />
-              </motion.div>
-              
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                className="mt-6 mono text-sm"
-              >
-                <div className="text-[var(--v2-text-muted)] mb-2">Traveling to 2024...</div>
-                <motion.div 
-                  className="text-[var(--v2-accent)] text-lg"
-                  animate={{ opacity: [1, 0.5, 1] }}
-                  transition={{ duration: 0.8, repeat: Infinity }}
-                >
-                  Portfolio V1
-                </motion.div>
-              </motion.div>
+            {/* Credit - bottom right of screen */}
+            <div className="absolute bottom-4 right-4">
+              <span className="text-[10px] text-white/30">
+                Click anywhere to close
+              </span>
             </div>
           </motion.div>
         )}
@@ -244,23 +201,23 @@ export function TimeMachine() {
         className="fixed bottom-6 right-6 z-[200]"
       >
         <div className="relative flex flex-col items-center">
-            <motion.button
+          <motion.button
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onClick={handleClick}
-            disabled={isActivated || isConfirming}
+            disabled={isConfirming}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="w-20 h-20 cursor-pointer"
           >
-            <img 
-              src="/tardis.gif" 
-              alt="Time machine" 
+            <img
+              src="/tardis.gif"
+              alt="Time machine"
               className="w-full h-full object-contain"
               style={{ filter: isHovered ? 'brightness(1.2)' : 'brightness(1)' }}
             />
           </motion.button>
-          
+
           <span className="mt-2 text-[10px] mono text-[var(--v2-text-dimmed)] uppercase tracking-wider">
             Time Machine
           </span>
