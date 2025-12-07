@@ -162,6 +162,10 @@ export function TimeMachine() {
                       alt="Portfolio V1"
                       className="w-full object-cover transition-all duration-500"
                       style={{ transformOrigin: 'center' }}
+                      loading="lazy"
+                      fetchPriority="low"
+                      width="600"
+                      height="400"
                     />
 
                     {/* Hover overlay - Crystal glass effect */}
