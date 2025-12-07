@@ -1,12 +1,11 @@
-import { useState } from 'react';
 import { ExternalLink, Github, Pointer } from "lucide-react";
 
 // Custom Wrench icon component
 function WrenchIcon({ className }) {
   return (
-    <svg 
-      xmlns="http://www.w3.org/2000/svg" 
-      viewBox="0 0 512 512" 
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
       className={className}
       fill="currentColor"
     >
@@ -17,36 +16,35 @@ function WrenchIcon({ className }) {
 
 export function ProjectCard({ project, index }) {
   const { title, description, tags, image, imagePosition, demoLink, codeLink, status } = project;
-  
+
   return (
-    <div 
+    <div
       className="group relative bg-slate-300/10 md:bg-transparent dark:bg-zinc-900/20 md:dark:bg-transparent hover:bg-slate-300/10 dark:hover:bg-zinc-900/20 py-6 animate-fade-in opacity-0 md:transition-colors md:duration-200 -mx-8 px-8 md:-mx-6 md:px-6 transform-gpu"
       style={{ animationDelay: `${0.1 + index * 0.1}s` }}
     >
       <div className="flex flex-col md:flex-row gap-4 md:gap-6">
         {/* Project Image */}
         <div className="mb-3 md:mb-0 md:w-1/3 rounded-lg overflow-hidden flex-shrink-0 shadow-sm group-hover:shadow-md transition-shadow duration-300">
-          <div className={`aspect-video relative ${
-            status === "youarehere" 
-              ? "p-0" 
+          <div className={`aspect-video relative ${status === "youarehere"
+              ? "p-0"
               : ""
-          }`}>
+            }`}>
             {status === "youarehere" ? (
               <>
                 {/* Portfolio project with background image and overlay */}
                 <div className="relative w-full h-full">
                   {/* Background image */}
-                  <img 
-                    src="/assets/images/portfolio-bg.jpg" 
-                    alt="Portfolio Background" 
+                  <img
+                    src="/assets/images/portfolio-bg.jpg"
+                    alt="Portfolio Background"
                     className="w-full h-full object-cover"
                   />
-                  
+
                   {/* Overlay with logo and name */}
                   <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center">
-                    <img 
-                      src={image} 
-                      alt="Logo" 
+                    <img
+                      src={image}
+                      alt="Logo"
                       className="w-2/5 h-2/5 object-contain mb-3"
                     />
                     <div className="text-center">
@@ -59,18 +57,18 @@ export function ProjectCard({ project, index }) {
               </>
             ) : (
               <>
-                <img 
-                  src={image} 
-                  alt={title} 
+                <img
+                  src={image}
+                  alt={title}
                   className="w-full h-full object-cover scale-102"
                   style={{ objectPosition: imagePosition || "center center" }}
                 />
-                
+
                 {/* Gradient overlay - visible on mobile, hover on desktop */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent md:from-black/40 md:opacity-0 md:group-hover:opacity-100 opacity-100 md:transition-opacity md:duration-300"></div>
               </>
             )}
-            
+
             {/* WIP badge */}
             {status === "wip" && (
               <div className="absolute top-2 left-2 px-1.5 py-0.5 bg-gradient-to-r from-blue-600 to-indigo-500 text-white text-[10px] font-medium rounded-md flex items-center gap-1 shadow-sm">
@@ -80,7 +78,7 @@ export function ProjectCard({ project, index }) {
             )}
           </div>
         </div>
-        
+
         {/* Content */}
         <div className="flex-1 flex flex-col">
           {/* Title - hidden on mobile, shown on desktop */}
@@ -88,18 +86,18 @@ export function ProjectCard({ project, index }) {
             {title}
             {status === "wip" && <span className="text-stone-500 dark:text-zinc-500 font-normal text-lg ml-2">(work in progress)</span>}
           </h3>
-          
+
           {/* Mobile title with action buttons */}
           <div className="md:hidden flex justify-between items-center mb-4">
             <h3 className="text-xl font-bold text-transparent bg-gradient-to-r from-indigo-600 to-indigo-500 dark:from-indigo-400 dark:to-indigo-500 bg-clip-text">
               {title}
               {status === "wip" && <span className="text-stone-500 dark:text-zinc-500 font-normal text-lg ml-2">(WIP)</span>}
             </h3>
-            
+
             {/* Mobile Action Buttons */}
             <div className="flex gap-2">
               {codeLink && (
-                <a 
+                <a
                   href={codeLink}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -113,9 +111,9 @@ export function ProjectCard({ project, index }) {
                   <Github className="w-3.5 h-3.5" />
                 </a>
               )}
-              
+
               {demoLink && (
-                <a 
+                <a
                   href={demoLink}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -128,7 +126,7 @@ export function ProjectCard({ project, index }) {
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               )}
-              
+
               {status === "youarehere" && (
                 <span className="inline-flex items-center justify-center w-8 h-8 text-xs font-medium rounded-full
                           bg-gradient-to-r from-indigo-500 to-purple-500
@@ -140,17 +138,17 @@ export function ProjectCard({ project, index }) {
               )}
             </div>
           </div>
-          
+
           {/* Description */}
           <p className="text-stone-600 dark:text-zinc-400 text-sm mb-4">
             {description}
           </p>
-          
+
           {/* Tech Stack Tags */}
           <div className="flex flex-wrap gap-1.5 md:gap-2 mb-4">
             {tags && tags.slice(0, 5).map((tag, i) => (
-              <span 
-                key={i} 
+              <span
+                key={i}
                 className="px-2 py-0.5 md:px-2.5 md:py-0.5 text-xs font-medium rounded-full 
                           bg-gradient-to-r from-purple-500/10 to-blue-500/10 
                           dark:from-purple-500/20 dark:to-blue-500/20
@@ -161,11 +159,11 @@ export function ProjectCard({ project, index }) {
               </span>
             ))}
           </div>
-          
+
           {/* Desktop Action Buttons - hidden on mobile */}
           <div className="hidden md:flex gap-3 mt-auto">
             {codeLink && (
-              <a 
+              <a
                 href={codeLink}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -180,9 +178,9 @@ export function ProjectCard({ project, index }) {
                 <span>Code</span>
               </a>
             )}
-            
+
             {demoLink && (
-              <a 
+              <a
                 href={demoLink}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -196,7 +194,7 @@ export function ProjectCard({ project, index }) {
                 <span>Live Demo</span>
               </a>
             )}
-            
+
             {status === "youarehere" && (
               <span className="inline-flex items-center justify-start gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md
                         bg-gradient-to-r from-indigo-500 to-purple-500

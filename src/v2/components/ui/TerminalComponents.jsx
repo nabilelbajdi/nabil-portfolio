@@ -5,7 +5,7 @@ import { TerminalPrompt, TerminalOutput } from './Terminal';
 /**
  * HistoryLine - Renders a single history entry
  */
-export function HistoryLine({ entry, onCommandClick }) {
+export function HistoryLine({ entry }) {
     return (
         <motion.div
             initial={{ opacity: 0, y: 10 }}

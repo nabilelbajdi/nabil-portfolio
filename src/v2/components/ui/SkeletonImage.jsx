@@ -3,13 +3,13 @@ import { useState } from 'react';
 /**
  * Image component with skeleton loading state
  */
-export function SkeletonImage({ 
-  src, 
-  alt, 
+export function SkeletonImage({
+  src,
+  alt,
   className = '',
-  containerClassName = '',
+  _containerClassName = '',
   skeletonClassName = '',
-  ...props 
+  ...props
 }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -18,13 +18,13 @@ export function SkeletonImage({
     <>
       {/* Skeleton placeholder */}
       {!isLoaded && !hasError && (
-        <div 
+        <div
           className={`absolute inset-0 bg-[var(--v2-bg-tertiary)] animate-pulse ${skeletonClassName}`}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent skeleton-shimmer" />
         </div>
       )}
-      
+
       {/* Actual image */}
       <img
         src={src}
@@ -34,7 +34,7 @@ export function SkeletonImage({
         onError={() => setHasError(true)}
         {...props}
       />
-      
+
       {/* Error fallback */}
       {hasError && (
         <div className="absolute inset-0 bg-[var(--v2-bg-tertiary)] flex items-center justify-center">

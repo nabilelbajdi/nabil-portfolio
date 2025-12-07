@@ -157,11 +157,6 @@ export function HeroTerminal() {
     setInputValue('');
   };
 
-  const handleQuickCommand = (cmd) => {
-    if (isTyping) return;
-    executeCommand(cmd);
-  };
-
   // Focus input on terminal click
   const handleTerminalClick = () => {
     inputRef.current?.focus();
@@ -201,7 +196,6 @@ export function HeroTerminal() {
               <HistoryLine
                 key={index}
                 entry={entry}
-                onCommandClick={handleQuickCommand}
               />
             ))}
           </AnimatePresence>
