@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { SOCIAL_LINKS } from '../../../data/socialLinks';
+import { trackContactClick, trackResumeDownload } from '../../../lib/analytics';
 
 export function ContactSection() {
     // Filter to show GitHub and LinkedIn
@@ -31,10 +32,10 @@ export function ContactSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.1 }}
-                    className="p-8 rounded-2xl bg-[var(--v2-bg-secondary)] border border-[var(--v2-border)] mb-8"
+                    className="p-5 sm:p-8 rounded-2xl bg-[var(--v2-bg-secondary)] border border-[var(--v2-border)] mb-6 sm:mb-8"
                 >
-                    <div className="mono text-xs text-[var(--v2-text-dimmed)] mb-6">% cat contact.json</div>
-                    <div className="space-y-4 mono text-sm">
+                    <div className="mono text-xs text-[var(--v2-text-dimmed)] mb-4 sm:mb-6">% cat contact.json</div>
+                    <div className="space-y-3 sm:space-y-4 mono text-sm">
                         <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-0">
                             <span className="text-purple-400 w-24">"email"</span>
                             <span className="text-[var(--v2-text-muted)] hidden sm:inline">:</span>
@@ -97,6 +98,7 @@ export function ContactSection() {
                 >
                     <a
                         href="mailto:nabilelbajdii@gmail.com"
+                        onClick={() => trackContactClick('email')}
                         className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 bg-[var(--v2-accent)] text-[var(--v2-bg-primary)] font-medium text-sm sm:text-base rounded-lg hover:opacity-90 transition-opacity"
                     >
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -108,6 +110,7 @@ export function ContactSection() {
                         href="/resume.pdf"
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={trackResumeDownload}
                         className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 bg-[var(--v2-bg-tertiary)] text-[var(--v2-text-primary)] font-medium text-sm sm:text-base rounded-lg border border-[var(--v2-border)] hover:border-[var(--v2-border-hover)] transition-colors"
                     >
                         <span>View Resume</span>

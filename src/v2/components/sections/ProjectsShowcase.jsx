@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { getFeaturedProjects } from '../../../data/projects';
 import { SkeletonImage } from '../ui/SkeletonImage';
+import { trackProjectClick } from '../../../lib/analytics';
 
 const projects = getFeaturedProjects();
 
@@ -50,6 +51,7 @@ function ProjectCard({ project, index }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`View ${project.title} live demo`}
+                onClick={() => trackProjectClick(project.title, 'demo')}
                 className="inline-flex items-center gap-2 px-4 py-2 text-sm text-[var(--v2-text-primary)] hover:text-[var(--v2-accent)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--v2-accent)]/50 rounded"
               >
                 <span>View Project</span>
@@ -64,6 +66,7 @@ function ProjectCard({ project, index }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`View ${project.title} source code on GitHub`}
+                onClick={() => trackProjectClick(project.title, 'source')}
                 className="inline-flex items-center gap-2 px-4 py-2 text-sm text-[var(--v2-text-muted)] hover:text-[var(--v2-text-primary)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--v2-accent)]/50 rounded"
               >
                 <span>Source</span>

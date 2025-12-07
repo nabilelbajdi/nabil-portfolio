@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import { NotFound } from './components/NotFound';
+import ErrorBoundary from './components/ErrorBoundary';
 
 // Lazy load both versions for better performance
 const V1App = lazy(() => import('./v1/V1App'));
@@ -19,7 +20,7 @@ function LoadingFallback() {
 }
 
 // Check if we're on the v1 subdomain
-const isV1Subdomain = typeof window !== 'undefined' && 
+const isV1Subdomain = typeof window !== 'undefined' &&
   window.location.hostname.startsWith('v1.');
 
 function App() {
@@ -33,18 +34,20 @@ function App() {
   }
 
   return (
-    <Suspense fallback={<LoadingFallback />}>
-      <Routes>
-        {/* Main portfolio (terminal theme) */}
-        <Route path="/" element={<V2App />} />
-        
-        {/* V1 classic version */}
-        <Route path="/v1" element={<V1App />} />
-        
-        {/* 404 for all other routes */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Suspense>
+    <ErrorBoundary>
+      <Suspense fallback={<LoadingFallback />}>
+        <Routes>
+          {/* Main portfolio (terminal theme) */}
+          <Route path="/" element={<V2App />} />
+
+          {/* V1 classic version */}
+          <Route path="/v1" element={<V1App />} />
+
+          {/* 404 for all other routes */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
+    </ErrorBoundary>
   );
 }
 

@@ -4,6 +4,7 @@ import { Terminal, TerminalPrompt } from '../ui/Terminal';
 import { HistoryLine, TypedOutput } from '../ui/TerminalComponents';
 import { COMMANDS, EASTER_EGGS } from '../../data/terminalCommands';
 import { useV2Theme } from '../../context/V2ThemeProvider';
+import { trackTerminalCommand, trackResumeDownload } from '../../../lib/analytics';
 
 /**
  * HeroTerminal - Interactive terminal hero section
@@ -106,8 +107,12 @@ export function HeroTerminal() {
     const easterEgg = EASTER_EGGS[command];
 
     if (commandData) {
+      // Track command usage
+      trackTerminalCommand(command);
+
       // Handle special actions
       if (commandData.action === 'download') {
+        trackResumeDownload();
         window.open(commandData.target, '_blank');
       } else if (commandData.action === 'theme') {
         toggleTheme();

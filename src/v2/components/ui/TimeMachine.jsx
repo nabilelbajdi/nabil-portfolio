@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { trackTimeMachineClick } from '../../../lib/analytics';
 
 // Blob Background - Same gentle, mesmerizing vibe as the hero blob
 function BlobBackground() {
@@ -42,6 +43,7 @@ export function TimeMachine() {
   }, [isConfirming]);
 
   const handleClick = () => {
+    trackTimeMachineClick();
     setIsConfirming(true);
   };
 
@@ -192,13 +194,12 @@ export function TimeMachine() {
           </motion.div>
         )}
       </AnimatePresence>
-
       {/* Time Machine Button */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1, duration: 0.5 }}
-        className="fixed bottom-6 right-6 z-[200]"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[200]"
       >
         <div className="relative flex flex-col items-center">
           <motion.button
@@ -208,7 +209,7 @@ export function TimeMachine() {
             disabled={isConfirming}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="w-20 h-20 cursor-pointer"
+            className="w-14 h-14 sm:w-20 sm:h-20 cursor-pointer"
           >
             <img
               src="/tardis.gif"
@@ -218,7 +219,7 @@ export function TimeMachine() {
             />
           </motion.button>
 
-          <span className="mt-2 text-[10px] mono text-[var(--v2-text-dimmed)] uppercase tracking-wider">
+          <span className="mt-1 sm:mt-2 text-[8px] sm:text-[10px] mono text-[var(--v2-text-dimmed)] uppercase tracking-wider">
             Time Machine
           </span>
         </div>
