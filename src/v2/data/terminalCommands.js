@@ -22,7 +22,6 @@ export const COMMANDS = {
             '  theme       → Toggle light/dark mode',
             '  clear       → Clear terminal',
             '',
-            'Type a command and press Enter, or just scroll down.',
         ],
     },
     whoami: {

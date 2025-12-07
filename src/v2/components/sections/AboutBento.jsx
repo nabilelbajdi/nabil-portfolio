@@ -24,16 +24,16 @@ export function AboutBento() {
           <BentoCard
             variant="gradient"
             delay={0.1}
-            className="md:col-span-4 md:row-span-2 relative overflow-hidden group min-h-[400px]"
+            className="md:col-span-4 md:row-span-2 relative overflow-hidden group min-h-[300px] sm:min-h-[400px]"
           >
             <div className="absolute inset-0 bg-gradient-to-t from-[var(--v2-bg-primary)] via-transparent to-transparent z-10" />
             <SkeletonImage
               src="/assets/images/profile.jpg"
               alt="Nabil El Bajdi"
-              className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+              className="absolute inset-0 w-full h-full object-cover object-top sm:object-center group-hover:scale-105 transition-transform duration-700"
             />
-            <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-              <h3 className="text-xl font-bold text-white mb-1">Nabil El Bajdi</h3>
+            <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 z-20">
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-1">Nabil El Bajdi</h3>
               <p className="text-white/70 text-sm">AI Developer</p>
               <div className="flex items-center gap-2 mt-2">
                 <div className="w-5 h-3 rounded-sm overflow-hidden">
@@ -52,8 +52,8 @@ export function AboutBento() {
             <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--v2-accent)]/5 rounded-full blur-2xl" />
             <div className="absolute bottom-0 left-0 w-24 h-24 bg-purple-500/5 rounded-full blur-2xl" />
             <div className="relative h-full flex flex-col justify-center">
-              <div className="mono text-xs text-[var(--v2-text-dimmed)] mb-4">{'<philosophy>'}</div>
-              <h3 className="text-2xl font-bold text-[var(--v2-text-primary)] leading-tight mb-2">
+              <div className="mono text-xs text-[var(--v2-text-dimmed)] mb-3 sm:mb-4">{'<philosophy>'}</div>
+              <h3 className="text-xl sm:text-2xl font-bold text-[var(--v2-text-primary)] leading-tight mb-2">
                 Where{' '}
                 <span className="relative inline-block">
                   <span className="text-[var(--v2-accent)]">Logic</span>
@@ -65,7 +65,7 @@ export function AboutBento() {
                   <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-purple-400/30" />
                 </span>
               </h3>
-              <div className="mono text-xs text-[var(--v2-text-dimmed)] mt-4">{'</philosophy>'}</div>
+              <div className="mono text-xs text-[var(--v2-text-dimmed)] mt-3 sm:mt-4">{'</philosophy>'}</div>
             </div>
           </BentoCard>
 

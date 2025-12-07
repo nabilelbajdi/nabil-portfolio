@@ -163,7 +163,7 @@ export function HeroTerminal() {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 pt-20 pb-12">
+    <section className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 pt-20 pb-16 sm:pb-12">
       {/* Intro Text */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -188,7 +188,7 @@ export function HeroTerminal() {
         <div
           ref={terminalRef}
           onClick={handleTerminalClick}
-          className="max-h-[50vh] overflow-y-auto scrollbar-thin scrollbar-thumb-[var(--v2-border)] scrollbar-track-transparent"
+          className="max-h-[45vh] sm:max-h-[50vh] overflow-y-auto scrollbar-thin scrollbar-thumb-[var(--v2-border)] scrollbar-track-transparent"
         >
           {/* Command History */}
           <AnimatePresence>
@@ -248,8 +248,8 @@ export function HeroTerminal() {
                     if (lastCmd) setInputValue(lastCmd.command);
                   }
                 }}
-                placeholder="Type a command..."
-                className="ml-2 flex-1 bg-transparent text-[var(--v2-text-primary)] outline-none mono placeholder:text-[var(--v2-text-dimmed)] text-sm sm:text-base"
+                placeholder="Type a command and press Enter"
+                className="ml-2 flex-1 bg-transparent text-[var(--v2-text-primary)] outline-none mono placeholder:text-[var(--v2-text-dimmed)] text-sm"
                 autoComplete="off"
                 spellCheck={false}
                 autoFocus
@@ -260,21 +260,37 @@ export function HeroTerminal() {
         </div>
       </Terminal>
 
+      {/* Terminal Hint for Non-Technical Users */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 1 }}
+        className="mt-4 sm:mt-6 flex items-center justify-center gap-2 text-[var(--v2-text-dimmed)] text-xs sm:text-sm px-4"
+      >
+        <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span className="mono">
+          <span className="text-[var(--v2-accent)] font-bold">Type commands</span> to interact, or{' '}
+          <span className="text-purple-400 font-bold">scroll down</span> to explore
+        </span>
+      </motion.div>
+
       {/* Social Links */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.8 }}
-        className="flex items-center gap-4 mt-8"
+        className="flex items-center gap-3 sm:gap-4 mt-4 sm:mt-6"
       >
         <a
           href="https://github.com/nabilelbajdi"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[var(--v2-text-muted)] hover:text-[var(--v2-accent)] transition-colors"
+          className="p-2 text-[var(--v2-text-muted)] hover:text-[var(--v2-accent)] transition-colors"
           aria-label="GitHub"
         >
-          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
             <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
           </svg>
         </a>
@@ -282,10 +298,10 @@ export function HeroTerminal() {
           href="https://linkedin.com/in/nabilelbajdi"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[var(--v2-text-muted)] hover:text-[var(--v2-accent)] transition-colors"
+          className="p-2 text-[var(--v2-text-muted)] hover:text-[var(--v2-accent)] transition-colors"
           aria-label="LinkedIn"
         >
-          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
             <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
           </svg>
         </a>
@@ -294,13 +310,13 @@ export function HeroTerminal() {
           href="/resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-[var(--v2-text-muted)] hover:text-[var(--v2-accent)] transition-colors"
+          className="inline-flex items-center gap-1.5 p-2 text-[var(--v2-text-muted)] hover:text-[var(--v2-accent)] transition-colors"
           aria-label="Resume"
         >
           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
           </svg>
-          <span className="text-sm">Resume</span>
+          <span className="text-sm font-semibold hidden sm:inline">Resume</span>
         </a>
       </motion.div>
 
