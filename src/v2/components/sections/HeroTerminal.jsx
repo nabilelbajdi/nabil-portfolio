@@ -151,6 +151,25 @@ export function HeroTerminal() {
     }
   }, [currentCommand]);
 
+  // Responsive placeholder
+  const [placeholder, setPlaceholder] = useState('Type a command and press Enter');
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setPlaceholder('Type command...');
+      } else {
+        setPlaceholder('Type a command and press Enter');
+      }
+    };
+
+    // Initial check
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const handleSubmit = (value) => {
     if (isTyping) return;
     executeCommand(value);
@@ -163,19 +182,19 @@ export function HeroTerminal() {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 pt-20 pb-16 sm:pb-12">
+    <section className="relative min-h-[90vh] sm:min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 pt-16 pb-12 sm:pb-12">
       {/* Intro Text */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-center mb-8"
+        className="text-center mb-6 sm:mb-8"
       >
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-black mb-4 tracking-tight">
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-black mb-3 sm:mb-4 tracking-tight">
           <span className="text-[var(--v2-text-primary)]">Hi, I'm </span>
           <span className="text-[var(--v2-accent)] text-glow">Nabil</span>
         </h1>
-        <p className="text-lg text-[var(--v2-text-secondary)] max-w-lg mx-auto">
+        <p className="text-base sm:text-lg text-[var(--v2-text-secondary)] max-w-lg mx-auto">
           I build intelligent systems that turn complex ideas into simple, usable experiences.
         </p>
       </motion.div>
@@ -188,7 +207,7 @@ export function HeroTerminal() {
         <div
           ref={terminalRef}
           onClick={handleTerminalClick}
-          className="max-h-[45vh] sm:max-h-[50vh] overflow-y-auto scrollbar-thin scrollbar-thumb-[var(--v2-border)] scrollbar-track-transparent"
+          className="max-h-[25vh] sm:max-h-[50vh] overflow-y-auto scrollbar-thin scrollbar-thumb-[var(--v2-border)] scrollbar-track-transparent"
         >
           {/* Command History */}
           <AnimatePresence>
@@ -219,7 +238,7 @@ export function HeroTerminal() {
               animate={{ opacity: 1 }}
               className="flex items-center"
             >
-              <span className="text-purple-400 mono text-sm">nabil@portfolio</span>
+              <span className="text-purple-400 mono">nabil@portfolio</span>
               <span className="text-[var(--v2-accent)] ml-1">~</span>
               <span className="text-white ml-2">%</span>
               <input
@@ -247,8 +266,8 @@ export function HeroTerminal() {
                     if (lastCmd) setInputValue(lastCmd.command);
                   }
                 }}
-                placeholder="Type a command and press Enter"
-                className="ml-2 flex-1 bg-transparent text-[var(--v2-text-primary)] outline-none mono placeholder:text-[var(--v2-text-dimmed)] text-sm"
+                placeholder={placeholder}
+                className="ml-2 flex-1 bg-transparent text-[var(--v2-text-primary)] outline-none mono placeholder:text-[var(--v2-text-dimmed)]"
                 autoComplete="off"
                 spellCheck={false}
                 autoFocus
@@ -264,7 +283,7 @@ export function HeroTerminal() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 1 }}
-        className="mt-4 sm:mt-6 flex items-center justify-center gap-2 text-[var(--v2-text-dimmed)] text-xs sm:text-sm px-4"
+        className="mt-4 sm:mt-6 flex items-center justify-center gap-2 text-[var(--v2-text-dimmed)] text-[10px] sm:text-sm px-4 whitespace-nowrap"
       >
         <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />

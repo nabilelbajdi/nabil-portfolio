@@ -19,12 +19,12 @@ export function AboutBento() {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-12 gap-3 sm:gap-4">
 
           <BentoCard
             variant="gradient"
             delay={0.1}
-            className="md:col-span-4 md:row-span-2 relative overflow-hidden group min-h-[300px] sm:min-h-[400px]"
+            className="order-1 md:order-none col-span-2 md:col-span-4 md:row-span-2 relative overflow-hidden group min-h-[300px] sm:min-h-[400px]"
           >
             <div className="absolute inset-0 bg-gradient-to-t from-[var(--v2-bg-primary)] via-transparent to-transparent z-10" />
             <SkeletonImage
@@ -48,7 +48,7 @@ export function AboutBento() {
             </div>
           </BentoCard>
 
-          <BentoCard variant="default" delay={0.15} className="md:col-span-5 relative overflow-hidden">
+          <BentoCard variant="default" delay={0.15} className="order-2 md:order-none col-span-2 md:col-span-5 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--v2-accent)]/5 rounded-full blur-2xl" />
             <div className="absolute bottom-0 left-0 w-24 h-24 bg-purple-500/5 rounded-full blur-2xl" />
             <div className="relative h-full flex flex-col justify-center">
@@ -69,20 +69,20 @@ export function AboutBento() {
             </div>
           </BentoCard>
 
-          <BentoCard variant="default" delay={0.2} className="md:col-span-3 relative overflow-hidden">
+          <BentoCard variant="default" delay={0.2} className="order-3 md:order-none col-span-1 md:col-span-3 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-24 h-24 bg-[var(--v2-accent)]/5 rounded-full blur-2xl" />
             <div className="absolute bottom-0 left-0 w-20 h-20 bg-purple-500/5 rounded-full blur-2xl" />
             <div className="relative h-full flex flex-col justify-between">
-              <div className="mono text-xs text-[var(--v2-text-dimmed)]">// off_duty</div>
-              <div className="space-y-1 mt-4">
-                <div className="text-lg text-[var(--v2-text-primary)]">gaming</div>
-                <div className="text-lg text-[var(--v2-text-muted)]">fitness</div>
-                <div className="text-lg text-[var(--v2-text-muted)]">travel</div>
+              <div className="mono text-[10px] sm:text-xs text-[var(--v2-text-dimmed)]">// off_duty</div>
+              <div className="space-y-1 mt-3 sm:mt-4">
+                <div className="text-sm sm:text-lg text-[var(--v2-text-primary)]">gaming</div>
+                <div className="text-sm sm:text-lg text-[var(--v2-text-muted)]">fitness</div>
+                <div className="text-sm sm:text-lg text-[var(--v2-text-muted)]">travel</div>
               </div>
             </div>
           </BentoCard>
 
-          <BentoCard variant="default" delay={0.25} className="md:col-span-8 relative overflow-hidden">
+          <BentoCard variant="default" delay={0.25} className="order-5 md:order-none col-span-2 md:col-span-8 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--v2-accent)]/5 rounded-full blur-2xl" />
             <div className="absolute bottom-0 left-0 w-24 h-24 bg-purple-500/5 rounded-full blur-2xl" />
             <div className="relative">
@@ -106,7 +106,7 @@ export function AboutBento() {
             </div>
           </BentoCard>
 
-          <BentoCard variant="gradient" delay={0.3} className="md:col-span-4 relative overflow-hidden">
+          <BentoCard variant="gradient" delay={0.3} className="order-6 md:order-none col-span-2 md:col-span-4 relative overflow-hidden">
             <div className="absolute -right-12 -bottom-12 w-32 h-32 rounded-full border border-[var(--v2-accent)]/10" />
             <div className="absolute -right-8 -bottom-8 w-24 h-24 rounded-full border border-[var(--v2-accent)]/20" />
             <div className="relative">
@@ -130,15 +130,18 @@ export function AboutBento() {
             </div>
           </BentoCard>
 
-          <BentoCard variant="solid" delay={0.35} className="md:col-span-4 relative overflow-hidden">
+          <BentoCard variant="solid" delay={0.35} className="order-4 md:order-none col-span-1 md:col-span-4 relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[var(--v2-accent)] via-purple-500 to-purple-400" />
             <div className="flex items-baseline gap-2 mb-4 mt-1">
               <span className="text-xs font-medium text-[var(--v2-text-muted)] uppercase tracking-wider">Building</span>
               <span className="flex-1 h-px bg-[var(--v2-border)]" />
             </div>
             <h4 className="text-lg font-semibold text-[var(--v2-text-primary)] mb-2">GameGloom</h4>
-            <p className="text-sm text-[var(--v2-text-secondary)] leading-relaxed">
+            <p className="text-sm text-[var(--v2-text-secondary)] leading-relaxed hidden sm:block">
               Full-stack gaming platform with AI-powered recommendations
+            </p>
+            <p className="text-xs text-[var(--v2-text-secondary)] leading-relaxed block sm:hidden">
+              AI-powered gaming platform
             </p>
             <a
               href="https://gamegloom.com"
@@ -152,8 +155,7 @@ export function AboutBento() {
               </svg>
             </a>
           </BentoCard>
-
-          <BentoCard variant="solid" delay={0.4} className="md:col-span-4 relative overflow-hidden">
+          <BentoCard variant="solid" delay={0.4} className="order-7 md:order-none col-span-2 md:col-span-4 relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[var(--v2-accent)] via-purple-500 to-purple-400" />
             <div className="flex items-baseline gap-2 mb-4 mt-1">
               <span className="text-xs font-medium text-[var(--v2-text-muted)] uppercase tracking-wider">Currently Learning</span>
@@ -181,6 +183,6 @@ export function AboutBento() {
 
         </div>
       </div>
-    </section>
+    </section >
   );
 }

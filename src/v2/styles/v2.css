@@ -1122,3 +1122,84 @@
 .skeleton-shimmer {
   animation: skeleton-shimmer 1.5s ease-in-out infinite;
 }
+
+/* ============================================
+   Mobile Optimization
+   ============================================ */
+
+@media (max-width: 640px) {
+
+  /* Tighter Global Spacing (Balanced) */
+  .v2 {
+    --v2-space-md: 0.875rem;
+    /* Was 0.75rem, relaxed */
+    --v2-space-lg: 1.25rem;
+    /* Was 1rem, relaxed */
+    --v2-space-xl: 1.75rem;
+    /* Was 1.5rem, relaxed */
+    --v2-space-2xl: 2.5rem;
+    /* Was 2rem, relaxed */
+    --v2-space-3xl: 3rem;
+    /* Was 2.5rem, relaxed */
+  }
+
+  /* Compact Typography */
+  .v2 h1 {
+    font-size: clamp(2rem, 10vw, 3rem);
+    line-height: 1.1;
+  }
+
+  .v2 h2 {
+    font-size: 1.5rem;
+  }
+
+  /* Compact Load Game Menu */
+  .load-game-container {
+    padding: 16px;
+    width: 95%;
+  }
+
+  .load-game-header {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+  }
+
+  .save-slots-container {
+    gap: 8px;
+  }
+
+  .save-slot {
+    padding: 10px 12px;
+  }
+
+  /* Reduced component padding */
+  .v2 .terminal-body {
+    padding: var(--v2-space-sm);
+    /* Tighter inner padding */
+    font-size: 0.75rem;
+    /* Smaller font for code */
+    line-height: 1.35;
+  }
+
+  .v2 .terminal-header {
+    padding: var(--v2-space-xs) var(--v2-space-sm);
+    /* Tighter header */
+    min-height: 36px;
+  }
+
+  /* Compact Terminal Box */
+  .v2 .terminal {
+    width: 90%;
+    /* Force full width of container */
+    margin: 0;
+    /* remove margins to maximize space */
+    border-radius: var(--v2-radius-md);
+    /* Keep it rounded */
+    border: 1px solid var(--v2-border);
+    /* Restore border */
+  }
+
+  .v2 .card {
+    padding: var(--v2-space-md);
+  }
+}
