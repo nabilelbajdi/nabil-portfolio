@@ -2,203 +2,356 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { trackTimeMachineClick } from '../../../lib/analytics';
 
-// Blob Background - Same gentle, mesmerizing vibe as the hero blob
-function BlobBackground() {
+// Portfolio save slots - add new objects here for future versions
+const SAVE_SLOTS = [
+  {
+    id: 1,
+    version: 'v1',
+    title: 'Portfolio v1',
+    date: '2025',
+    url: 'https://v1.nabilelbajdi.com',
+    screenshot: '/assets/images/portfolio-v1.png',
+    playtime: '63 hrs',
+    completion: 100,
+    isEmpty: false,
+  },
+  {
+    id: 2,
+    isEmpty: true,
+  },
+  {
+    id: 3,
+    isEmpty: true,
+  },
+];
+
+function SaveSlot({ slot, isSelected, onSelect, onLoad }) {
   return (
-    <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-      {/* The morphing blob container */}
-      <div className="relative" style={{ width: '60vmin', height: '60vmin' }}>
-        <div className="time-machine-blob" />
-        <div className="time-machine-blob" />
-        <div className="time-machine-blob" />
-        <div className="time-machine-blob" />
-        <div className="time-machine-blob" />
+    <motion.div
+      layout
+      onClick={() => !slot.isEmpty && onSelect(slot.id)}
+      onDoubleClick={() => !slot.isEmpty && onLoad(slot)}
+      whileHover={!slot.isEmpty ? { scale: 1.01 } : {}}
+      whileTap={!slot.isEmpty ? { scale: 0.99 } : {}}
+      className={`
+        save-slot
+        ${isSelected ? 'save-slot-selected' : ''}
+        ${slot.isEmpty ? 'save-slot-empty' : 'save-slot-filled'}
+      `}
+      transition={{ layout: { duration: 0.3, ease: [0.4, 0, 0.2, 1] } }}
+    >
+      {/* Slot header */}
+      <motion.div layout="position" className="save-slot-header">
+        <span className="save-slot-number">SLOT {slot.id}</span>
+      </motion.div>
+
+      {/* Slot content */}
+      <div className="save-slot-content">
+        {slot.isEmpty ? (
+          <div className="save-slot-empty-text">
+            <span className="blink">▓▓▓</span> NO DATA <span className="blink">▓▓▓</span>
+          </div>
+        ) : (
+          <AnimatePresence mode="wait">
+            {isSelected ? (
+              /* Expanded view with full browser mockup - only when selected */
+              <motion.div
+                key="expanded"
+                initial={{ opacity: 0, height: 0, scale: 0.95 }}
+                animate={{ opacity: 1, height: 'auto', scale: 1 }}
+                exit={{ opacity: 0, height: 0, scale: 0.95 }}
+                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                className="save-slot-detailed"
+              >
+                {/* Full detailed browser mockup */}
+                <div className="browser-mockup">
+                  {/* Browser chrome */}
+                  <div className="browser-chrome">
+                    <div className="chrome-dots">
+                      <div className="chrome-dot red" />
+                      <div className="chrome-dot yellow" />
+                      <div className="chrome-dot green" />
+                    </div>
+
+                    {/* Navigation buttons */}
+                    <div className="chrome-nav">
+                      <svg className="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                      </svg>
+                      <svg className="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                      </svg>
+                    </div>
+
+                    {/* URL bar */}
+                    <div className="chrome-url-bar">
+                      <svg className="lock-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      </svg>
+                      <span className="url-text">{slot.url}</span>
+                      <span className="url-divider">|</span>
+                      <svg className="star-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Screenshot */}
+                  <motion.img
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.1, duration: 0.2 }}
+                    src={slot.screenshot}
+                    alt={slot.title}
+                    className="browser-screenshot"
+                    loading="lazy"
+                  />
+
+                  {/* Hover overlay */}
+                  <div className="browser-overlay">
+                    <span className="overlay-text">load {slot.version}</span>
+                  </div>
+                </div>
+
+                {/* Info bar below screenshot */}
+                <div className="save-slot-info-bar">
+                  <div className="info-left">
+                    <span className="info-title">{slot.title}</span>
+                    <span className="info-meta">📅 {slot.date} • ⏱ {slot.playtime}</span>
+                  </div>
+                  <div className="info-right">
+                    <div className="mini-progress">
+                      <div className="mini-progress-fill" style={{ width: `${slot.completion}%` }} />
+                    </div>
+                    <span className="info-percent">{slot.completion}%</span>
+                  </div>
+                </div>
+              </motion.div>
+            ) : (
+              /* Compact view - only title and meta, no screenshot */
+              <motion.div
+                key="compact"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="save-slot-compact"
+              >
+                <div className="compact-info">
+                  <span className="compact-title">{slot.title}</span>
+                  <span className="compact-meta">📅 {slot.date} • ⏱ {slot.playtime}</span>
+                </div>
+                <div className="compact-right">
+                  <span className="compact-percent">{slot.completion}%</span>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        )}
       </div>
-    </div>
+
+      {/* Selection indicator */}
+      <AnimatePresence>
+        {isSelected && !slot.isEmpty && (
+          <motion.div
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -10 }}
+            transition={{ duration: 0.2 }}
+            className="save-slot-cursor"
+          >
+            ▶
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 }
 
-
 export function TimeMachine() {
-  const [isHovered, setIsHovered] = useState(false);
-  const [isConfirming, setIsConfirming] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedSlot, setSelectedSlot] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
   const scrollYRef = useRef(0);
 
   // Disable background scrolling when modal is open
   useEffect(() => {
-    if (isConfirming) {
+    if (isOpen) {
       scrollYRef.current = window.scrollY;
       document.body.style.overflow = 'hidden';
       document.documentElement.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
       document.documentElement.style.overflow = '';
-      // Restore scroll position
       window.scrollTo(0, scrollYRef.current);
     }
     return () => {
       document.body.style.overflow = '';
       document.documentElement.style.overflow = '';
     };
-  }, [isConfirming]);
+  }, [isOpen]);
 
-  const handleClick = () => {
+  // Keyboard navigation
+  useEffect(() => {
+    if (!isOpen || isLoading) return;
+
+    const handleKeyDown = (e) => {
+      const filledSlots = SAVE_SLOTS.filter(s => !s.isEmpty);
+      const currentIndex = filledSlots.findIndex(s => s.id === selectedSlot);
+
+      switch (e.key) {
+        case 'ArrowUp':
+          e.preventDefault();
+          if (currentIndex > 0) {
+            setSelectedSlot(filledSlots[currentIndex - 1].id);
+          }
+          break;
+        case 'ArrowDown':
+          e.preventDefault();
+          if (currentIndex < filledSlots.length - 1) {
+            setSelectedSlot(filledSlots[currentIndex + 1].id);
+          }
+          break;
+        case 'Enter':
+          e.preventDefault();
+          const slot = SAVE_SLOTS.find(s => s.id === selectedSlot);
+          if (slot && !slot.isEmpty) {
+            handleLoadSlot(slot);
+          }
+          break;
+        case 'Escape':
+          e.preventDefault();
+          setIsOpen(false);
+          break;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, selectedSlot, isLoading]);
+
+  const handleOpen = () => {
     trackTimeMachineClick();
-    setIsConfirming(true);
+    setIsOpen(true);
   };
 
-  const handleCancel = () => {
-    setIsConfirming(false);
+  const handleClose = () => {
+    if (!isLoading) {
+      setIsOpen(false);
+    }
+  };
+
+  const handleLoadSlot = (slot) => {
+    if (slot.url && !isLoading) {
+      setIsLoading(true);
+      // Brief loading animation (600ms)
+      setTimeout(() => {
+        window.open(slot.url, '_blank');
+        setIsLoading(false);
+      }, 600);
+    }
+  };
+
+  // Click handler for slots - single click on selected slot loads it
+  const handleSlotClick = (slot) => {
+    if (slot.isEmpty) return;
+
+    if (selectedSlot === slot.id) {
+      // Already selected, load it
+      handleLoadSlot(slot);
+    } else {
+      // Select this slot
+      setSelectedSlot(slot.id);
+    }
   };
 
   return (
     <>
-      {/* Confirmation Screen */}
+      {/* Load Game Modal */}
       <AnimatePresence>
-        {isConfirming && (
+        {isOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={handleCancel}
-            className="fixed inset-0 z-[400] flex items-center justify-center bg-[#0a0a0b]"
+            onClick={handleClose}
+            className="load-game-overlay"
           >
-            {/* Blob Background */}
-            <BlobBackground />
-
-            {/* Close button */}
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                handleCancel();
-              }}
-              aria-label="Close time machine dialog"
-              className="absolute top-16 right-6 z-[999] p-2 text-white/70 hover:text-white rounded transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50"
-            >
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-
-            {/* Content - Star Wars crawl perspective */}
+            {/* CRT Screen Container */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 25 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative z-10 text-center"
-              style={{
-                perspective: '400px',
-                perspectiveOrigin: 'center bottom'
-              }}
+              className={`load-game-container crt-flicker ${isLoading ? 'is-loading' : ''}`}
             >
-              <div
-                style={{
-                  transform: 'rotateX(18deg)',
-                  transformOrigin: 'center bottom',
-                  textShadow: '0 2px 20px rgba(0,0,0,0.8), 0 0 40px rgba(0,0,0,0.5)'
-                }}
-              >
-                <h2 className="text-xl sm:text-2xl font-semibold mb-16 text-white/90">
-                  Travel back in time to<br />explore past versions
-                </h2>
+              {/* Scanlines overlay */}
+              <div className="crt-scanlines" />
 
-                {/* Version Preview */}
-                <motion.a
-                  href="https://v1.nabilelbajdi.com"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.2, type: "spring", stiffness: 150, damping: 20 }}
-                  className="group cursor-pointer block"
-                >
-                  <div
-                    className="relative w-72 sm:w-80 mx-auto rounded-2xl overflow-hidden transition-all duration-500"
-                    style={{
-                      boxShadow: '0 30px 120px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.08), 0 0 80px rgba(6,182,212,0.18)'
-                    }}
-                  >
-                    {/* Browser chrome mockup */}
-                    <div className="bg-zinc-800 px-3 py-2 flex items-center gap-1 border-b border-zinc-700">
-                      <div className="w-2 h-2 rounded-full bg-red-500/80" />
-                      <div className="w-2 h-2 rounded-full bg-yellow-500/80" />
-                      <div className="w-2 h-2 rounded-full bg-green-500/80" />
+              {/* Screen glow */}
+              <div className="crt-glow" />
 
-                      {/* Left arrow */}
-                      <div className="flex items-center justify-center w-4 h-4 text-zinc-500 hover:text-zinc-400 transition-colors ml-2">
-                        <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                        </svg>
-                      </div>
-
-                      {/* Refresh button */}
-                      <div className="flex items-center justify-center w-4 h-4 text-zinc-500 hover:text-zinc-400 transition-colors">
-                        <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                        </svg>
-                      </div>
-
-                      <div className="flex-1 bg-zinc-700 rounded px-2 py-0.5 text-[10px] text-zinc-400 font-sans flex items-center justify-between">
-                        <div className="flex items-center">
-                          <svg className="w-3 h-3 text-zinc-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                          </svg>
-                          <span>https://v1.nabilelbajdi.com</span>
-                        </div>
-                        <div className="flex items-center">
-                          <span className="text-zinc-600 mx-1">|</span>
-                          <div className="flex items-center justify-center w-4 h-4 text-blue-500 hover:text-blue-400 transition-colors">
-                            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-
-                    </div>
-
-                    <img
-                      src="/assets/images/portfolio-v1.png"
-                      alt="Portfolio V1"
-                      className="w-full object-cover transition-all duration-500"
-                      style={{ transformOrigin: 'center' }}
-                      loading="lazy"
-                      fetchPriority="low"
-                      width="600"
-                      height="400"
-                    />
-
-                    {/* Hover overlay - Crystal glass effect */}
-                    <div className="absolute inset-0 hidden items-center justify-center rounded-2xl border border-cyan-400/20 opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100 lg:flex">
-                      <div className="text-center">
-                        <h3 className="text-2xl font-bold text-white drop-shadow-lg">v1</h3>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Reflection effect - subtle */}
-                  <div
-                    className="w-72 sm:w-80 mx-auto h-14 mt-1 rounded-2xl opacity-15 blur-sm"
-                    style={{
-                      background: 'linear-gradient(to bottom, rgba(255,255,255,0.1), transparent)',
-                      transform: 'scaleY(-0.2)',
-                      transformOrigin: 'top center'
-                    }}
-                  />
-                </motion.a>
+              {/* Header with glitch effect */}
+              <div className="load-game-header glitch" data-text="LOAD GAME">
+                <span className="blink">▶</span> LOAD GAME
               </div>
-            </motion.div>
 
-            {/* Credit - bottom right of screen */}
-            <div className="absolute bottom-4 right-4">
-              <span className="text-[10px] text-white/30">
-                Click anywhere to close
-              </span>
-            </div>
+              {/* Loading overlay */}
+              <AnimatePresence>
+                {isLoading && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="loading-overlay"
+                  >
+                    <span className="loading-text">loading<span className="loading-dots"></span></span>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Save slots */}
+              <div className="save-slots-container">
+                {SAVE_SLOTS.map((slot) => (
+                  <SaveSlot
+                    key={slot.id}
+                    slot={slot}
+                    isSelected={selectedSlot === slot.id}
+                    onSelect={(id) => handleSlotClick(SAVE_SLOTS.find(s => s.id === id))}
+                    onLoad={handleLoadSlot}
+                  />
+                ))}
+              </div>
+
+              {/* Footer controls */}
+              <div className="load-game-footer">
+                <div className="control-hint">
+                  <span className="key">↑↓</span> Select
+                </div>
+                <div className="control-hint">
+                  <span className="key">ENTER</span> Load
+                </div>
+                <div className="control-hint">
+                  <span className="key">ESC</span> Back
+                </div>
+              </div>
+
+              {/* Close button */}
+              <button
+                type="button"
+                onClick={handleClose}
+                aria-label="Close load game menu"
+                className="load-game-close"
+              >
+                ✕
+              </button>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-      {/* Time Machine Button */}
+
+      {/* Trigger Button */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -207,24 +360,21 @@ export function TimeMachine() {
       >
         <div className="relative flex flex-col items-center">
           <motion.button
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            onClick={handleClick}
-            disabled={isConfirming}
+            onClick={handleOpen}
+            disabled={isOpen}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="w-14 h-14 sm:w-20 sm:h-20 cursor-pointer"
           >
             <img
-              src="/tardis.gif"
-              alt="Time machine"
+              src="/spinning-floppy.gif"
+              alt="Load previous versions"
               className="w-full h-full object-contain"
-              style={{ filter: isHovered ? 'brightness(1.2)' : 'brightness(1)' }}
             />
           </motion.button>
 
           <span className="mt-1 sm:mt-2 text-[8px] sm:text-[10px] mono text-[var(--v2-text-dimmed)] uppercase tracking-wider">
-            Time Machine
+            Load Game
           </span>
         </div>
       </motion.div>
