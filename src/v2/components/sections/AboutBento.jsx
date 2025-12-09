@@ -72,12 +72,12 @@ export function AboutBento() {
           <BentoCard variant="default" delay={0.2} className="order-3 md:order-none col-span-1 md:col-span-3 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-24 h-24 bg-[var(--v2-accent)]/5 rounded-full blur-2xl" />
             <div className="absolute bottom-0 left-0 w-20 h-20 bg-purple-500/5 rounded-full blur-2xl" />
-            <div className="relative h-full flex flex-col justify-between">
+            <div className="relative h-full flex flex-col gap-2 md:gap-0 md:justify-between">
               <div className="mono text-[10px] sm:text-xs text-[var(--v2-text-dimmed)]">// off_duty</div>
               <div className="space-y-1 mt-3 sm:mt-4">
-                <div className="text-sm sm:text-lg text-[var(--v2-text-primary)]">gaming</div>
-                <div className="text-sm sm:text-lg text-[var(--v2-text-muted)]">fitness</div>
-                <div className="text-sm sm:text-lg text-[var(--v2-text-muted)]">travel</div>
+                <div className="text-base sm:text-lg text-[var(--v2-text-primary)]">gaming</div>
+                <div className="text-base sm:text-lg text-[var(--v2-text-muted)]">fitness</div>
+                <div className="text-base sm:text-lg text-[var(--v2-text-muted)]">travel</div>
               </div>
             </div>
           </BentoCard>

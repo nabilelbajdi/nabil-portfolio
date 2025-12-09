@@ -14,8 +14,8 @@ function ProjectCard({ project, index }) {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="group relative"
     >
-      <div className="grid md:grid-cols-12 gap-4 sm:gap-6 py-6 sm:py-8 px-3 sm:px-4 -mx-3 sm:-mx-4 rounded-xl border-b border-[var(--v2-border)] transition-all duration-300 hover:bg-[var(--v2-accent)]/[0.03] hover:shadow-lg hover:shadow-[var(--v2-accent)]/[0.05]">
-        <div className="md:col-span-7 order-2 md:order-1">
+      <div className="grid grid-cols-12 gap-3 sm:gap-6 py-6 sm:py-8 px-3 sm:px-4 -mx-3 sm:-mx-4 rounded-xl border-b border-[var(--v2-border)] transition-all duration-300 hover:bg-[var(--v2-accent)]/[0.03] hover:shadow-lg hover:shadow-[var(--v2-accent)]/[0.05]">
+        <div className="col-span-12 sm:col-span-7 order-1 md:order-1 flex flex-col justify-center">
           <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
             <span className="mono text-xs text-[var(--v2-text-dimmed)]">{project.year}</span>
             {project.status === 'wip' && (
@@ -29,7 +29,7 @@ function ProjectCard({ project, index }) {
             {project.title}
           </h3>
 
-          <p className="text-sm sm:text-base text-[var(--v2-text-secondary)] leading-relaxed mb-3 sm:mb-4">
+          <p className="text-xs sm:text-base text-[var(--v2-text-secondary)] leading-relaxed mb-3 sm:mb-4 pr-1 sm:pr-0">
             {project.description}
           </p>
 
@@ -78,8 +78,8 @@ function ProjectCard({ project, index }) {
           </div>
         </div>
 
-        <div className="md:col-span-5 order-1 md:order-2">
-          <div className="relative aspect-video max-h-[200px] sm:max-h-none rounded-lg overflow-hidden bg-[var(--v2-bg-tertiary)] border border-[var(--v2-border)] group-hover:scale-[1.02] transition-transform duration-300">
+        <div className="hidden sm:flex sm:col-span-5 order-2 md:order-2 flex-col justify-center">
+          <div className="relative aspect-video w-full rounded-lg overflow-hidden bg-[var(--v2-bg-tertiary)] border border-[var(--v2-border)] group-hover:scale-[1.02] transition-transform duration-300">
             <SkeletonImage
               src={project.image}
               alt={project.title}
@@ -101,13 +101,13 @@ export function ProjectsShowcase() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-12"
+          className="mb-12 text-center md:text-left"
         >
           <span className="text-[var(--v2-accent)] mono text-sm mb-2 block">// projects</span>
           <h2 className="text-3xl sm:text-4xl font-bold text-[var(--v2-text-primary)] mb-4">
             Selected Work
           </h2>
-          <p className="text-[var(--v2-text-secondary)] max-w-2xl">
+          <p className="text-[var(--v2-text-secondary)] max-w-2xl mx-auto md:mx-0">
             Projects built with thoughtful code and clean architecture. Each one taught me something new.
           </p>
         </motion.div>

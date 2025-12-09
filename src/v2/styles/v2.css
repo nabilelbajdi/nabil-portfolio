@@ -1172,6 +1172,51 @@
     padding: 10px 12px;
   }
 
+  /* Aggressive Compactness for Load Game */
+  /* Aggressive Compactness for Load Game */
+  .save-slot-detailed .browser-mockup {
+    /* display: none; REVERTED: User wanted screenshot back */
+    max-height: 150px;
+    /* Force it to be short */
+  }
+
+  /* Scale down the browser chrome/header */
+  .browser-chrome {
+    padding: 6px 8px;
+    height: 32px;
+  }
+
+  .browser-screenshot {
+    height: 118px;
+    /* Fit within the 150px container minus chrome */
+    object-position: top;
+    /* Show top of site */
+  }
+
+  .save-slot-detailed .save-slot-info-bar {
+    margin-top: 8px;
+    /* Restore some spacing */
+    padding-top: 8px;
+    /* Restore some spacing */
+    border-top: 1px solid var(--v2-border);
+    /* Restore border */
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .save-slot-detailed .info-right {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 4px;
+  }
+
+  /* Make the title stand out since image is gone */
+  .save-slot-detailed .info-title {
+    font-size: 1.1rem;
+    color: var(--v2-accent);
+  }
+
   /* Reduced component padding */
   .v2 .terminal-body {
     padding: var(--v2-space-sm);
