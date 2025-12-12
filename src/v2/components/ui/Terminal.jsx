@@ -35,7 +35,7 @@ export const Terminal = forwardRef(function Terminal({
           <div className="terminal-dot yellow w-3 h-3" />
           <div className="terminal-dot green w-3 h-3" />
         </div>
-        <span className="ml-2 text-xs text-gray-300 font-bold flex items-center gap-2" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif' }}>
+        <span className="ml-2 text-xs text-[var(--v2-text-muted)] font-bold flex items-center gap-2" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif' }}>
           <img src="/mac-folder.png" alt="folder" className="w-4 h-4" />
           {title}
         </span>

@@ -10,7 +10,7 @@ function SkillCategory({ category, index }) {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="p-3 sm:p-5 rounded-2xl bg-[var(--v2-bg-secondary)] border border-[var(--v2-border)]"
     >
-      <h3 className="text-[10px] sm:text-sm font-medium text-[var(--v2-text-primary)] mb-2 sm:mb-3 whitespace-nowrap truncate">
+      <h3 className="text-[10px] sm:text-sm font-medium text-[var(--v2-text-primary)] mb-2 sm:mb-3 whitespace-nowrap truncate leading-normal pb-0.5">
         {category.name === 'AI / Machine Learning' ? (
           <>
             <span className="sm:hidden">AI / ML</span>
@@ -64,7 +64,7 @@ export function SkillsSection() {
             transition={{ duration: 0.5, delay: 0.5 }}
             className="p-3 sm:p-5 rounded-2xl bg-[var(--v2-bg-secondary)] border border-[var(--v2-border)]"
           >
-            <h3 className="text-[10px] sm:text-sm font-medium text-[var(--v2-text-primary)] mb-2 sm:mb-3 whitespace-nowrap truncate">
+            <h3 className="text-[10px] sm:text-sm font-medium text-[var(--v2-text-primary)] mb-2 sm:mb-3 whitespace-nowrap truncate leading-normal pb-0.5">
               {CURRENT_FOCUS.name}
             </h3>
             <ul className="space-y-1.5">

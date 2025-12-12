@@ -26,7 +26,7 @@ export function AboutBento() {
             delay={0.1}
             className="order-1 md:order-none col-span-2 md:col-span-4 md:row-span-2 relative overflow-hidden group min-h-[300px] sm:min-h-[400px]"
           >
-            <div className="absolute inset-0 bg-gradient-to-t from-[var(--v2-bg-primary)] via-transparent to-transparent z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
             <SkeletonImage
               src="/assets/images/profile.jpg"
               alt="Nabil El Bajdi"

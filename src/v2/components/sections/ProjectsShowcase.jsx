@@ -14,7 +14,7 @@ function ProjectCard({ project, index }) {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="group relative"
     >
-      <div className="grid grid-cols-12 gap-3 sm:gap-6 py-6 sm:py-8 px-3 sm:px-4 -mx-3 sm:-mx-4 rounded-xl border-b border-[var(--v2-border)] transition-all duration-300 hover:bg-[var(--v2-accent)]/[0.03] hover:shadow-lg hover:shadow-[var(--v2-accent)]/[0.05]">
+      <div className="grid grid-cols-12 gap-3 sm:gap-6 py-6 sm:py-8 px-3 sm:px-4 -mx-3 sm:-mx-4 rounded-xl border-b border-[var(--v2-border)] transition-all duration-300 hover:bg-[var(--v2-accent)]/[0.08] hover:shadow-lg hover:shadow-[var(--v2-accent)]/[0.1]">
         <div className="col-span-12 sm:col-span-7 order-1 md:order-1 flex flex-col justify-center">
           <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
             <span className="mono text-xs text-[var(--v2-text-dimmed)]">{project.year}</span>
