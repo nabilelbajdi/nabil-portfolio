@@ -1,5 +1,5 @@
 /* ============================================
-   Portfolio V2 Styles - "Midnight Terminal"
+   Portfolio V2 Styles - Emerald/Amber Theme
    ============================================ */
 
 /* V2 CSS Variables */
@@ -14,17 +14,21 @@
   --v2-bg-tertiary: #18181b;
   --v2-bg-elevated: #1f1f23;
 
-  --v2-text-primary: #fafafa;
+  --v2-text-primary: #f0f0f5;
   --v2-text-secondary: #a1a1aa;
   --v2-text-muted: #52525b;
   --v2-text-dimmed: #3f3f46;
 
-  /* Accent - Cyan */
-  --v2-accent: #06b6d4;
-  --v2-accent-hover: #22d3ee;
-  --v2-accent-muted: #0891b2;
-  --v2-accent-glow: rgba(6, 182, 212, 0.15);
-  --v2-accent-glow-strong: rgba(6, 182, 212, 0.25);
+  /* Accent - Emerald */
+  --v2-accent: #1cb874;
+  --v2-accent-hover: #34d399;
+  --v2-accent-muted: #059669;
+  --v2-accent-glow: rgba(28, 184, 116, 0.15);
+  --v2-accent-glow-strong: rgba(28, 184, 116, 0.25);
+
+  /* Secondary Accent - Amber */
+  --v2-secondary: #f59e0b;
+  --v2-secondary-muted: #d97706;
 
   /* Borders */
   --v2-border: #27272a;
@@ -69,21 +73,24 @@
 
 /* V2 Light mode */
 .v2.light {
-  --v2-bg-primary: #f3f4f6;
+  --v2-bg-primary: #f5f7fa;
   --v2-bg-secondary: #ffffff;
   --v2-bg-tertiary: #ffffff;
   --v2-bg-elevated: #ffffff;
 
-  --v2-text-primary: #2f2f35;
+  --v2-text-primary: #1a1d24;
   --v2-text-secondary: #3f3f46;
   --v2-text-muted: #71717a;
   --v2-text-dimmed: #71717a;
 
-  --v2-accent: #0891b2;
-  --v2-accent-hover: #0e7490;
-  --v2-accent-muted: #06b6d4;
-  --v2-accent-glow: rgba(8, 145, 178, 0.1);
-  --v2-accent-glow-strong: rgba(8, 145, 178, 0.2);
+  --v2-accent: #059669;
+  --v2-accent-hover: #047857;
+  --v2-accent-muted: #10b981;
+  --v2-accent-glow: rgba(5, 150, 105, 0.1);
+  --v2-accent-glow-strong: rgba(5, 150, 105, 0.2);
+
+  --v2-secondary: #d97706;
+  --v2-secondary-muted: #b45309;
 
   --v2-border: #e4e4e7;
   --v2-border-hover: #d4d4d8;
@@ -120,7 +127,6 @@
 }
 
 .v2 h1 {
-  font-size: clamp(2.5rem, 8vw, 5rem);
   font-weight: 900;
   letter-spacing: -0.03em;
 }
@@ -149,9 +155,30 @@
    Utility Classes
    ============================================ */
 
+/* Link underline animation */
+.v2 .link-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.v2 .link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--v2-accent);
+  transition: width var(--v2-transition-normal);
+}
+
+.v2 .link-underline:hover::after {
+  width: 100%;
+}
+
 /* Text utilities */
 .v2 .text-gradient {
-  background: linear-gradient(135deg, var(--v2-accent) 0%, #a855f7 100%);
+  background: linear-gradient(135deg, var(--v2-accent) 0%, var(--v2-secondary) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -202,7 +229,7 @@
   border: 1px solid transparent;
   background:
     linear-gradient(var(--v2-bg-secondary), var(--v2-bg-secondary)) padding-box,
-    linear-gradient(135deg, var(--v2-accent), #a855f7) border-box;
+    linear-gradient(135deg, var(--v2-accent), var(--v2-secondary)) border-box;
 }
 
 /* ============================================
@@ -429,15 +456,15 @@
   position: relative;
   width: 90%;
   max-width: 500px;
-  background: linear-gradient(180deg, #1a1a2e 0%, #0f0f1a 100%);
-  border: 3px solid #3a3a5c;
+  background: linear-gradient(180deg, #0f0f1a 0%, #07070a 100%);
+  border: 1px solid var(--v2-border);
   border-radius: 8px;
   padding: 24px;
   box-shadow:
-    0 0 0 1px #0a0a12,
-    0 0 60px rgba(6, 182, 212, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    0 0 0 1px #050508,
+    0 0 60px rgba(28, 184, 116, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  font-family: var(--v2-font-mono);
   overflow: hidden;
 }
 
@@ -458,7 +485,7 @@
 .crt-glow {
   position: absolute;
   inset: -20px;
-  background: radial-gradient(ellipse at 50% 0%, rgba(6, 182, 212, 0.08) 0%, transparent 60%);
+  background: radial-gradient(ellipse at 50% 0%, rgba(28, 184, 116, 0.05) 0%, transparent 60%);
   pointer-events: none;
   z-index: 0;
 }
@@ -469,10 +496,10 @@
   z-index: 5;
   font-size: 1.5rem;
   font-weight: 700;
-  color: #06b6d4;
+  color: var(--v2-accent);
   text-align: center;
   margin-bottom: 20px;
-  text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+  text-shadow: 0 0 10px rgba(28, 184, 116, 0.3);
   letter-spacing: 0.1em;
 }
 
@@ -498,7 +525,7 @@
 }
 
 .glitch::after {
-  color: #22d3ee;
+  color: var(--v2-secondary);
   animation: glitch-after 4s ease-in-out infinite;
 }
 
@@ -625,9 +652,9 @@
 .loading-text {
   font-size: 1.2rem;
   font-weight: 700;
-  color: #06b6d4;
+  color: var(--v2-accent);
   letter-spacing: 0.2em;
-  text-shadow: 0 0 20px rgba(6, 182, 212, 0.8);
+  text-shadow: 0 0 20px rgba(28, 184, 116, 0.5);
 }
 
 .loading-dots::after {
@@ -692,8 +719,8 @@
 /* Individual save slot */
 .save-slot {
   position: relative;
-  background: linear-gradient(180deg, #1f1f35 0%, #15152a 100%);
-  border: 2px solid #2a2a45;
+  background: linear-gradient(180deg, #15152a 0%, #0a0a0b 100%);
+  border: 1px solid var(--v2-border);
   border-radius: 6px;
   padding: 12px 16px;
   cursor: pointer;
@@ -701,20 +728,24 @@
 }
 
 .save-slot-filled:hover {
-  border-color: #06b6d4;
-  background: linear-gradient(180deg, #252545 0%, #1a1a35 100%);
+  border-color: var(--v2-accent);
+  background: linear-gradient(180deg, #1a1a35 0%, #0f0f1a 100%);
 }
 
 .save-slot-selected {
-  border-color: #06b6d4;
+  border-color: var(--v2-accent);
   box-shadow:
-    0 0 15px rgba(6, 182, 212, 0.3),
-    inset 0 0 20px rgba(6, 182, 212, 0.05);
+    0 0 15px rgba(28, 184, 116, 0.2),
+    inset 0 0 20px rgba(28, 184, 116, 0.03);
 }
 
 .save-slot-empty {
-  opacity: 0.5;
-  cursor: not-allowed;
+  opacity: 0.4;
+  cursor: pointer;
+}
+
+.save-slot-empty.save-slot-selected {
+  opacity: 0.8;
 }
 
 /* Slot header */
@@ -727,7 +758,7 @@
 
 .save-slot-number {
   font-size: 0.7rem;
-  color: #6b6b8a;
+  color: var(--v2-text-muted);
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
@@ -771,23 +802,23 @@
 .progress-bar {
   flex: 1;
   height: 8px;
-  background: #1a1a30;
+  background: #0a0a0b;
   border-radius: 4px;
   overflow: hidden;
-  border: 1px solid #2a2a45;
+  border: 1px solid var(--v2-border);
 }
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #06b6d4 0%, #22d3ee 100%);
+  background: linear-gradient(90deg, var(--v2-accent) 0%, var(--v2-secondary) 100%);
   border-radius: 3px;
   transition: width 0.3s ease;
-  box-shadow: 0 0 8px rgba(6, 182, 212, 0.5);
+  box-shadow: 0 0 8px rgba(28, 184, 116, 0.3);
 }
 
 .progress-text {
   font-size: 0.7rem;
-  color: #06b6d4;
+  color: var(--v2-secondary);
   min-width: 35px;
   text-align: right;
 }
@@ -816,8 +847,8 @@
   align-items: center;
   gap: 8px;
   padding: 8px 10px;
-  background: linear-gradient(180deg, #3a3a5c 0%, #2a2a45 100%);
-  border-bottom: 1px solid #4a4a6c;
+  background: linear-gradient(180deg, var(--v2-bg-tertiary) 0%, var(--v2-bg-secondary) 100%);
+  border-bottom: 1px solid var(--v2-border);
 }
 
 .chrome-dots {
@@ -855,7 +886,7 @@
 .nav-icon {
   width: 12px;
   height: 12px;
-  color: #6b6b8a;
+  color: var(--v2-text-muted);
 }
 
 .nav-icon:hover {
@@ -868,17 +899,17 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  background: #1f1f35;
+  background: var(--v2-bg-tertiary);
   border-radius: 4px;
   padding: 4px 8px;
   font-size: 0.6rem;
-  color: #6b6b8a;
+  color: var(--v2-text-muted);
 }
 
 .lock-icon {
   width: 10px;
   height: 10px;
-  color: #6b6b8a;
+  color: var(--v2-text-muted);
   flex-shrink: 0;
 }
 
@@ -913,7 +944,7 @@
 .browser-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(6, 182, 212, 0.15);
+  background: rgba(28, 184, 116, 0.1);
   backdrop-filter: blur(2px);
   display: flex;
   align-items: center;
@@ -956,7 +987,7 @@
 
 .info-meta {
   font-size: 0.65rem;
-  color: #6b6b8a;
+  color: var(--v2-text-muted);
 }
 
 .info-right {
@@ -968,22 +999,22 @@
 .mini-progress {
   width: 60px;
   height: 6px;
-  background: #1a1a30;
+  background: #0a0a0b;
   border-radius: 3px;
   overflow: hidden;
-  border: 1px solid #2a2a45;
+  border: 1px solid var(--v2-border);
 }
 
 .mini-progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #06b6d4 0%, #22d3ee 100%);
+  background: linear-gradient(90deg, var(--v2-accent) 0%, var(--v2-secondary) 100%);
   border-radius: 2px;
-  box-shadow: 0 0 6px rgba(6, 182, 212, 0.4);
+  box-shadow: 0 0 6px rgba(28, 184, 116, 0.2);
 }
 
 .info-percent {
   font-size: 0.7rem;
-  color: #06b6d4;
+  color: var(--v2-accent);
   font-weight: 600;
 }
 
@@ -995,7 +1026,7 @@
   gap: 8px;
   height: 50px;
   font-size: 0.85rem;
-  color: #4a4a6a;
+  color: var(--v2-text-dimmed);
   letter-spacing: 0.2em;
 }
 
@@ -1016,12 +1047,12 @@
 .compact-title {
   font-size: 0.9rem;
   font-weight: 600;
-  color: #a0a0c0;
+  color: var(--v2-text-secondary);
 }
 
 .compact-meta {
   font-size: 0.65rem;
-  color: #6b6b8a;
+  color: var(--v2-text-muted);
 }
 
 .compact-right {
@@ -1031,7 +1062,7 @@
 
 .compact-percent {
   font-size: 0.75rem;
-  color: #06b6d4;
+  color: var(--v2-accent);
   font-weight: 600;
 }
 
@@ -1042,9 +1073,9 @@
   top: 50%;
   transform: translateY(-50%);
   font-size: 1rem;
-  color: #06b6d4;
+  color: var(--v2-accent);
   animation: cursor-bounce 0.5s ease-in-out infinite alternate;
-  text-shadow: 0 0 10px rgba(6, 182, 212, 0.8);
+  text-shadow: 0 0 10px rgba(28, 184, 116, 0.5);
 }
 
 @keyframes cursor-bounce {
@@ -1066,7 +1097,7 @@
   gap: 24px;
   margin-top: 20px;
   padding-top: 16px;
-  border-top: 1px solid #2a2a45;
+  border-top: 1px solid var(--v2-border);
 }
 
 .control-hint {
@@ -1074,15 +1105,15 @@
   align-items: center;
   gap: 6px;
   font-size: 0.7rem;
-  color: #6b6b8a;
+  color: var(--v2-text-muted);
 }
 
 .control-hint .key {
-  background: #2a2a45;
-  color: #a0a0c0;
+  background: var(--v2-bg-tertiary);
+  color: var(--v2-text-secondary);
   padding: 2px 6px;
   border-radius: 3px;
-  border: 1px solid #3a3a5c;
+  border: 1px solid var(--v2-border);
   font-size: 0.65rem;
 }
 
@@ -1095,7 +1126,7 @@
   padding: 4px;
   background: transparent;
   border: none;
-  color: #6b6b8a;
+  color: var(--v2-text-muted);
   font-size: 1.1rem;
   cursor: pointer;
   transition: color 0.15s ease;
@@ -1145,7 +1176,6 @@
 
   /* Compact Typography */
   .v2 h1 {
-    font-size: clamp(2rem, 10vw, 3rem);
     line-height: 1.1;
   }
 

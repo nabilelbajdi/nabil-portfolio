@@ -1,11 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<svg
+  width="32"
+  height="32"
+  viewBox="0 0 24 24"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  style="color: #1cb874;"
+>
   <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#06b6d4"/>
-      <stop offset="100%" stop-color="#a855f7"/>
+    <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1cb874" />
+      <stop offset="100%" stop-color="#f59e0b" />
     </linearGradient>
   </defs>
-  <rect width="32" height="32" rx="8" fill="#0a0a1a"/>
-  <text x="16" y="23" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="url(#grad)" text-anchor="middle">N</text>
+  <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.3" />
+  <circle cx="12" cy="12" r="7" stroke="currentColor" stroke-width="1.5" opacity="0.5" />
+  <text x="12" y="16" text-anchor="middle" fill="url(#iconGradient)" font-size="10" font-family="Arial, sans-serif" font-weight="bold">N</text>
+  <path d="M12 2v2M12 20v2M2 12h2M20 12h2" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.4" />
 </svg>
-
