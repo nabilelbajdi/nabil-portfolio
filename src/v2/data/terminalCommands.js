@@ -1,6 +1,5 @@
 import {
     getSocialLinksForTerminal,
-    getContactTerminalOutput,
     getWhoamiTerminalOutput
 } from '../../data/socialLinks';
 
@@ -9,6 +8,14 @@ import {
  * Uses centralized data from src/data/
  */
 export const COMMANDS = {
+    welcome: {
+        output: [
+            'Welcome to my interactive portfolio!',
+            '',
+            'Type "help" to see available commands.',
+            '',
+        ],
+    },
     help: {
         output: [
             'Available commands:',
@@ -16,11 +23,8 @@ export const COMMANDS = {
             '  whoami      → Learn about me',
             '  skills      → View my tech stack',
             '  projects    → See my work',
-            '  contact     → Get in touch',
             '  social      → Find me online',
             '  resume      → Download my resume',
-            '  theme       → Toggle light/dark mode',
-            '  clear       → Clear terminal',
             '',
         ],
     },
@@ -57,9 +61,7 @@ export const COMMANDS = {
             '→ Scroll down to explore each project',
         ],
     },
-    contact: {
-        output: getContactTerminalOutput(),
-    },
+
     social: {
         output: [
             'Find me online:',

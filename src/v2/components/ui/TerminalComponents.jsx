@@ -12,7 +12,7 @@ export function HistoryLine({ entry }) {
             animate={{ opacity: 1, y: 0 }}
             className="mb-3"
         >
-            <TerminalPrompt>{entry.command}</TerminalPrompt>
+            {!entry.noPrompt && <TerminalPrompt>{entry.command}</TerminalPrompt>}
             <TerminalOutput className="mt-1 whitespace-pre-wrap">
                 {entry.output.map((line, i) => (
                     <div key={i}>{line}</div>

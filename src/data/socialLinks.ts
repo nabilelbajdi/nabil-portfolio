@@ -67,7 +67,7 @@ export const PERSONAL_INFO: PersonalInfo = {
 /**
  * Get social links for terminal display
  */
-export const getSocialLinksForTerminal = () => 
+export const getSocialLinksForTerminal = () =>
   SOCIAL_LINKS.map(link => ({
     label: link.name,
     url: link.url,
@@ -91,10 +91,10 @@ export const getContactTerminalOutput = (): string[] => [
  * Get whoami info for terminal display  
  */
 export const getWhoamiTerminalOutput = (): string[] => [
-  '┌─────────────────────────────────────────┐',
-  `│  ${PERSONAL_INFO.name.padEnd(37)}│`,
-  `│  ${PERSONAL_INFO.title} & Full-Stack Engineer     │`,
-  '└─────────────────────────────────────────┘',
+  '┌──────────────────────────────────────────┐',
+  `│  ${PERSONAL_INFO.name.padEnd(40)}│`,
+  `│  ${(PERSONAL_INFO.title + ' & Full-Stack Engineer').padEnd(40)}│`,
+  '└──────────────────────────────────────────┘',
   '',
   'I build intelligent systems that actually work.',
   'From DevOps pipelines to AI agents, I like',
