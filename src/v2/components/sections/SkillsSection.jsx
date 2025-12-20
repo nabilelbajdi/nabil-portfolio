@@ -45,7 +45,7 @@ export function SkillsSection() {
         >
           <span className="text-[var(--v2-accent)] mono text-sm mb-2 block">// skills</span>
           <h2 className="text-3xl sm:text-4xl font-bold text-[var(--v2-text-primary)] mb-4">
-            Tech Stack
+            Tech <span className="text-gradient">Stack</span>
           </h2>
           <p className="text-[var(--v2-text-secondary)] max-w-2xl mx-auto md:mx-0">
             Tools and technologies I use to build full-stack applications and AI systems.

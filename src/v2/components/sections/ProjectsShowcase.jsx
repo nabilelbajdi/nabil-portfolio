@@ -105,7 +105,7 @@ export function ProjectsShowcase() {
         >
           <span className="text-[var(--v2-accent)] mono text-sm mb-2 block">// projects</span>
           <h2 className="text-3xl sm:text-4xl font-bold text-[var(--v2-text-primary)] mb-4">
-            Selected Work
+            Selected <span className="text-gradient">Work</span>
           </h2>
           <p className="text-[var(--v2-text-secondary)] max-w-2xl mx-auto md:mx-0">
             Projects built with thoughtful code and clean architecture. Each one taught me something new.

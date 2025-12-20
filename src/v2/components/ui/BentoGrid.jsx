@@ -29,7 +29,7 @@ export function BentoCard({
   const variantClasses = {
     default: 'bg-[var(--v2-bg-secondary)] border border-[var(--v2-border)]',
     glass: 'bg-[var(--v2-bg-secondary)]/50 backdrop-blur-xl border border-[var(--v2-border)]/50',
-    gradient: 'bg-gradient-to-br from-[var(--v2-accent)]/10 to-purple-500/10 border border-[var(--v2-accent)]/20',
+    gradient: 'bg-gradient-to-br from-[var(--v2-accent)]/10 to-amber-500/10 border border-[var(--v2-accent)]/20',
     outline: 'bg-transparent border border-[var(--v2-border)]',
     solid: 'bg-[var(--v2-bg-tertiary)] border border-[var(--v2-border)]',
   };

@@ -15,7 +15,7 @@ export function AboutBento() {
         >
           <span className="text-[var(--v2-accent)] mono text-sm mb-2 block">// about</span>
           <h2 className="text-3xl sm:text-4xl font-bold text-[var(--v2-text-primary)]">
-            Get to know me
+            Get to know <span className="text-gradient">me</span>
           </h2>
         </motion.div>
 
@@ -50,7 +50,7 @@ export function AboutBento() {
 
           <BentoCard variant="default" delay={0.15} className="order-2 md:order-none col-span-2 md:col-span-5 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--v2-accent)]/5 rounded-full blur-2xl" />
-            <div className="absolute bottom-0 left-0 w-24 h-24 bg-purple-500/5 rounded-full blur-2xl" />
+            <div className="absolute bottom-0 left-0 w-24 h-24 bg-amber-500/5 rounded-full blur-2xl" />
             <div className="relative h-full flex flex-col justify-center">
               <div className="mono text-xs text-[var(--v2-text-dimmed)] mb-3 sm:mb-4">{'<philosophy>'}</div>
               <h3 className="text-xl sm:text-2xl font-bold text-[var(--v2-text-primary)] leading-tight mb-2">
@@ -61,8 +61,8 @@ export function AboutBento() {
                 </span>
                 {' '}Meets{' '}
                 <span className="relative inline-block">
-                  <span className="text-purple-400">Creativity</span>
-                  <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-purple-400/30" />
+                  <span className="text-amber-400">Creativity</span>
+                  <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-amber-400/30" />
                 </span>
               </h3>
               <div className="mono text-xs text-[var(--v2-text-dimmed)] mt-3 sm:mt-4">{'</philosophy>'}</div>
@@ -71,7 +71,7 @@ export function AboutBento() {
 
           <BentoCard variant="default" delay={0.2} className="order-3 md:order-none col-span-1 md:col-span-3 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-24 h-24 bg-[var(--v2-accent)]/5 rounded-full blur-2xl" />
-            <div className="absolute bottom-0 left-0 w-20 h-20 bg-purple-500/5 rounded-full blur-2xl" />
+            <div className="absolute bottom-0 left-0 w-20 h-20 bg-amber-500/5 rounded-full blur-2xl" />
             <div className="relative h-full flex flex-col gap-2 md:gap-0 md:justify-between">
               <div className="mono text-[10px] sm:text-xs text-[var(--v2-text-dimmed)]">// off_duty</div>
               <div className="space-y-1 mt-3 sm:mt-4">
@@ -84,13 +84,13 @@ export function AboutBento() {
 
           <BentoCard variant="default" delay={0.25} className="order-5 md:order-none col-span-2 md:col-span-8 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--v2-accent)]/5 rounded-full blur-2xl" />
-            <div className="absolute bottom-0 left-0 w-24 h-24 bg-purple-500/5 rounded-full blur-2xl" />
+            <div className="absolute bottom-0 left-0 w-24 h-24 bg-amber-500/5 rounded-full blur-2xl" />
             <div className="relative">
               <BentoText className="text-base leading-relaxed">
                 I'm a developer who loves building things that work well and feel right to use.
                 I started out in{' '}
                 <span className="text-[var(--v2-accent)] font-medium">DevOps</span>, spending six months
-                at <span className="text-purple-400 font-medium">Scila</span> automating CI/CD pipelines
+                at <span className="text-amber-400 font-medium">Scila</span> automating CI/CD pipelines
                 with <span className="text-[var(--v2-text-primary)] font-medium">Jenkins</span>, <span className="text-[var(--v2-text-primary)] font-medium">Ansible</span>, and <span className="text-[var(--v2-text-primary)] font-medium">Docker</span>.
                 That taught me how to think in systems and care about reliability.
               </BentoText>
@@ -99,7 +99,7 @@ export function AboutBento() {
                   Now I'm studying{' '}
                   <span className="text-[var(--v2-accent)] font-medium">AI Engineering</span> at
                   Nackademin and interning at{' '}
-                  <span className="text-purple-400 font-medium">Capgemini</span>, where I'm
+                  <span className="text-amber-400 font-medium">Capgemini</span>, where I'm
                   working on <span className="text-[var(--v2-accent)] font-medium">AI agent systems</span>. On the side, I build full-stack projects like GameGloom, and this portfolio.
                 </BentoText>
               </div>
@@ -131,7 +131,7 @@ export function AboutBento() {
           </BentoCard>
 
           <BentoCard variant="solid" delay={0.35} className="order-4 md:order-none col-span-1 md:col-span-4 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[var(--v2-accent)] via-purple-500 to-purple-400" />
+            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[var(--v2-accent)] via-amber-500 to-amber-400" />
             <div className="flex items-baseline gap-2 mb-4 mt-1">
               <span className="text-xs font-medium text-[var(--v2-text-muted)] uppercase tracking-wider">Building</span>
               <span className="flex-1 h-px bg-[var(--v2-border)]" />
@@ -156,7 +156,7 @@ export function AboutBento() {
             </a>
           </BentoCard>
           <BentoCard variant="solid" delay={0.4} className="order-7 md:order-none col-span-2 md:col-span-4 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[var(--v2-accent)] via-purple-500 to-purple-400" />
+            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[var(--v2-accent)] via-amber-500 to-amber-400" />
             <div className="flex items-baseline gap-2 mb-4 mt-1">
               <span className="text-xs font-medium text-[var(--v2-text-muted)] uppercase tracking-wider">Currently Learning</span>
               <span className="flex-1 h-px bg-[var(--v2-border)]" />
