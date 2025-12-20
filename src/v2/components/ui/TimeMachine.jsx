@@ -29,10 +29,10 @@ function SaveSlot({ slot, isSelected, onSelect, onLoad }) {
   return (
     <motion.div
       layout
-      onClick={() => !slot.isEmpty && onSelect(slot.id)}
+      onClick={() => onSelect(slot.id)}
       onDoubleClick={() => !slot.isEmpty && onLoad(slot)}
-      whileHover={!slot.isEmpty ? { scale: 1.01 } : {}}
-      whileTap={!slot.isEmpty ? { scale: 0.99 } : {}}
+      whileHover={{ scale: 1.01 }}
+      whileTap={{ scale: 0.99 }}
       className={`
         save-slot
         ${isSelected ? 'save-slot-selected' : ''}
@@ -152,7 +152,7 @@ function SaveSlot({ slot, isSelected, onSelect, onLoad }) {
 
       {/* Selection indicator */}
       <AnimatePresence>
-        {isSelected && !slot.isEmpty && (
+        {isSelected && (
           <motion.div
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
@@ -196,20 +196,17 @@ export function TimeMachine() {
     if (!isOpen || isLoading) return;
 
     const handleKeyDown = (e) => {
-      const filledSlots = SAVE_SLOTS.filter(s => !s.isEmpty);
-      const currentIndex = filledSlots.findIndex(s => s.id === selectedSlot);
-
       switch (e.key) {
         case 'ArrowUp':
           e.preventDefault();
-          if (currentIndex > 0) {
-            setSelectedSlot(filledSlots[currentIndex - 1].id);
+          if (selectedSlot > 1) {
+            setSelectedSlot(prev => prev - 1);
           }
           break;
         case 'ArrowDown':
           e.preventDefault();
-          if (currentIndex < filledSlots.length - 1) {
-            setSelectedSlot(filledSlots[currentIndex + 1].id);
+          if (selectedSlot < SAVE_SLOTS.length) {
+            setSelectedSlot(prev => prev + 1);
           }
           break;
         case 'Enter':
@@ -252,13 +249,12 @@ export function TimeMachine() {
     }
   };
 
-  // Click handler for slots - single click on selected slot loads it
+  // Click handler for slots - single click selects, click on already selected slot loads it
   const handleSlotClick = (slot) => {
-    if (slot.isEmpty) return;
-
     if (selectedSlot === slot.id) {
-      // Already selected, load it
-      handleLoadSlot(slot);
+      if (!slot.isEmpty) {
+        handleLoadSlot(slot);
+      }
     } else {
       // Select this slot
       setSelectedSlot(slot.id);
