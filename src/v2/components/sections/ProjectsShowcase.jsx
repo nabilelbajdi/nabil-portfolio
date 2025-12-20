@@ -1,136 +1,212 @@
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { getFeaturedProjects } from '../../../data/projects';
 import { SkeletonImage } from '../ui/SkeletonImage';
+import { ImageLightbox } from '../ui/ImageLightbox';
 import { trackProjectClick } from '../../../lib/analytics';
+import { ExternalLink, Github, Clock, Lightbulb } from 'lucide-react';
 
-const projects = getFeaturedProjects();
+const allProjects = getFeaturedProjects();
+
+// Extract unique tags for filter buttons
+const allTags = [...new Set(allProjects.flatMap(p => p.tags))].slice(0, 6);
 
 function ProjectCard({ project, index }) {
-  return (
-    <motion.article
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group relative"
-    >
-      <div className="grid grid-cols-12 gap-3 sm:gap-6 py-6 sm:py-8 px-3 sm:px-4 -mx-3 sm:-mx-4 rounded-xl border-b border-[var(--v2-border)] transition-all duration-300 hover:bg-[var(--v2-accent)]/[0.08] hover:shadow-lg hover:shadow-[var(--v2-accent)]/[0.1]">
-        <div className="col-span-12 sm:col-span-7 order-1 md:order-1 flex flex-col justify-center">
-          <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
-            <span className="mono text-xs text-[var(--v2-text-dimmed)]">{project.year}</span>
-            {project.status === 'wip' && (
-              <span className="px-2 py-0.5 text-xs mono bg-[var(--v2-accent)]/10 text-[var(--v2-accent)] rounded">
-                IN PROGRESS
-              </span>
-            )}
-          </div>
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
-          <h3 className="text-xl sm:text-2xl font-bold text-[var(--v2-text-primary)] mb-2 sm:mb-3 group-hover:text-[var(--v2-accent)] transition-colors">
+  return (
+    <>
+      <motion.article
+        layout="position"
+        initial={{ opacity: 0, scale: 0.97 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.97 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="group flex flex-col h-full bg-[var(--v2-bg-secondary)] border border-[var(--v2-border)] rounded-xl overflow-hidden hover:border-[var(--v2-accent)]/50 hover:shadow-lg hover:shadow-[var(--v2-accent)]/5 transition-all duration-300"
+      >
+        {/* Image */}
+        <button
+          onClick={() => setLightboxOpen(true)}
+          className="block relative aspect-video w-full overflow-hidden bg-[var(--v2-bg-tertiary)] cursor-zoom-in text-left"
+        >
+          <SkeletonImage
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            style={{ objectPosition: 'left center' }}
+          />
+          {/* Status badge overlay */}
+          {project.status === 'wip' && (
+            <div className="absolute top-3 right-3">
+              <span className="inline-flex items-center gap-1 px-2 py-1 text-xs mono bg-[var(--v2-accent)]/90 text-white rounded-full backdrop-blur-sm">
+                <Clock className="w-3 h-3" />
+                In Progress
+              </span>
+            </div>
+          )}
+          {/* Year badge */}
+          <div className="absolute bottom-3 left-3">
+            <span className="px-2 py-1 text-xs mono bg-black/60 text-white/80 rounded backdrop-blur-sm">
+              {project.year}
+            </span>
+          </div>
+        </button>
+
+        {/* Content */}
+        <div className="flex flex-col flex-grow p-5">
+          {/* Title */}
+          <h3 className="text-lg font-bold text-[var(--v2-text-primary)] mb-2 group-hover:text-[var(--v2-accent)] transition-colors">
             {project.title}
           </h3>
 
-          <p className="text-xs sm:text-base text-[var(--v2-text-secondary)] leading-relaxed mb-3 sm:mb-4 pr-1 sm:pr-0">
+          {/* Description */}
+          <p className="text-sm text-[var(--v2-text-secondary)] leading-relaxed mb-4">
             {project.description}
           </p>
 
-          <div className="flex flex-wrap gap-2 mb-4 sm:mb-5">
+          {/* Tech stack */}
+          <div className="flex flex-wrap gap-1.5 mb-4">
             {project.tags.map((tag) => (
               <span
                 key={tag}
-                className="px-2 py-1 text-xs mono text-[var(--v2-accent)]/70 bg-[var(--v2-bg-tertiary)] rounded border border-[var(--v2-border)]"
+                className="px-2 py-0.5 text-[10px] mono text-[var(--v2-accent)] bg-[var(--v2-accent)]/10 rounded"
               >
                 {tag}
               </span>
             ))}
           </div>
 
-          <div className="flex items-center gap-3 sm:gap-4">
-            {project.demoLink && (
-              <a
-                href={project.demoLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`View ${project.title} live demo`}
-                onClick={() => trackProjectClick(project.title, 'demo')}
-                className="inline-flex items-center gap-2 px-4 py-2 text-sm text-[var(--v2-text-primary)] hover:text-[var(--v2-accent)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--v2-accent)]/50 rounded"
-              >
-                <span>View Project</span>
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </a>
-            )}
+          {/* Learned callout */}
+          <div className="mb-4 p-3 rounded-lg bg-[var(--v2-accent)]/5 border border-[var(--v2-accent)]/10">
+            <p className="text-xs text-[var(--v2-text-secondary)] leading-relaxed">
+              <Lightbulb className="w-3 h-3 inline-block mr-1 text-amber-500 align-text-bottom" />
+              <span className="font-semibold text-amber-500">Learned:</span>{' '}
+              {project.learned}
+            </p>
+          </div>
+
+          {/* Spacer */}
+          <div className="flex-grow" />
+
+          {/* Links */}
+          <div className="flex items-center gap-4 pt-2 border-t border-[var(--v2-border)]">
             {project.codeLink && (
               <a
                 href={project.codeLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`View ${project.title} source code on GitHub`}
                 onClick={() => trackProjectClick(project.title, 'source')}
-                className="inline-flex items-center gap-2 px-4 py-2 text-sm text-[var(--v2-text-muted)] hover:text-[var(--v2-text-primary)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--v2-accent)]/50 rounded"
+                className="inline-flex items-center gap-1.5 text-sm text-[var(--v2-text-muted)] hover:text-[var(--v2-text-primary)] transition-colors"
               >
-                <span>Source</span>
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
-                </svg>
+                <Github className="w-4 h-4" />
+                Code
+              </a>
+            )}
+            {project.demoLink && (
+              <a
+                href={project.demoLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackProjectClick(project.title, 'demo')}
+                className="inline-flex items-center gap-1.5 text-sm text-[var(--v2-accent)] hover:text-[var(--v2-accent-hover)] transition-colors"
+              >
+                <ExternalLink className="w-4 h-4" />
+                Live
               </a>
             )}
           </div>
         </div>
+      </motion.article>
 
-        <div className="hidden sm:flex sm:col-span-5 order-2 md:order-2 flex-col justify-center">
-          <div className="relative aspect-video w-full rounded-lg overflow-hidden bg-[var(--v2-bg-tertiary)] border border-[var(--v2-border)] group-hover:scale-[1.02] transition-transform duration-300">
-            <SkeletonImage
-              src={project.image}
-              alt={project.title}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </div>
-      </div>
-    </motion.article>
+      {/* Lightbox */}
+      <ImageLightbox
+        isOpen={lightboxOpen}
+        onClose={() => setLightboxOpen(false)}
+        src={project.image}
+        alt={project.title}
+      />
+    </>
   );
 }
 
 export function ProjectsShowcase() {
+  const [activeFilter, setActiveFilter] = useState(null);
+
+  const filteredProjects = activeFilter
+    ? allProjects.filter((p) => p.tags.includes(activeFilter))
+    : allProjects;
+
   return (
     <section id="projects" className="py-24 px-4 sm:px-6">
       <div className="max-w-5xl mx-auto">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-12 text-center md:text-left"
+          className="mb-8"
         >
           <span className="text-[var(--v2-accent)] mono text-sm mb-2 block">// projects</span>
           <h2 className="text-3xl sm:text-4xl font-bold text-[var(--v2-text-primary)] mb-4">
-            Selected <span className="text-gradient">Work</span>
+            Featured <span className="text-gradient">Projects</span>
           </h2>
-          <p className="text-[var(--v2-text-secondary)] max-w-2xl mx-auto md:mx-0">
-            Projects built with thoughtful code and clean architecture. Each one taught me something new.
+          <p className="text-[var(--v2-text-secondary)] max-w-2xl">
+            A selection of things I've built. From full-stack platforms to data visualizations.
           </p>
         </motion.div>
 
-        <div className="border-t border-[var(--v2-border)]">
-          {projects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
-          ))}
-        </div>
-
+        {/* Filter tags */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mt-8 text-center"
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="flex flex-wrap gap-2 mb-10"
         >
-          <p className="text-sm text-[var(--v2-text-dimmed)] mono">
-            More projects coming soon...
-          </p>
+          <button
+            onClick={() => setActiveFilter(null)}
+            className={`px-2.5 py-1 text-xs rounded border transition-all cursor-pointer ${activeFilter === null
+              ? 'bg-[var(--v2-accent)] text-white border-[var(--v2-accent)]'
+              : 'bg-transparent text-[var(--v2-text-secondary)] border-[var(--v2-border)] hover:border-[var(--v2-accent)]/50'
+              }`}
+          >
+            All
+          </button>
+          {allTags.map((tag) => (
+            <button
+              key={tag}
+              onClick={() => setActiveFilter(tag)}
+              className={`px-2.5 py-1 text-xs rounded border transition-all cursor-pointer ${activeFilter === tag
+                ? 'bg-[var(--v2-accent)] text-white border-[var(--v2-accent)]'
+                : 'bg-transparent text-[var(--v2-text-secondary)] border-[var(--v2-border)] hover:border-[var(--v2-accent)]/50'
+                }`}
+            >
+              {tag}
+            </button>
+          ))}
         </motion.div>
+
+        {/* Project grid */}
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <AnimatePresence mode="sync">
+            {filteredProjects.map((project, index) => (
+              <ProjectCard key={project.id} project={project} index={index} />
+            ))}
+          </AnimatePresence>
+        </motion.div>
+
+        {/* Empty state */}
+        {filteredProjects.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-12"
+          >
+            <p className="text-[var(--v2-text-muted)]">No projects match this filter.</p>
+          </motion.div>
+        )}
       </div>
     </section>
   );
 }
-

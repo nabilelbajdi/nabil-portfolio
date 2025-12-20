@@ -15,13 +15,14 @@ export interface Project {
   status: "wip" | "completed" | "youarehere";
   year: string;
   featured: boolean;
+  learned: string;
 }
 
 export const PROJECTS: Project[] = [
   {
     id: 1,
     title: "GameGloom",
-    description: "Full-stack gaming platform with AI-powered recommendations. Discover games based on your preferences, track your collection, and explore detailed game information.",
+    description: "Full-stack gaming platform with AI-powered recommendations. Track your collection and discover new favorites.",
     tags: ["Python", "React", "FastAPI", "PostgreSQL", "AWS"],
     image: "/assets/images/screenshots/gamegloom/gamegloom-gamepage.jpg",
     imagePosition: "110% center",
@@ -30,6 +31,7 @@ export const PROJECTS: Project[] = [
     status: "wip",
     year: "2025",
     featured: true,
+    learned: "Building scalable APIs with FastAPI, recommendation systems, and PostgreSQL performance tuning.",
   },
   {
     id: 2,
@@ -43,11 +45,12 @@ export const PROJECTS: Project[] = [
     status: "completed",
     year: "2025",
     featured: true,
+    learned: "Data storytelling, Streamlit deployment, and creating accessible visualizations.",
   },
-    {
+  {
     id: 3,
     title: "Portfolio v1",
-    description: "The first version of this portfolio. Clean, minimal design with smooth animations and a DevOps resume page. Try the Time Machine in the bottom right!",
+    description: "The first version of this portfolio. Clean, minimal design with smooth animations. Try the Time Machine in the bottom right!",
     tags: ["React", "Vite", "Tailwind CSS", "Framer Motion"],
     image: "/assets/images/portfolio-v1.png",
     imagePosition: "center center",
@@ -56,6 +59,7 @@ export const PROJECTS: Project[] = [
     status: "completed",
     year: "2025",
     featured: true,
+    learned: "Framer Motion animations, React component architecture, responsive design, and theme switching.",
   },
   {
     id: 4,
@@ -68,7 +72,8 @@ export const PROJECTS: Project[] = [
     codeLink: "https://github.com/nabilelbajdi/resume",
     status: "completed",
     year: "2024",
-    featured: true,
+    featured: false,
+    learned: "CI/CD pipelines, Docker workflows, and GitHub Actions automation.",
   },
 ];
 
