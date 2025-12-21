@@ -68,16 +68,16 @@ export function Header({ onOpenCommandPalette }) {
           >
             {/* Logo Icon */}
             <svg
-              width="32"
-              height="32"
+              width="36"
+              height="36"
               viewBox="0 0 24 24"
               fill="none"
               className="text-[var(--v2-accent)] group-hover:scale-110 transition-transform"
             >
               <defs>
                 <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#1cb874" />
-                  <stop offset="100%" stopColor="#f59e0b" />
+                  <stop offset="0%" stopColor="#06b6d4" />
+                  <stop offset="100%" stopColor="#a855f7" />
                 </linearGradient>
               </defs>
               <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" className="opacity-30" />
@@ -85,7 +85,6 @@ export function Header({ onOpenCommandPalette }) {
               <text x="12" y="15.5" textAnchor="middle" fill="url(#iconGradient)" fontSize="10" fontFamily="Arial, sans-serif" fontWeight="bold">N</text>
               <path d="M12 2v2M12 20v2M2 12h2M20 12h2" stroke="currentColor" strokeWidth="1" strokeLinecap="round" className="opacity-40" />
             </svg>
-            <span className="ml-3 font-semibold text-lg tracking-tight text-[var(--v2-text-primary)] group-hover:text-[var(--v2-accent)] transition-colors">Nabil</span>
           </a>
 
           <nav className="hidden md:flex items-center gap-10">

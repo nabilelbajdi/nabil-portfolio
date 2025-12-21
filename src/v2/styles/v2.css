@@ -1,5 +1,5 @@
 /* ============================================
-   Portfolio V2 Styles - Emerald/Amber Theme
+   Portfolio V2 Styles - "Midnight Terminal"
    ============================================ */
 
 /* V2 CSS Variables */
@@ -14,21 +14,21 @@
   --v2-bg-tertiary: #18181b;
   --v2-bg-elevated: #1f1f23;
 
-  --v2-text-primary: #f0f0f5;
+  --v2-text-primary: #fafafa;
   --v2-text-secondary: #a1a1aa;
   --v2-text-muted: #52525b;
   --v2-text-dimmed: #3f3f46;
 
-  /* Accent - Emerald */
-  --v2-accent: #1cb874;
-  --v2-accent-hover: #34d399;
-  --v2-accent-muted: #059669;
-  --v2-accent-glow: rgba(28, 184, 116, 0.15);
-  --v2-accent-glow-strong: rgba(28, 184, 116, 0.25);
+  /* Accent - Cyan */
+  --v2-accent: #06b6d4;
+  --v2-accent-hover: #22d3ee;
+  --v2-accent-muted: #0891b2;
+  --v2-accent-glow: rgba(6, 182, 212, 0.15);
+  --v2-accent-glow-strong: rgba(6, 182, 212, 0.25);
 
-  /* Secondary Accent - Amber */
-  --v2-secondary: #f59e0b;
-  --v2-secondary-muted: #d97706;
+  /* Secondary Accent - Purple */
+  --v2-secondary: #a855f7;
+  --v2-secondary-muted: #9333ea;
 
   /* Borders */
   --v2-border: #27272a;
@@ -73,24 +73,24 @@
 
 /* V2 Light mode */
 .v2.light {
-  --v2-bg-primary: #f5f7fa;
+  --v2-bg-primary: #f3f4f6;
   --v2-bg-secondary: #ffffff;
   --v2-bg-tertiary: #ffffff;
   --v2-bg-elevated: #ffffff;
 
-  --v2-text-primary: #1a1d24;
+  --v2-text-primary: #2f2f35;
   --v2-text-secondary: #3f3f46;
   --v2-text-muted: #71717a;
   --v2-text-dimmed: #71717a;
 
-  --v2-accent: #059669;
-  --v2-accent-hover: #047857;
-  --v2-accent-muted: #10b981;
-  --v2-accent-glow: rgba(5, 150, 105, 0.1);
-  --v2-accent-glow-strong: rgba(5, 150, 105, 0.2);
+  --v2-accent: #0891b2;
+  --v2-accent-hover: #0e7490;
+  --v2-accent-muted: #06b6d4;
+  --v2-accent-glow: rgba(8, 145, 178, 0.1);
+  --v2-accent-glow-strong: rgba(8, 145, 178, 0.2);
 
-  --v2-secondary: #d97706;
-  --v2-secondary-muted: #b45309;
+  --v2-secondary: #9333ea;
+  --v2-secondary-muted: #7c3aed;
 
   --v2-border: #e4e4e7;
   --v2-border-hover: #d4d4d8;
@@ -127,6 +127,7 @@
 }
 
 .v2 h1 {
+  font-size: clamp(2.5rem, 8vw, 5rem);
   font-weight: 900;
   letter-spacing: -0.03em;
 }
@@ -456,14 +457,14 @@
   position: relative;
   width: 90%;
   max-width: 500px;
-  background: linear-gradient(180deg, #0c0c0e 0%, #07070a 100%);
-  border: 1px solid var(--v2-border);
+  background: linear-gradient(180deg, #1a1a2e 0%, #0f0f1a 100%);
+  border: 3px solid #3a3a5c;
   border-radius: 8px;
   padding: 24px;
   box-shadow:
-    0 0 0 1px #050508,
-    0 0 60px rgba(28, 184, 116, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    0 0 0 1px #0a0a12,
+    0 0 60px rgba(6, 182, 212, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
   font-family: var(--v2-font-mono);
   overflow: hidden;
 }
@@ -485,7 +486,7 @@
 .crt-glow {
   position: absolute;
   inset: -20px;
-  background: radial-gradient(ellipse at 50% 0%, rgba(28, 184, 116, 0.05) 0%, transparent 60%);
+  background: radial-gradient(ellipse at 50% 0%, rgba(6, 182, 212, 0.08) 0%, transparent 60%);
   pointer-events: none;
   z-index: 0;
 }
@@ -496,10 +497,10 @@
   z-index: 5;
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--v2-accent);
+  color: #06b6d4;
   text-align: center;
   margin-bottom: 20px;
-  text-shadow: 0 0 10px rgba(28, 184, 116, 0.3);
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
   letter-spacing: 0.1em;
 }
 
@@ -525,7 +526,7 @@
 }
 
 .glitch::after {
-  color: var(--v2-secondary);
+  color: #22d3ee;
   animation: glitch-after 4s ease-in-out infinite;
 }
 
@@ -652,9 +653,9 @@
 .loading-text {
   font-size: 1.2rem;
   font-weight: 700;
-  color: var(--v2-accent);
+  color: #06b6d4;
   letter-spacing: 0.2em;
-  text-shadow: 0 0 20px rgba(28, 184, 116, 0.5);
+  text-shadow: 0 0 20px rgba(6, 182, 212, 0.8);
 }
 
 .loading-dots::after {
@@ -719,8 +720,8 @@
 /* Individual save slot */
 .save-slot {
   position: relative;
-  background: linear-gradient(180deg, #0d0d0f 0%, #0a0a0b 100%);
-  border: 1px solid var(--v2-border);
+  background: linear-gradient(180deg, #1f1f35 0%, #15152a 100%);
+  border: 2px solid #2a2a45;
   border-radius: 6px;
   padding: 12px 16px;
   cursor: pointer;
@@ -735,8 +736,8 @@
 .save-slot-selected {
   border-color: var(--v2-accent);
   box-shadow:
-    0 0 15px rgba(28, 184, 116, 0.2),
-    inset 0 0 20px rgba(28, 184, 116, 0.03);
+    0 0 15px rgba(6, 182, 212, 0.2),
+    inset 0 0 20px rgba(6, 182, 212, 0.03);
 }
 
 .save-slot-empty {

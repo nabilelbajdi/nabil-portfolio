@@ -17,7 +17,7 @@ export function Footer() {
           <div className="flex items-center gap-2 text-xs mono text-[var(--v2-text-dimmed)]">
             <span className="flex items-center gap-1.5">
               <span className="relative flex h-2 w-2">
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500/50"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500/50"></span>
               </span>
               Stockholm, Sweden
             </span>

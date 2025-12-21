@@ -37,7 +37,7 @@ export function ContactSection() {
                     <div className="mono text-[10px] sm:text-xs text-[var(--v2-text-dimmed)] mb-3 sm:mb-6">% cat contact.json</div>
                     <div className="space-y-1.5 sm:space-y-4 mono text-[10px] sm:text-sm">
                         <div className="flex flex-row items-baseline sm:items-center gap-2 sm:gap-0">
-                            <span className="text-amber-400 w-16 sm:w-24 shrink-0">"email"</span>
+                            <span className="text-purple-400 w-16 sm:w-24 shrink-0">"email"</span>
                             <span className="text-[var(--v2-text-muted)]">:</span>
                             <a
                                 href="mailto:nabilelbajdii@gmail.com"
@@ -47,12 +47,12 @@ export function ContactSection() {
                             </a>
                         </div>
                         <div className="flex flex-row items-baseline sm:items-center gap-2 sm:gap-0">
-                            <span className="text-amber-400 w-16 sm:w-24 shrink-0">"location"</span>
+                            <span className="text-purple-400 w-16 sm:w-24 shrink-0">"location"</span>
                             <span className="text-[var(--v2-text-muted)]">:</span>
                             <span className="ml-2 text-[var(--v2-text-secondary)]">"Stockholm, Sweden"</span>
                         </div>
                         <div className="flex flex-row items-baseline sm:items-center gap-2 sm:gap-0">
-                            <span className="text-amber-400 w-16 sm:w-24 shrink-0">"status"</span>
+                            <span className="text-purple-400 w-16 sm:w-24 shrink-0">"status"</span>
                             <span className="text-[var(--v2-text-muted)]">:</span>
                             <span className="ml-2 text-[var(--v2-text-secondary)]">"At Capgemini"</span>
                         </div>
@@ -60,14 +60,14 @@ export function ContactSection() {
                         {/* Social Links */}
                         <div className="pt-3 sm:pt-4 border-t border-[var(--v2-border)]">
                             <div className="flex flex-row items-baseline sm:items-center gap-2 sm:gap-0 mb-1 sm:mb-2">
-                                <span className="text-amber-400 w-16 sm:w-24 shrink-0">"socials"</span>
+                                <span className="text-purple-400 w-16 sm:w-24 shrink-0">"socials"</span>
                                 <span className="text-[var(--v2-text-muted)]">:</span>
                                 <span className="ml-2 text-[var(--v2-text-muted)]">&#123;</span>
                             </div>
                             <div className="space-y-2 ml-0 sm:ml-6">
                                 {displayedSocials.map((social, index) => (
                                     <div key={social.id} className="flex flex-row items-baseline sm:items-center gap-2 sm:gap-0">
-                                        <span className="text-amber-400 w-16 sm:w-20 shrink-0">{`"${social.id}"`}</span>
+                                        <span className="text-purple-400 w-16 sm:w-20 shrink-0">{`"${social.id}"`}</span>
                                         <span className="text-[var(--v2-text-muted)]">:</span>
                                         <a
                                             href={social.url}

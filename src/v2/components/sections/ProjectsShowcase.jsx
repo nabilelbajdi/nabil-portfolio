@@ -65,22 +65,27 @@ function ProjectCard({ project, index }) {
           </p>
 
           {/* Tech stack */}
-          <div className="flex flex-wrap gap-1.5 mb-4">
-            {project.tags.map((tag) => (
+          <div className="flex items-center gap-1.5 mb-4 overflow-hidden">
+            {project.tags.slice(0, 3).map((tag) => (
               <span
                 key={tag}
-                className="px-2 py-0.5 text-[10px] mono text-[var(--v2-accent)] bg-[var(--v2-accent)]/10 rounded"
+                className="px-2 py-0.5 text-[10px] mono text-[var(--v2-accent)] bg-[var(--v2-accent)]/10 rounded whitespace-nowrap"
               >
                 {tag}
               </span>
             ))}
+            {project.tags.length > 3 && (
+              <span className="px-2 py-0.5 text-[10px] mono text-[var(--v2-text-muted)] bg-[var(--v2-bg-tertiary)] rounded whitespace-nowrap">
+                +{project.tags.length - 3}
+              </span>
+            )}
           </div>
 
           {/* Learned callout */}
           <div className="mb-4 p-3 rounded-lg bg-[var(--v2-accent)]/5 border border-[var(--v2-accent)]/10">
             <p className="text-xs text-[var(--v2-text-secondary)] leading-relaxed">
-              <Lightbulb className="w-3 h-3 inline-block mr-1 text-amber-500 align-text-bottom" />
-              <span className="font-semibold text-amber-500">Learned:</span>{' '}
+              <Lightbulb className="w-3 h-3 inline-block mr-1 text-purple-400 align-text-bottom" />
+              <span className="font-semibold text-purple-400">Learned:</span>{' '}
               {project.learned}
             </p>
           </div>

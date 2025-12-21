@@ -198,10 +198,13 @@ export function HeroTerminal() {
           </span>
         </div>
 
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
-          I build <span className="text-gradient">AI-powered systems</span> <br />
-          and clean developer experiences.
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-black mb-3 sm:mb-4 tracking-tight">
+          <span className="text-[var(--v2-text-primary)]">Hi, I'm </span>
+          <span className="text-[var(--v2-accent)] text-glow">Nabil</span>
         </h1>
+        <p className="text-base sm:text-lg text-[var(--v2-text-secondary)] max-w-lg mx-auto">
+          I build intelligent systems that turn complex ideas into simple, usable experiences.
+        </p>
       </motion.div>
 
       {/* Terminal */}
@@ -243,8 +246,8 @@ export function HeroTerminal() {
               animate={{ opacity: 1 }}
               className="flex items-center"
             >
-              <span className="text-[var(--v2-accent)] mono text-sm font-semibold">nabil@portfolio</span>
-              <span className="text-amber-500 ml-1">~</span>
+              <span className="text-purple-400 mono text-sm font-semibold">nabil@portfolio</span>
+              <span className="text-[var(--v2-accent)] ml-1">~</span>
               <span className="text-white ml-2">%</span>
               <input
                 ref={inputRef}
@@ -297,7 +300,7 @@ export function HeroTerminal() {
           </svg>
           <span className="mono">
             <span className="text-[var(--v2-accent)] font-bold">Type commands</span> to interact, or{' '}
-            <span className="text-amber-400 font-bold">scroll down</span> to explore
+            <span className="text-purple-400 font-bold">scroll down</span> to explore
           </span>
         </div>
       </motion.div>

@@ -66,8 +66,8 @@ export function TerminalLine({ children, className = '' }) {
 export function TerminalPrompt({ children, showCursor = false }) {
   return (
     <div className="flex items-center">
-      <span className="text-[var(--v2-accent)] mono text-sm font-semibold">nabil@portfolio</span>
-      <span className="text-amber-500 ml-1">~</span>
+      <span className="text-purple-400 mono text-sm font-semibold">nabil@portfolio</span>
+      <span className="text-[var(--v2-accent)] ml-1">~</span>
       <span className="text-white ml-2">%</span>
       <span className="ml-2 text-[var(--v2-text-primary)]">{children}</span>
       {showCursor && <span className="terminal-cursor" />}
@@ -104,8 +104,8 @@ export function TerminalInput({
 
   return (
     <div className="flex items-center">
-      <span className="text-[var(--v2-accent)] mono text-sm font-semibold">nabil@portfolio</span>
-      <span className="text-amber-500 ml-1">~</span>
+      <span className="text-purple-400 mono text-sm font-semibold">nabil@portfolio</span>
+      <span className="text-[var(--v2-accent)] ml-1">~</span>
       <span className="text-white ml-2">%</span>
       <input
         type="text"
