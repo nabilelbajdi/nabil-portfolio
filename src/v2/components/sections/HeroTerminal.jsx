@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Terminal, TerminalPrompt } from '../ui/Terminal';
 import { HistoryLine, TypedOutput } from '../ui/TerminalComponents';
 import { COMMANDS, EASTER_EGGS } from '../../data/terminalCommands';
-import { useV2Theme } from '../../context/V2ThemeProvider';
+import { useV2Theme } from '../../hooks/useV2Theme';
 import { trackTerminalCommand, trackResumeDownload } from '../../../lib/analytics';
 
 /**
@@ -200,7 +200,7 @@ export function HeroTerminal() {
 
         <h1 className="text-3xl sm:text-5xl md:text-6xl font-black mb-3 sm:mb-4 tracking-tight">
           <span className="text-[var(--v2-text-primary)]">Hi, I'm </span>
-          <span className="text-[var(--v2-accent)] text-glow">Nabil</span>
+          <span className="text-gradient">Nabil</span>
         </h1>
         <p className="text-base sm:text-lg text-[var(--v2-text-secondary)] max-w-lg mx-auto">
           I build intelligent systems that turn complex ideas into simple, usable experiences.

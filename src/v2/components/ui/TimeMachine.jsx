@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { trackTimeMachineClick } from '../../../lib/analytics';
 
@@ -191,6 +191,18 @@ export function TimeMachine() {
     };
   }, [isOpen]);
 
+  // Handler for loading a save slot
+  const handleLoadSlot = useCallback((slot) => {
+    if (slot.url && !isLoading) {
+      setIsLoading(true);
+      // Brief loading animation (600ms)
+      setTimeout(() => {
+        window.open(slot.url, '_blank');
+        setIsLoading(false);
+      }, 600);
+    }
+  }, [isLoading]);
+
   // Keyboard navigation
   useEffect(() => {
     if (!isOpen || isLoading) return;
@@ -209,13 +221,14 @@ export function TimeMachine() {
             setSelectedSlot(prev => prev + 1);
           }
           break;
-        case 'Enter':
+        case 'Enter': {
           e.preventDefault();
           const slot = SAVE_SLOTS.find(s => s.id === selectedSlot);
           if (slot && !slot.isEmpty) {
             handleLoadSlot(slot);
           }
           break;
+        }
         case 'Escape':
           e.preventDefault();
           setIsOpen(false);
@@ -225,7 +238,7 @@ export function TimeMachine() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, selectedSlot, isLoading]);
+  }, [isOpen, selectedSlot, isLoading, handleLoadSlot]);
 
   const handleOpen = () => {
     trackTimeMachineClick();
@@ -235,17 +248,6 @@ export function TimeMachine() {
   const handleClose = () => {
     if (!isLoading) {
       setIsOpen(false);
-    }
-  };
-
-  const handleLoadSlot = (slot) => {
-    if (slot.url && !isLoading) {
-      setIsLoading(true);
-      // Brief loading animation (600ms)
-      setTimeout(() => {
-        window.open(slot.url, '_blank');
-        setIsLoading(false);
-      }, 600);
     }
   };
 

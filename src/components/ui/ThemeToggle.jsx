@@ -1,4 +1,4 @@
-import { useTheme } from '../../context/ThemeProvider';
+import { useTheme } from '../../hooks/useTheme';
 import { cn } from '../../lib/utils';
 
 export function ThemeToggle({ className }) {
@@ -34,7 +34,7 @@ export function ThemeToggle({ className }) {
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={1.5}
-          stroke="currentColor" 
+          stroke="currentColor"
           className="h-5 w-5"
         >
           <path

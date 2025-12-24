@@ -6,9 +6,10 @@ export function ProjectsSection() {
   const sectionRef = useRef(null);
   const [hasAnimated, setHasAnimated] = useState(false);
   const [showAll, setShowAll] = useState(false);
-  
+
   // Scroll-based animation
   useEffect(() => {
+    const currentRef = sectionRef.current;
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting && !hasAnimated) {
@@ -17,18 +18,18 @@ export function ProjectsSection() {
       },
       { threshold: 0.1 }
     );
-    
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+
+    if (currentRef) {
+      observer.observe(currentRef);
     }
-    
+
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, [hasAnimated]);
-  
+
   const projects = [
     {
       id: 1,
@@ -74,23 +75,22 @@ export function ProjectsSection() {
       status: "youarehere"
     }
   ];
-  
+
   // Display only 3 projects by default, or all if showAll is true
   const displayedProjects = showAll ? projects : projects.slice(0, 3);
 
   return (
-    <section 
-      id="projects" 
+    <section
+      id="projects"
       className="py-20 section-padding relative overflow-hidden"
       ref={sectionRef}
     >
       {/* Main content */}
       <div className="container mx-auto px-4 relative z-10">
         {/* Section header */}
-        <div 
-          className={`max-w-4xl mx-auto mb-16 px-4 transition-all duration-700 ${
-            hasAnimated ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-10'
-          }`}
+        <div
+          className={`max-w-4xl mx-auto mb-16 px-4 transition-all duration-700 ${hasAnimated ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-10'
+            }`}
         >
           <div className="flex items-center gap-3 mb-6 justify-center">
             <span className="inline-block w-10 h-1 bg-gradient-to-r from-violet-500 to-indigo-500 rounded-full"></span>
@@ -106,22 +106,22 @@ export function ProjectsSection() {
             Projects built with thoughtful code, clean structure, and a hint of creativity. Each one of these taught me something new and helped me grow as a developer.
           </p>
         </div>
-        
+
         {/* Projects list with hover dimming effect */}
         <div className="max-w-4xl mx-auto project-list px-6">
           {/* Regular projects */}
           {displayedProjects.map((project, index) => (
-            <div 
+            <div
               key={project.id}
               className="project-item mb-2"
             >
-              <ProjectCard 
-                project={project} 
+              <ProjectCard
+                project={project}
                 index={index}
               />
             </div>
           ))}
-          
+
           {/* View More Link - only shown when there are more projects to display */}
           {!showAll && projects.length > 3 && (
             <div className="flex justify-center my-8 animate-fade-in opacity-0" style={{ animationDelay: "0.4s" }}>
@@ -138,7 +138,7 @@ export function ProjectsSection() {
               </button>
             </div>
           )}
-          
+
           {/* Coming Soon Project - only shown after all projects are displayed */}
           {showAll && (
             <div className="project-item mb-2 animate-fade-in opacity-0" style={{ animationDelay: "0.3s" }}>
@@ -150,13 +150,13 @@ export function ProjectsSection() {
                       <Plus className="w-12 h-12 text-indigo-400 dark:text-indigo-500 opacity-70" />
                     </div>
                   </div>
-                  
+
                   {/* Content */}
                   <div className="flex-1 flex flex-col justify-center">
                     <h3 className="text-xl font-bold mb-2 text-stone-700 dark:text-zinc-300">
                       More Projects Coming Soon
                     </h3>
-                    
+
                     <p className="text-stone-600 dark:text-zinc-400 text-sm">
                       Stay tuned for more to come! I'm currently working on a Machine Learning project that applies natural language processing techniques.
                     </p>

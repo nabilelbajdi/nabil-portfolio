@@ -6,13 +6,14 @@ import { AboutBento } from './components/sections/AboutBento';
 import { ProjectsShowcase } from './components/sections/ProjectsShowcase';
 import { SkillsSection } from './components/sections/SkillsSection';
 import { ContactSection } from './components/sections/ContactSection';
-import { CommandPalette, useCommandPalette } from './components/ui/CommandPalette';
+import { CommandPalette } from './components/ui/CommandPalette';
+import { useCommandPalette } from './hooks/useCommandPalette';
 import { TimeMachine } from './components/ui/TimeMachine';
 import './styles/v2.css';
 
 function V2Content() {
   const commandPalette = useCommandPalette();
-  
+
   return (
     <PageWrapper onOpenCommandPalette={commandPalette.open}>
       <HeroTerminal />

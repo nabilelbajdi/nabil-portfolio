@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useV2Theme } from '../../context/V2ThemeProvider';
+import { useV2Theme } from '../../hooks/useV2Theme';
 import { PALETTE_COMMANDS } from '../../data/paletteCommands';
 
 export function CommandPalette({ isOpen, onClose }) {
@@ -186,26 +186,4 @@ export function CommandPalette({ isOpen, onClose }) {
   );
 }
 
-export function useCommandPalette() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault();
-        setIsOpen(prev => !prev);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
-  return {
-    isOpen,
-    open: () => setIsOpen(true),
-    close: () => setIsOpen(false),
-    toggle: () => setIsOpen(prev => !prev),
-  };
-}
-
+// useCommandPalette hook is exported from src/v2/hooks/useCommandPalette.js

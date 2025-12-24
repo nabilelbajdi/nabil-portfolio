@@ -1,10 +1,5 @@
-import { createContext, useContext, useEffect, useState, useCallback } from 'react';
-
-const V2ThemeContext = createContext({
-  theme: 'dark',
-  setTheme: () => null,
-  toggleTheme: () => null,
-});
+import { useEffect, useState, useCallback } from 'react';
+import { V2ThemeContext } from './V2ThemeContext';
 
 /**
  * V2ThemeProvider - Manages theme state for Portfolio V2
@@ -52,11 +47,4 @@ export function V2ThemeProvider({ children, defaultTheme = 'dark' }) {
   );
 }
 
-export const useV2Theme = () => {
-  const context = useContext(V2ThemeContext);
-  if (!context) {
-    throw new Error('useV2Theme must be used within V2ThemeProvider');
-  }
-  return context;
-};
-
+// useV2Theme hook is exported from src/v2/hooks/useV2Theme.js

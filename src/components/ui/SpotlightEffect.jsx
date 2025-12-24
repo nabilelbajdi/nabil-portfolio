@@ -1,11 +1,11 @@
-import { useTheme } from '../../context/ThemeProvider';
+import { useTheme } from '../../hooks/useTheme';
 
 export function SpotlightEffect({ mousePosition }) {
   const { theme } = useTheme();
-  
+
   // Theme-specific spotlight styling
   let spotlightBackground;
-  
+
   if (theme === 'dark') {
     // Purple glow for dark mode
     spotlightBackground = `radial-gradient(600px at ${mousePosition.x}px ${mousePosition.y}px, rgba(124, 58, 237, 0.15), transparent 80%)`;
@@ -17,10 +17,10 @@ export function SpotlightEffect({ mousePosition }) {
       rgba(59, 130, 246, 0.05) 70%, 
       transparent 100%)`;
   }
-  
+
   return (
-    <div 
-      className="pointer-events-none fixed inset-0 -z-30 transition duration-300 opacity-0 md:opacity-100" 
+    <div
+      className="pointer-events-none fixed inset-0 -z-30 transition duration-300 opacity-0 md:opacity-100"
       style={{ background: spotlightBackground }}
     />
   );

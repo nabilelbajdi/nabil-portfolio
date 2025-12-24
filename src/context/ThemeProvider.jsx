@@ -1,9 +1,5 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-
-const ThemeContext = createContext({
-  theme: 'dark',
-  setTheme: () => null,
-});
+import { useEffect, useState } from 'react';
+import { ThemeContext } from './ThemeContext';
 
 export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState('dark');
@@ -11,11 +7,11 @@ export function ThemeProvider({ children }) {
   useEffect(() => {
     // Check for theme preference in localStorage
     const savedTheme = localStorage.getItem('theme');
-    
+
     // If theme is saved in localStorage, use that
     // Otherwise, default to dark theme
     const initialTheme = savedTheme || 'dark';
-    
+
     setTheme(initialTheme);
   }, []);
 
@@ -38,4 +34,4 @@ export function ThemeProvider({ children }) {
   );
 }
 
-export const useTheme = () => useContext(ThemeContext); 
+// useTheme hook is exported from src/hooks/useTheme.js

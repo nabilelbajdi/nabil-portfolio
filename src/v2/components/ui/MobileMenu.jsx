@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { useV2Theme } from '../../context/V2ThemeProvider';
+import { useV2Theme } from '../../hooks/useV2Theme';
 import { NAV_ITEMS_WITH_HOME } from '../../../data/navigation';
 import { SOCIAL_LINKS } from '../../../data/socialLinks';
 

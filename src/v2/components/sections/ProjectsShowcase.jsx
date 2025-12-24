@@ -11,7 +11,7 @@ const allProjects = getFeaturedProjects();
 // Extract unique tags for filter buttons
 const allTags = [...new Set(allProjects.flatMap(p => p.tags))].slice(0, 6);
 
-function ProjectCard({ project, index }) {
+function ProjectCard({ project, _index }) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
   return (

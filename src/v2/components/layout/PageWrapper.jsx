@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { useV2Theme } from '../../context/V2ThemeProvider';
+import { useV2Theme } from '../../hooks/useV2Theme';
 import { Header } from './Header';
 
 /**

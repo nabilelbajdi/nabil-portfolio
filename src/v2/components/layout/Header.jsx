@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { motion, useScroll } from 'framer-motion';
-import { useV2Theme } from '../../context/V2ThemeProvider';
+import { useV2Theme } from '../../hooks/useV2Theme';
 import { MobileMenu } from '../ui/MobileMenu';
 import { Github, Linkedin, FileText, Search, Sun, Moon, Menu } from 'lucide-react';
 import { NAV_ITEMS } from '../../../data/navigation';
