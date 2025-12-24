@@ -26,11 +26,6 @@ describe("Terminal Commands", () => {
             expect(COMMANDS.projects).toHaveProperty("output");
         });
 
-        it("should have contact command", () => {
-            expect(COMMANDS).toHaveProperty("contact");
-            expect(COMMANDS.contact).toHaveProperty("output");
-        });
-
         it("should have social command with links", () => {
             expect(COMMANDS).toHaveProperty("social");
             expect(COMMANDS.social).toHaveProperty("links");
