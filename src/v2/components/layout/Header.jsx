@@ -110,39 +110,8 @@ export function Header({ onOpenCommandPalette }) {
               </button>
             </Tooltip>
 
-            {/* Social Links */}
+            {/* Theme Toggle */}
             <div className="hidden sm:flex items-center gap-1">
-              <Tooltip content="GitHub" position="bottom">
-                <a
-                  href="https://github.com/nabilelbajdi"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 text-[var(--v2-text-secondary)] hover:text-[var(--v2-accent)] rounded-lg transition-colors"
-                >
-                  <Github className="w-4 h-4" />
-                </a>
-              </Tooltip>
-              <Tooltip content="LinkedIn" position="bottom">
-                <a
-                  href="https://linkedin.com/in/nabilelbajdi"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 text-[var(--v2-text-secondary)] hover:text-[var(--v2-accent)] rounded-lg transition-colors"
-                >
-                  <Linkedin className="w-4 h-4" />
-                </a>
-              </Tooltip>
-              <Tooltip content="Resume" position="bottom">
-                <a
-                  href="/resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 text-[var(--v2-text-secondary)] hover:text-[var(--v2-accent)] rounded-lg transition-colors"
-                >
-                  <FileText className="w-4 h-4" />
-                </a>
-              </Tooltip>
-
               <Tooltip content={theme === 'dark' ? 'Light mode' : 'Dark mode'} position="bottom">
                 <button
                   onClick={toggleTheme}

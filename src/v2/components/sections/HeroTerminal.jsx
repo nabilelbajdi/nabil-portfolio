@@ -5,6 +5,8 @@ import { HistoryLine, TypedOutput } from '../ui/TerminalComponents';
 import { COMMANDS, EASTER_EGGS } from '../../data/terminalCommands';
 import { useV2Theme } from '../../hooks/useV2Theme';
 import { trackTerminalCommand, trackResumeDownload } from '../../../lib/analytics';
+import { SOCIAL_LINKS, RESUME_LINK } from '../../../data/socialLinks';
+import { Github, Linkedin, FileText } from 'lucide-react';
 
 /**
  * HeroTerminal - Interactive terminal hero section
@@ -302,6 +304,35 @@ export function HeroTerminal() {
             <span className="text-[var(--v2-accent)] font-bold">Type commands</span> to interact, or{' '}
             <span className="text-purple-400 font-bold">scroll down</span> to explore
           </span>
+        </div>
+
+        {/* Social Links */}
+        <div className="flex items-center gap-4 sm:gap-6">
+          {SOCIAL_LINKS.filter(link => link.id === 'github' || link.id === 'linkedin').map((link) => (
+            <a
+              key={link.id}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-[var(--v2-text-muted)] hover:text-[var(--v2-accent)] transition-colors"
+              aria-label={link.name}
+            >
+              {link.id === 'github' && <Github className="w-5 h-5" />}
+              {link.id === 'linkedin' && <Linkedin className="w-5 h-5" />}
+              <span className="hidden sm:inline text-sm">{link.name}</span>
+            </a>
+          ))}
+          <a
+            href={RESUME_LINK.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={trackResumeDownload}
+            className="flex items-center gap-2 text-[var(--v2-text-muted)] hover:text-[var(--v2-accent)] transition-colors"
+            aria-label="Resume"
+          >
+            <FileText className="w-5 h-5" />
+            <span className="text-sm">Resume</span>
+          </a>
         </div>
       </motion.div>
 
