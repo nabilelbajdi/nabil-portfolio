@@ -15,6 +15,7 @@
 @import "@fontsource/jetbrains-mono/700.css";
 
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   --background: 260 40% 98%;

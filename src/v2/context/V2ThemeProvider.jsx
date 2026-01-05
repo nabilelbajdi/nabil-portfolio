@@ -22,10 +22,16 @@ export function V2ThemeProvider({ children, defaultTheme = 'dark' }) {
     setMounted(true);
   }, []);
 
-  // Persist theme changes
+  // Persist theme changes and sync documentElement class for V1 compatibility
   useEffect(() => {
     if (mounted) {
       localStorage.setItem('v2-theme', theme);
+      // Also sync documentElement class so V1 components render correctly
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
     }
   }, [theme, mounted]);
 

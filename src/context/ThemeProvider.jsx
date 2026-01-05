@@ -5,8 +5,8 @@ export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState('dark');
 
   useEffect(() => {
-    // Check for theme preference in localStorage
-    const savedTheme = localStorage.getItem('theme');
+    // Check for theme preference in localStorage (V1-specific key)
+    const savedTheme = localStorage.getItem('v1-theme');
 
     // If theme is saved in localStorage, use that
     // Otherwise, default to dark theme
@@ -23,8 +23,8 @@ export function ThemeProvider({ children }) {
       document.documentElement.classList.remove('dark');
     }
 
-    // Save theme preference to localStorage
-    localStorage.setItem('theme', theme);
+    // Save theme preference to localStorage (V1-specific key)
+    localStorage.setItem('v1-theme', theme);
   }, [theme]);
 
   return (
