@@ -56,7 +56,7 @@ export function HeroSection() {
                 <span className="sr-only">GitHub</span>
               </a>
               <a
-                href="https://www.linkedin.com/in/nabil-el-bajdi-51726b24b/"
+                href="https://www.linkedin.com/in/nabilelbajdi/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-stone-600 hover:text-indigo-600 dark:text-zinc-400 dark:hover:text-indigo-400 transition-colors duration-200"

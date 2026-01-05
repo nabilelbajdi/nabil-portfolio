@@ -31,7 +31,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   {
     id: 'linkedin',
     name: 'LinkedIn',
-    url: 'https://www.linkedin.com/in/nabil-el-bajdi-51726b24b/',
+    url: 'https://www.linkedin.com/in/nabilelbajdi/',
     icon: 'linkedin',
     emoji: '💼',
   },
