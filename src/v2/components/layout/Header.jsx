@@ -16,7 +16,7 @@ export function Header({ onOpenCommandPalette }) {
   // Detect if user is on Mac
   const isMac = useMemo(() => {
     if (typeof navigator === 'undefined') return false;
-    return /Mac|iPhone|iPad|iPod/.test(navigator.platform || navigator.userAgent);
+    return /Mac|iPhone|iPad|iPod/.test(navigator.userAgent);
   }, []);
 
   const keyboardShortcut = isMac ? '⌘K' : 'Ctrl+K';

@@ -57,7 +57,7 @@ export const RESUME_LINK: SocialLink = {
  */
 export const PERSONAL_INFO: PersonalInfo = {
   name: 'Nabil El Bajdi',
-  title: 'AI Developer',
+  title: 'AI Engineer',
   email: 'nabilelbajdii@gmail.com',
   location: 'Stockholm, Sweden',
   currentCompany: 'Capgemini',

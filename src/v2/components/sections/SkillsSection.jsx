@@ -7,8 +7,8 @@ function SkillCategory({ category, index }) {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="p-3 sm:p-5 rounded-2xl bg-[var(--v2-bg-secondary)] border border-[var(--v2-border)]"
+      transition={{ duration: 0.5, delay: index * 0.08 }}
+      className="p-3 sm:p-5 rounded-2xl bg-[var(--v2-bg-secondary)] border border-[var(--v2-border)] hover:border-[var(--v2-accent)]/30 transition-colors"
     >
       <h3 className="text-[10px] sm:text-sm font-medium text-[var(--v2-text-primary)] mb-2 sm:mb-3 whitespace-nowrap truncate leading-normal pb-0.5">
         {category.name === 'AI / Machine Learning' ? (
@@ -28,7 +28,7 @@ function SkillCategory({ category, index }) {
           </li>
         ))}
       </ul>
-    </motion.div >
+    </motion.div>
   );
 }
 
@@ -53,21 +53,25 @@ export function SkillsSection() {
         </motion.div>
 
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-          {SKILL_CATEGORIES.map((category, index) => (
-            <SkillCategory key={category.name} category={category} index={index} />
-          ))}
-
+          {/* Current Focus — first, highlighted */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="p-3 sm:p-5 rounded-2xl bg-[var(--v2-bg-secondary)] border border-[var(--v2-border)]"
+            transition={{ duration: 0.5, delay: 0 }}
+            className="p-3 sm:p-5 rounded-2xl bg-[var(--v2-bg-secondary)] border border-[var(--v2-accent)]/30 relative overflow-hidden"
           >
-            <h3 className="text-[10px] sm:text-sm font-medium text-[var(--v2-text-primary)] mb-2 sm:mb-3 whitespace-nowrap truncate leading-normal pb-0.5">
-              {CURRENT_FOCUS.name}
-            </h3>
-            <ul className="space-y-1.5">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--v2-accent)] to-[var(--v2-secondary)]" />
+            <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--v2-accent)]/5 rounded-full blur-2xl pointer-events-none" />
+            <div className="flex items-center justify-between mb-2 sm:mb-3 relative">
+              <h3 className="text-[10px] sm:text-sm font-medium text-[var(--v2-text-primary)] leading-normal">
+                {CURRENT_FOCUS.name}
+              </h3>
+              <span className="text-[9px] sm:text-[10px] mono text-[var(--v2-accent)] bg-[var(--v2-accent)]/10 px-1.5 py-0.5 rounded-full border border-[var(--v2-accent)]/20">
+                active
+              </span>
+            </div>
+            <ul className="space-y-1.5 relative">
               {CURRENT_FOCUS.items.map((skill) => (
                 <li key={skill} className="flex items-center gap-2 text-xs sm:text-sm text-[var(--v2-text-secondary)]">
                   <span className="w-1 h-1 rounded-full bg-[var(--v2-accent)]" />
@@ -76,6 +80,10 @@ export function SkillsSection() {
               ))}
             </ul>
           </motion.div>
+
+          {SKILL_CATEGORIES.map((category, index) => (
+            <SkillCategory key={category.id} category={category} index={index + 1} />
+          ))}
         </div>
       </div>
     </section>

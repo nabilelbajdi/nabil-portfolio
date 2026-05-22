@@ -1,9 +1,12 @@
-import { Github, Linkedin, Mail, CircleCheck } from 'lucide-react';
+import { Github, Linkedin, Mail } from 'lucide-react';
 import { SOCIAL_LINKS } from '../../../data/socialLinks';
 import { Tooltip } from '../ui/Tooltip';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const githubUrl = SOCIAL_LINKS.find(l => l.id === 'github')?.url;
+  const linkedinUrl = SOCIAL_LINKS.find(l => l.id === 'linkedin')?.url;
+  const emailUrl = SOCIAL_LINKS.find(l => l.id === 'email')?.url;
 
   return (
     <footer className="py-8 px-4 sm:px-6 border-t border-[var(--v2-border)] bg-[var(--v2-bg-secondary)]/30 backdrop-blur-sm">
@@ -47,7 +50,7 @@ export function Footer() {
         <div className="flex items-center gap-4">
           <Tooltip content="GitHub" position="top">
             <a
-              href={SOCIAL_LINKS.github}
+              href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="text-[var(--v2-text-muted)] hover:text-[var(--v2-accent)] transition-colors cursor-pointer"
@@ -59,7 +62,7 @@ export function Footer() {
 
           <Tooltip content="LinkedIn" position="top">
             <a
-              href={SOCIAL_LINKS.linkedin}
+              href={linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="text-[var(--v2-text-muted)] hover:text-[var(--v2-accent)] transition-colors cursor-pointer"
@@ -71,7 +74,7 @@ export function Footer() {
 
           <Tooltip content="Email" position="top">
             <a
-              href={`mailto:${SOCIAL_LINKS.email}`}
+              href={emailUrl}
               className="text-[var(--v2-text-muted)] hover:text-[var(--v2-accent)] transition-colors cursor-pointer"
               aria-label="Email"
             >
